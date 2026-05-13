@@ -1,0 +1,65 @@
+   ▲ Next.js 15.5.18 (Turbopack)
+   - Local:        http://localhost:3000
+   - Network:      http://192.168.18.16:3000
+   - Environments: .env.local
+
+ ✓ Starting...
+ ○ Compiling middleware ...
+ ✓ Compiled middleware in 804ms
+ ✓ Ready in 4.7s
+ ○ Compiling /[locale] ...
+ ✓ Compiled /[locale] in 9.7s
+ GET /en 200 in 12876ms
+ GET /en 200 in 1448ms
+ GET /ar 200 in 913ms
+ ○ Compiling /[locale]/about ...
+ ✓ Compiled /[locale]/about in 665ms
+ GET /en/about 200 in 2198ms
+ ○ Compiling /[locale]/services ...
+ ✓ Compiled /[locale]/services in 801ms
+ GET /en/services 200 in 2833ms
+ ✓ Compiled /[locale]/products in 488ms
+ GET /en/products 200 in 2377ms
+ ○ Compiling /[locale]/projects ...
+ ✓ Compiled /[locale]/projects in 612ms
+ GET /en/projects 200 in 2212ms
+ ○ Compiling /[locale]/blog ...
+ ✓ Compiled /[locale]/blog in 796ms
+ GET /en/blog 200 in 2670ms
+ GET /en 200 in 1735ms
+ ○ Compiling /[locale]/contact ...
+ GET /favicon.ico 404 in 2206ms
+ ✓ Compiled /[locale]/contact in 3.4s
+ GET /en/contact 200 in 5226ms
+ ○ Compiling /[locale]/admin ...
+ ✓ Compiled /[locale]/admin in 737ms
+ GET /en/admin 200 in 2299ms
+ GET /en/about 200 in 612ms
+ GET /en/services 200 in 517ms
+ GET /en/products 200 in 450ms
+ GET /en/projects 200 in 470ms
+ GET /en/blog 200 in 417ms
+ GET /en/contact 200 in 451ms
+ GET /en 200 in 757ms
+ GET /en/about 200 in 618ms
+ GET /ar/about 200 in 479ms
+ GET /ar/services 200 in 553ms
+ ○ Compiling /[locale]/services/[slug] ...
+ ✓ Compiled /[locale]/services/[slug] in 1981ms
+ GET /en/services/fire-protection 200 in 3359ms
+ GET /en/services/hvac 200 in 466ms
+ ○ Compiling /[locale]/admin/products ...
+ ✓ Compiled /[locale]/admin/products in 754ms
+ GET /en/admin/products 200 in 1877ms
+ ✓ Compiled /[locale]/admin/blog in 474ms
+ GET /en/admin/blog 200 in 1750ms
+ ○ Compiling /[locale]/admin/login ...
+ ✓ Compiled /[locale]/admin/login in 639ms
+ GET /en/admin/login 200 in 1959ms
+ GET /en/services 200 in 610ms
+ GET /en/services/lv-systems 200 in 528ms
+ GET /en/products 200 in 600ms
+ GET /ar/products 200 in 483ms
+ GET /en/products 200 in 407ms
+ GET /en 200 in 680ms
+ GET /en/about 200 in 519ms

@@ -1,0 +1,199 @@
+{
+  "nav": {
+    "home": "Home",
+    "about": "About",
+    "services": "Services",
+    "products": "Products",
+    "projects": "Projects",
+    "blog": "Blog",
+    "contact": "Contact",
+    "getQuote": "Get a Quote",
+    "phone": "+974 4444 5555",
+    "email": "info@teknomech.qa"
+  },
+  "footer": {
+    "tagline": "Qatar's trusted MEP and Fire Protection contractor, delivering certified engineering solutions since 2008.",
+    "quickLinks": "Quick Links",
+    "servicesLabel": "Our Services",
+    "contactInfo": "Contact Info",
+    "address": "Building 15, Street 850, Zone 55, Industrial Area, Doha, Qatar",
+    "whatsapp": "WhatsApp Us",
+    "copyright": "© 2025 Teknomech MEP. All rights reserved.",
+    "privacy": "Privacy Policy"
+  },
+  "home": {
+    "hero": {
+      "badge1": "Licensed in Qatar",
+      "badge2": "Certified MEP Contractor",
+      "badge3": "24/7 Maintenance",
+      "headline1": "Engineering Qatar's",
+      "headline2": "Future Infrastructure",
+      "subheading": "Complete MEP & Fire Protection solutions for commercial, industrial, and government projects across Qatar. Certified, compliant, and built to last.",
+      "cta1": "Explore Our Services",
+      "cta2": "View Our Projects"
+    },
+    "trust": {
+      "item1Title": "ISO 9001 Certified",
+      "item1Desc": "Quality management systems",
+      "item2Title": "Qatar UPDA Approved",
+      "item2Desc": "Fully licensed and compliant",
+      "item3Title": "NFPA Compliant",
+      "item3Desc": "Fire protection standards",
+      "item4Title": "24/7 Support",
+      "item4Desc": "Emergency maintenance ready"
+    },
+    "about": {
+      "label": "Who We Are",
+      "heading": "Qatar's Premier MEP Engineering Partner",
+      "p1": "Teknomech MEP has been delivering world-class mechanical, electrical, plumbing, and fire protection solutions across Qatar for over 15 years. Our multidisciplinary teams combine deep engineering expertise with a commitment to quality and safety.",
+      "p2": "From high-rise commercial towers to industrial facilities and government infrastructure, we engineer systems that perform — on time, within budget, and beyond expectations.",
+      "stat1Label": "Projects Delivered",
+      "stat2Label": "Years Experience",
+      "cta": "Learn More About Us"
+    },
+    "services": {
+      "label": "What We Do",
+      "heading": "Comprehensive MEP & Fire Protection Services",
+      "viewAll": "View All Services"
+    },
+    "stats": {
+      "label": "Our Track Record",
+      "heading": "Numbers That Speak For Themselves",
+      "stat1": "Projects Completed",
+      "stat2": "Years in Qatar",
+      "stat3": "Certified Engineers",
+      "stat4": "Satisfied Clients"
+    },
+    "products": {
+      "label": "Our Products",
+      "heading": "Industry-Grade Equipment & Systems",
+      "viewAll": "Browse All Products"
+    },
+    "projects": {
+      "label": "Our Work",
+      "heading": "Featured Projects Across Qatar",
+      "viewAll": "View All Projects"
+    },
+    "whyUs": {
+      "label": "Why Choose Us",
+      "heading": "The Teknomech Advantage",
+      "p": "We combine technical excellence with deep knowledge of Qatar's regulatory landscape, delivering projects that meet the highest international standards while respecting local requirements.",
+      "feature1Title": "UPDA & QCDD Compliant",
+      "feature1Desc": "All works comply with Qatar Civil Defence and UPDA regulations",
+      "feature2Title": "End-to-End Delivery",
+      "feature2Desc": "Design, supply, install, test and commission — all under one roof",
+      "feature3Title": "Multilingual Team",
+      "feature3Desc": "Arabic and English speaking engineers ready to support you",
+      "feature4Title": "Warranty Backed",
+      "feature4Desc": "Full workmanship warranty and AMC maintenance contracts available"
+    },
+    "cta": {
+      "heading": "Ready to Start Your Next Project?",
+      "subtext": "Contact our engineering team for a free consultation and project assessment.",
+      "btn1": "Get a Free Quote",
+      "btn2": "Call Us Now"
+    },
+    "blog": {
+      "label": "Latest Insights",
+      "heading": "From Our Engineering Blog",
+      "viewAll": "Read All Posts"
+    },
+    "contactBanner": {
+      "heading": "Visit Us or Get in Touch",
+      "address": "Building 15, Street 850, Industrial Area, Doha, Qatar",
+      "phone": "+974 4444 5555",
+      "email": "info@teknomech.qa",
+      "cta": "Get in Touch"
+    }
+  },
+  "services": {
+    "fire": {
+      "name": "Fire Protection",
+      "desc": "QCDD-compliant fire suppression, detection, alarm and sprinkler systems for all building types."
+    },
+    "hvac": {
+      "name": "HVAC Systems",
+      "desc": "Energy-efficient air conditioning, ventilation and climate control solutions for Qatar's demanding environment."
+    },
+    "electrical": {
+      "name": "Electrical Systems",
+      "desc": "LV/MV power distribution, lighting, UPS, generators and building automation systems."
+    },
+    "plumbing": {
+      "name": "Plumbing & Drainage",
+      "desc": "Complete potable water, drainage and sanitation systems engineered for reliability."
+    },
+    "lv": {
+      "name": "LV Systems",
+      "desc": "Structured cabling, CCTV, access control, PA systems and building management."
+    },
+    "maintenance": {
+      "name": "AMC & Maintenance",
+      "desc": "Annual maintenance contracts and 24/7 emergency support for all MEP systems."
+    }
+  },
+  "about": {
+    "pageTitle": "About Us",
+    "label": "Our Story",
+    "heading": "Built on Engineering Excellence",
+    "mission": "Our Mission",
+    "vision": "Our Vision"
+  },
+  "contact": {
+    "pageTitle": "Contact Us",
+    "heading": "Get in Touch",
+    "name": "Full Name",
+    "email": "Email Address",
+    "phone": "Phone Number",
+    "company": "Company Name",
+    "service": "Service Required",
+    "message": "Message",
+    "submit": "Send Message",
+    "success": "Your message has been sent. We'll be in touch shortly.",
+    "error": "Something went wrong. Please try again."
+  },
+  "products": {
+    "pageTitle": "Products",
+    "heading": "MEP Equipment & Systems",
+    "viewSpecs": "View Specs",
+    "allCategories": "All Categories",
+    "searchPlaceholder": "Search products..."
+  },
+  "projects": {
+    "pageTitle": "Projects",
+    "heading": "Our Portfolio",
+    "location": "Location",
+    "year": "Year",
+    "category": "Category"
+  },
+  "blog": {
+    "pageTitle": "Blog",
+    "heading": "MEP Engineering Insights",
+    "readMore": "Read More",
+    "publishedOn": "Published on",
+    "tags": "Tags"
+  },
+  "admin": {
+    "dashboard": "Dashboard",
+    "products": "Products",
+    "blog": "Blog Posts",
+    "projects": "Projects",
+    "contacts": "Contact Submissions",
+    "addNew": "Add New",
+    "edit": "Edit",
+    "delete": "Delete",
+    "save": "Save",
+    "cancel": "Cancel",
+    "login": "Admin Login",
+    "loginBtn": "Sign In",
+    "email": "Email",
+    "password": "Password"
+  },
+  "ai": {
+    "title": "MEP Assistant",
+    "placeholder": "Ask about our MEP services...",
+    "send": "Send",
+    "typing": "Typing...",
+    "welcome": "Hello! I'm your MEP & Fire Protection assistant. How can I help you today?"
+  }
+}
