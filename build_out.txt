@@ -1,3 +1,0 @@
-   ▲ Next.js 15.5.18
-   - Environments: .env.local
-
