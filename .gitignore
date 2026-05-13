@@ -36,4 +36,7 @@ build_out.txt
 build_err.txt
 dev_out.txt
 dev_err.txt
+dev3_out.txt
+dev3_err.txt
 info.txt
+*.log.txt
