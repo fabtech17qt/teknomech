@@ -1,17 +1,10 @@
 import { cn } from '@/lib/utils';
 
-export default function SectionLabel({ children, variant = 'red', className }) {
+export default function SectionLabel({ children, className }) {
   return (
     <div className={cn('section-label', className)}>
-      <span
-        className={cn(
-          'w-6 h-0.5 inline-block rounded-full',
-          variant === 'red' ? 'bg-brand-red' : 'bg-brand-gold'
-        )}
-      />
-      <span className={variant === 'red' ? 'text-brand-red' : 'text-brand-gold'}>
-        {children}
-      </span>
+      <span className="w-6 h-0.5 bg-brand-blue inline-block rounded-full shrink-0" />
+      <span>{children}</span>
     </div>
   );
 }

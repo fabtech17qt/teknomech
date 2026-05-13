@@ -1,54 +1,65 @@
 import { useTranslations } from 'next-intl';
-import { Link } from '@/i18n/navigation';
 import { MapPin, Phone, Mail } from 'lucide-react';
+import QuickContactForm from '@/components/shared/QuickContactForm';
 
 export default function ContactBannerSection() {
-  const t = useTranslations('home.contactBanner');
+  const t    = useTranslations('home.contactBanner');
+  const tNav = useTranslations('nav');
 
   return (
-    <section className="bg-brand-steel border-t border-white/5">
-      <div className="container-max py-14">
-        <div className="grid grid-cols-1 lg:grid-cols-4 gap-8 items-center">
-          {/* Heading */}
-          <div className="lg:col-span-1">
-            <div className="w-10 h-1 bg-brand-red rounded-full mb-4" />
-            <h2 className="text-brand-text font-bold text-2xl leading-tight">{t('heading')}</h2>
+    <section className="bg-brand-steel">
+      <div className="container-max py-16">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-start">
+
+          {/* Left — contact info */}
+          <div>
+            <div className="w-8 h-0.5 bg-brand-blue rounded-full mb-5" />
+            <h2 className="text-white text-3xl md:text-4xl font-extrabold mb-3 leading-tight">
+              {t('heading')}
+            </h2>
+            <p className="text-white/60 text-base mb-8 leading-relaxed max-w-md">
+              Reach out and our team will respond within one business day.
+            </p>
+
+            <ul className="space-y-5">
+              <li className="flex items-start gap-3">
+                <div className="w-10 h-10 rounded-xl bg-white/10 flex items-center justify-center shrink-0 mt-0.5">
+                  <MapPin size={17} className="text-brand-blue" />
+                </div>
+                <div>
+                  <p className="text-white/40 text-xs uppercase tracking-wider mb-0.5">Address</p>
+                  <p className="text-white text-sm">{t('address')}</p>
+                </div>
+              </li>
+              <li className="flex items-start gap-3">
+                <div className="w-10 h-10 rounded-xl bg-white/10 flex items-center justify-center shrink-0 mt-0.5">
+                  <Phone size={17} className="text-brand-blue" />
+                </div>
+                <div>
+                  <p className="text-white/40 text-xs uppercase tracking-wider mb-0.5">Phone</p>
+                  <a href={`tel:${t('phone')}`} className="text-white text-sm hover:text-brand-blue transition-colors" dir="ltr">
+                    {t('phone')}
+                  </a>
+                </div>
+              </li>
+              <li className="flex items-start gap-3">
+                <div className="w-10 h-10 rounded-xl bg-white/10 flex items-center justify-center shrink-0 mt-0.5">
+                  <Mail size={17} className="text-brand-blue" />
+                </div>
+                <div>
+                  <p className="text-white/40 text-xs uppercase tracking-wider mb-0.5">Email</p>
+                  <a href={`mailto:${tNav('email')}`} className="text-white text-sm hover:text-brand-blue transition-colors">
+                    {tNav('email')}
+                  </a>
+                </div>
+              </li>
+            </ul>
           </div>
 
-          {/* Contact details */}
-          <div className="lg:col-span-2 grid grid-cols-1 sm:grid-cols-3 gap-5">
-            <div className="flex items-start gap-2.5">
-              <MapPin size={16} className="text-brand-red shrink-0 mt-0.5" />
-              <div>
-                <p className="text-brand-subtext text-xs mb-0.5 uppercase tracking-wider">Address</p>
-                <p className="text-brand-text text-sm">{t('address')}</p>
-              </div>
-            </div>
-            <div className="flex items-start gap-2.5">
-              <Phone size={16} className="text-brand-red shrink-0 mt-0.5" />
-              <div>
-                <p className="text-brand-subtext text-xs mb-0.5 uppercase tracking-wider">Phone</p>
-                <a href={`tel:${t('phone')}`} className="text-brand-text text-sm hover:text-brand-gold transition-colors" dir="ltr">
-                  {t('phone')}
-                </a>
-              </div>
-            </div>
-            <div className="flex items-start gap-2.5">
-              <Mail size={16} className="text-brand-red shrink-0 mt-0.5" />
-              <div>
-                <p className="text-brand-subtext text-xs mb-0.5 uppercase tracking-wider">Email</p>
-                <a href={`mailto:${t('email')}`} className="text-brand-text text-sm hover:text-brand-gold transition-colors">
-                  {t('email')}
-                </a>
-              </div>
-            </div>
-          </div>
-
-          {/* CTA */}
-          <div className="lg:text-end">
-            <Link href="/contact" className="btn-primary">
-              {t('cta')}
-            </Link>
+          {/* Right — quick form */}
+          <div className="bg-white/5 border border-white/10 rounded-2xl p-6 md:p-8">
+            <h3 className="text-white font-semibold text-lg mb-5">Send a Quick Message</h3>
+            <QuickContactForm />
           </div>
         </div>
       </div>
