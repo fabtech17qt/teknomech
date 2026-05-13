@@ -119,7 +119,7 @@ export default function Navbar() {
             </div>
             <Link
               href="/contact"
-              className="hidden lg:inline-flex bg-brand-red text-white rounded-full px-5 py-2.5 text-sm font-semibold hover:bg-red-700 transition-colors"
+              className="hidden lg:inline-flex bg-brand-orange text-white rounded-full px-5 py-2.5 text-sm font-semibold hover:bg-orange-700 transition-colors"
             >
               {t('getQuote')}
             </Link>
@@ -159,7 +159,7 @@ export default function Navbar() {
           ))}
           <Link
             href="/contact"
-            className="bg-brand-red text-white rounded-full py-3.5 px-6 text-center font-semibold mt-3 hover:bg-red-700 transition-colors min-h-[44px] flex items-center justify-center"
+            className="bg-brand-orange text-white rounded-full py-3.5 px-6 text-center font-semibold mt-3 hover:bg-orange-700 transition-colors min-h-[44px] flex items-center justify-center"
           >
             {t('getQuote')}
           </Link>

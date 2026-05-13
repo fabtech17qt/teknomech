@@ -1,3 +1,4 @@
+import Image from 'next/image';
 import { useTranslations } from 'next-intl';
 import { Link } from '@/i18n/navigation';
 import SectionLabel from '@/components/shared/SectionLabel';
@@ -7,42 +8,48 @@ import { Shield, Package, Users, Star, ArrowRight } from 'lucide-react';
 const ICONS = [Shield, Package, Users, Star];
 const FEATURE_KEYS = ['feature1', 'feature2', 'feature3', 'feature4'];
 
+const CLIENTS = ['Ashghal', 'QP', 'Barwa', 'Qatar Rail', 'HMC', 'Lusail Corp'];
+
 export default function WhyUsSection() {
   const t = useTranslations('home.whyUs');
 
   return (
     <section className="section-padding bg-white">
       <div className="container-max">
-        <div className="grid grid-cols-1 lg:grid-cols-[40%_60%] gap-14 items-center">
+        <div className="grid grid-cols-1 lg:grid-cols-[42%_58%] gap-14 items-center">
 
           {/* Left — heading + text + CTA + cutout */}
           <AnimateIn variant="fadeLeft">
             <SectionLabel className="mb-4">{t('label')}</SectionLabel>
             <h2 className="heading-lg mb-5 max-w-sm">{t('heading')}</h2>
-            <p className="text-brand-sub leading-relaxed text-base mb-7">{t('p')}</p>
+            <p className="text-brand-sub leading-relaxed mb-7">{t('p')}</p>
 
-            <Link href="/about" className="btn-primary mb-8">
-              {t('label')} <ArrowRight size={16} />
+            <Link
+              href="/about"
+              className="inline-flex items-center gap-2 bg-brand-blue text-white rounded-full px-8 py-3.5 font-semibold hover:bg-brand-blue-dark transition-all duration-300 mb-8"
+            >
+              Learn About Us <ArrowRight size={16} />
             </Link>
 
             {/* Engineer cutout — hidden on mobile */}
-            <div className="hidden md:block relative rounded-3xl bg-brand-blue-light overflow-hidden min-h-[240px] mt-8">
-              <div className="absolute top-0 right-0 w-40 h-40 bg-brand-blue/10 rounded-full -translate-y-1/3 translate-x-1/3 pointer-events-none" />
-              {/* Placeholder — replace with:
-                  <Image src="/images/whyus-cutout.png" alt="Engineer" fill
-                         className="object-contain object-bottom" /> */}
-              <div className="absolute inset-0 flex items-end justify-center pb-4">
-                <div className="text-center text-brand-blue/30">
-                  <div className="text-xs font-mono">whyus-cutout.png</div>
-                </div>
-              </div>
+            <div className="hidden md:block relative rounded-3xl overflow-hidden h-[260px] bg-brand-blue-light mt-2">
+              <Image
+                src="https://images.unsplash.com/photo-1563166423-482a8c14b2d6?w=600&h=400&fit=crop&crop=top&q=80"
+                alt="Engineer on construction site"
+                fill
+                className="object-cover object-top"
+                sizes="42vw"
+              />
+              <div className="absolute bottom-0 inset-x-0 h-16 bg-gradient-to-t from-brand-blue-light to-transparent pointer-events-none" />
 
               {/* Trusted by strip */}
-              <div className="absolute bottom-0 inset-x-0 bg-white/80 backdrop-blur-sm p-3 border-t border-brand-border">
-                <p className="text-brand-sub text-[10px] uppercase tracking-wider mb-1.5">Trusted By</p>
+              <div className="absolute bottom-0 inset-x-0 bg-white/90 backdrop-blur-sm p-3 border-t border-brand-border">
+                <p className="text-brand-sub text-[10px] uppercase tracking-widest mb-2 font-semibold">Trusted By</p>
                 <div className="flex flex-wrap gap-2">
-                  {['Ashghal', 'QP', 'Barwa', 'Qatar Rail', 'HMC'].map((c) => (
-                    <span key={c} className="text-brand-sub text-[10px] border border-brand-border rounded px-2 py-0.5">{c}</span>
+                  {CLIENTS.map((c) => (
+                    <span key={c} className="text-brand-sub text-[10px] border border-brand-border rounded-md px-2 py-0.5 font-medium">
+                      {c}
+                    </span>
                   ))}
                 </div>
               </div>
@@ -55,11 +62,11 @@ export default function WhyUsSection() {
               const Icon = ICONS[i];
               return (
                 <AnimateIn key={key} variant="fadeUp" delay={i * 0.1}>
-                  <div className="card-base p-6 h-full">
+                  <div className="bg-white rounded-2xl p-6 border border-brand-border shadow-md hover:shadow-xl hover:-translate-y-1 transition-all duration-300 h-full">
                     <div className="w-12 h-12 rounded-xl bg-brand-blue-light flex items-center justify-center mb-4">
                       <Icon size={22} className="text-brand-blue" />
                     </div>
-                    <h3 className="text-brand-text font-semibold mb-2">{t(`${key}Title`)}</h3>
+                    <h3 className="text-brand-text font-bold text-base mb-2">{t(`${key}Title`)}</h3>
                     <p className="text-brand-sub text-sm leading-relaxed">{t(`${key}Desc`)}</p>
                   </div>
                 </AnimateIn>
