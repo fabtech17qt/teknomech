@@ -1,8 +1,6 @@
 import { prisma } from '@/lib/prisma';
 import { Resend } from 'resend';
 
-const resend = new Resend(process.env.RESEND_API_KEY);
-
 export async function POST(request) {
   try {
     const body = await request.json();
@@ -18,7 +16,8 @@ export async function POST(request) {
     });
 
     // Send email notification
-    if (process.env.RESEND_API_KEY && process.env.ADMIN_EMAIL) {
+    if (process.env.RESEND_API_KEY && process.env.RESEND_API_KEY.startsWith('re_') && process.env.ADMIN_EMAIL) {
+      const resend = new Resend(process.env.RESEND_API_KEY);
       await resend.emails.send({
         from: 'Teknomech MEP <no-reply@teknomech.qa>',
         to: process.env.ADMIN_EMAIL,
