@@ -12,7 +12,7 @@ export default function CTASection() {
       {/* Background photo with overlay */}
       <div className="absolute inset-0">
         <Image
-          src="https://images.unsplash.com/photo-1548838670-cb67b43a6adb?w=1600&h=700&fit=crop&q=75"
+          src="/images/cta-bg.jpg"
           alt="Engineering team"
           fill
           className="object-cover opacity-20"

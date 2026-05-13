@@ -10,7 +10,7 @@ const SERVICES = [
     key: 'fire',
     icon: Flame,
     slug: 'fire-protection',
-    img: 'https://images.unsplash.com/photo-1585585825759-979ec75438cc?w=600&h=400&fit=crop&q=80',
+    img: '/images/svc-fire-protection.jpg',
   },
   {
     key: 'hvac',
@@ -22,13 +22,13 @@ const SERVICES = [
     key: 'electrical',
     icon: Zap,
     slug: 'electrical',
-    img: 'https://images.unsplash.com/photo-1555963966-b7ae5404b6ed?w=600&h=400&fit=crop&q=80',
+    img: '/images/svc-electrical.jpg',
   },
   {
     key: 'plumbing',
     icon: Droplets,
     slug: 'plumbing',
-    img: 'https://images.unsplash.com/photo-1563166423-482a8c14b2d6?w=600&h=400&fit=crop&q=80',
+    img: '/images/svc-plumbing.jpg',
   },
   {
     key: 'lv',

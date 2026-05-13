@@ -20,6 +20,7 @@ model Product {
   images         String[]
   specSheet      String?
   specifications Json     @default("{}")
+  variants       Json     @default("[]")
   alternatives   Json     @default("[]")
   isFeatured     Boolean  @default(false)
   isActive       Boolean  @default(true)

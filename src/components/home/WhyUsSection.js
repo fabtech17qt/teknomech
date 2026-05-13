@@ -34,7 +34,7 @@ export default function WhyUsSection() {
             {/* Engineer cutout — hidden on mobile */}
             <div className="hidden md:block relative rounded-3xl overflow-hidden h-[260px] bg-brand-blue-light mt-2">
               <Image
-                src="https://images.unsplash.com/photo-1563166423-482a8c14b2d6?w=600&h=400&fit=crop&crop=top&q=80"
+                src="/images/fire-team.jpg"
                 alt="Engineer on construction site"
                 fill
                 className="object-cover object-top"
