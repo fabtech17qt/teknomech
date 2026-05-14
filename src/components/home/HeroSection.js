@@ -4,159 +4,212 @@ import Image from 'next/image';
 import { useTranslations } from 'next-intl';
 import { Link } from '@/i18n/navigation';
 import { motion } from 'framer-motion';
-import { ArrowRight, ShieldCheck, BadgeCheck, Clock } from 'lucide-react';
+import {
+  ArrowRight, ShieldCheck, BadgeCheck, Clock,
+  Wrench, FileText, Calendar, AlertTriangle,
+} from 'lucide-react';
 
 const ease = [0.22, 1, 0.36, 1];
+
+const QUICK_ACTIONS = [
+  { icon: Wrench,        title: 'Free Site Inspection', subtitle: 'Book an engineer visit',          href: '/contact',              accent: 'orange' },
+  { icon: FileText,      title: 'Get a Quote',           subtitle: 'Tailored MEP proposals',          href: '/contact',              accent: 'blue'   },
+  { icon: Calendar,       title: 'AMC Plans',             subtitle: 'Annual maintenance contracts',    href: '/services/maintenance', accent: 'orange' },
+  { icon: AlertTriangle, title: 'Emergency Service',     subtitle: '24/7 fire & safety response',     href: '/contact',              accent: 'blue'   },
+];
 
 const TRUST = [
   { icon: ShieldCheck, label: 'QCD Licensed' },
   { icon: BadgeCheck,  label: 'ISO 9001 Certified' },
-  { icon: Clock,       label: '24/7 Emergency' },
+  { icon: Clock,       label: '24/7 Emergency Response' },
 ];
 
 export default function HeroSection() {
   const t = useTranslations('home.hero');
 
   return (
-    <section className="relative min-h-screen flex items-center overflow-hidden bg-white pt-24 md:pt-28">
-      {/* Soft gradient background */}
-      <div className="absolute inset-0 bg-gradient-to-br from-white via-white to-brand-blue-light pointer-events-none" />
+    <>
+      {/* ── SECTION 1 : MAIN HERO ── */}
+      <section className="relative min-h-[90vh] flex items-center overflow-hidden bg-white pt-24 pb-36">
+        {/* Background gradient */}
+        <div className="absolute inset-0 bg-gradient-to-br from-white via-white to-brand-blue-soft pointer-events-none" />
+        <div className="absolute inset-0 bg-stripes pointer-events-none" />
 
-      <div className="container-max relative z-10 w-full py-10 lg:py-16">
-        <div className="grid grid-cols-1 lg:grid-cols-[55%_45%] gap-8 items-center">
+        <div className="container-max relative z-10 w-full">
+          <div className="grid grid-cols-1 lg:grid-cols-[55%_45%] gap-10 items-center">
 
-          {/* ── Left ── */}
-          <div>
-            {/* Badge */}
-            <motion.div
-              initial={{ opacity: 0, y: 16 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5, ease }}
-              className="inline-flex items-center gap-2 rounded-full bg-brand-blue-light text-brand-blue text-xs font-semibold px-4 py-1.5 mb-7"
-            >
-              <span className="w-1.5 h-1.5 rounded-full bg-brand-blue animate-pulse" />
-              Licensed MEP &amp; Fire Protection Contractor · Qatar
-            </motion.div>
-
-            {/* H1 */}
-            <motion.h1
-              initial={{ opacity: 0, y: 28 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, ease, delay: 0.08 }}
-              className="text-[2.8rem] sm:text-5xl md:text-6xl lg:text-[4.5rem] font-black leading-[1.05] tracking-tight mb-5 text-brand-text"
-            >
-              {t('headline1')}
-              <br />
-              <span className="text-brand-blue">{t('headline2')}</span>
-            </motion.h1>
-
-            {/* Subtext */}
-            <motion.p
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.55, ease, delay: 0.16 }}
-              className="text-brand-sub text-lg leading-relaxed mb-9 max-w-lg"
-            >
-              {t('subheading')}
-            </motion.p>
-
-            {/* CTAs */}
-            <motion.div
-              initial={{ opacity: 0, y: 16 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5, ease, delay: 0.24 }}
-              className="flex flex-col sm:flex-row gap-3 mb-10"
-            >
-              <Link
-                href="/contact"
-                className="inline-flex items-center justify-center gap-2 bg-brand-orange text-white rounded-full px-8 py-3.5 font-semibold hover:bg-orange-700 transition-all duration-300 text-base group"
+            {/* ── LEFT ── */}
+            <div>
+              {/* Badge */}
+              <motion.div
+                initial={{ opacity: 0, y: 16 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.5, ease }}
+                className="inline-flex items-center gap-2 rounded-full bg-brand-orange-soft text-brand-orange-dark text-xs font-semibold px-4 py-1.5 mb-7 uppercase tracking-widest"
               >
-                Get a Free Quote
-                <ArrowRight size={17} className="group-hover:translate-x-1 transition-transform" />
-              </Link>
-              <Link
-                href="/projects"
-                className="inline-flex items-center justify-center gap-2 border-2 border-brand-blue text-brand-blue rounded-full px-8 py-3.5 font-semibold hover:bg-brand-blue hover:text-white transition-all duration-300 text-base"
+                <span className="w-1.5 h-1.5 rounded-full bg-brand-orange animate-pulse" />
+                Licensed MEP &amp; Fire Contractor · Qatar
+              </motion.div>
+
+              {/* H1 */}
+              <motion.h1
+                initial={{ opacity: 0, y: 28 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.6, ease, delay: 0.08 }}
+                className="text-5xl sm:text-6xl md:text-7xl lg:text-[5rem] font-black leading-[0.95] tracking-tight mb-6"
               >
-                View Projects
-              </Link>
-            </motion.div>
+                <span className="text-brand-text">Building</span>
+                <br />
+                <span className="text-brand-text">Qatar's Safest</span>
+                <br />
+                <span className="text-brand-orange">Infrastructure.</span>
+              </motion.h1>
 
-            {/* Trust row */}
-            <motion.div
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              transition={{ duration: 0.5, ease, delay: 0.36 }}
-              className="flex flex-wrap gap-5 items-center"
-            >
-              {TRUST.map(({ icon: Icon, label }) => (
-                <div key={label} className="flex items-center gap-2 text-brand-sub text-sm">
-                  <Icon size={16} className="text-brand-blue shrink-0" />
-                  {label}
-                </div>
-              ))}
-            </motion.div>
-          </div>
+              {/* Subhead */}
+              <motion.p
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.55, ease, delay: 0.16 }}
+                className="text-brand-sub text-lg leading-relaxed mb-9 max-w-xl"
+              >
+                {t('subheading')}
+              </motion.p>
 
-          {/* ── Right — engineer photo "cutout" ── */}
-          <motion.div
-            initial={{ opacity: 0, scale: 0.96, x: 24 }}
-            animate={{ opacity: 1, scale: 1, x: 0 }}
-            transition={{ duration: 0.7, ease, delay: 0.1 }}
-            className="hidden lg:block relative"
-          >
-            {/* Main photo container */}
-            <div className="relative rounded-3xl overflow-hidden bg-brand-blue-light h-[540px]">
-              <Image
-                src="https://images.unsplash.com/photo-1621905251189-08b45d6a269e?w=700&h=700&fit=crop&crop=top&q=85"
-                alt="Professional MEP Engineer"
-                fill
-                className="object-cover object-top"
-                sizes="45vw"
-                priority
-              />
-              {/* Bottom fade — creates "emerging from background" cutout feel */}
-              <div className="absolute bottom-0 inset-x-0 h-28 bg-gradient-to-t from-brand-blue-light via-brand-blue-light/60 to-transparent pointer-events-none" />
+              {/* CTAs */}
+              <motion.div
+                initial={{ opacity: 0, y: 16 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.5, ease, delay: 0.24 }}
+                className="flex flex-col sm:flex-row gap-3 mb-10"
+              >
+                <Link
+                  href="/contact"
+                  className="inline-flex items-center justify-center gap-2 bg-brand-orange text-white rounded-full px-8 py-4 font-bold hover:bg-brand-orange-dark transition-all duration-300 text-base group shadow-lg shadow-brand-orange/30"
+                >
+                  Get a Quote
+                  <ArrowRight size={17} className="group-hover:translate-x-1 transition-transform" />
+                </Link>
+                <Link
+                  href="/services"
+                  className="inline-flex items-center justify-center gap-2 border-2 border-brand-blue text-brand-blue rounded-full px-8 py-4 font-bold hover:bg-brand-blue hover:text-white transition-all duration-300 text-base"
+                >
+                  Our Services
+                </Link>
+              </motion.div>
 
-              {/* Decorative top-right circle */}
-              <div className="absolute -top-8 -right-8 w-48 h-48 bg-brand-blue/10 rounded-full pointer-events-none" />
+              {/* Trust row */}
+              <motion.div
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                transition={{ duration: 0.5, ease, delay: 0.36 }}
+                className="flex flex-wrap gap-6 items-center"
+              >
+                {TRUST.map(({ icon: Icon, label }) => (
+                  <div key={label} className="flex items-center gap-2 text-brand-sub text-sm">
+                    <Icon size={15} className="text-brand-blue shrink-0" />
+                    {label}
+                  </div>
+                ))}
+              </motion.div>
             </div>
 
-            {/* Floating stat card — top left */}
+            {/* ── RIGHT : asymmetric image container ── */}
             <motion.div
-              initial={{ opacity: 0, y: -16 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5, ease, delay: 0.55 }}
-              className="absolute -top-4 -left-6 bg-white rounded-2xl shadow-xl px-5 py-4 border border-brand-border"
+              initial={{ opacity: 0, x: 30 }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{ duration: 0.7, ease, delay: 0.12 }}
+              className="hidden lg:block relative"
             >
-              <p className="text-2xl font-black text-brand-text">5+</p>
-              <p className="text-brand-sub text-xs uppercase tracking-wider mt-0.5">Years in Qatar</p>
-            </motion.div>
+              {/* Decoration behind container */}
+              <div className="absolute -bottom-6 -right-6 w-48 h-48 bg-brand-orange/15 shape-asym-2 z-0" />
 
-            {/* Floating stat card — bottom right */}
-            <motion.div
-              initial={{ opacity: 0, y: 16 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5, ease, delay: 0.65 }}
-              className="absolute -bottom-4 -right-6 bg-brand-blue text-white rounded-2xl shadow-xl px-5 py-4"
-            >
-              <p className="text-2xl font-black">100%</p>
-              <p className="text-white/70 text-xs uppercase tracking-wider mt-0.5">Code Compliant</p>
+              {/* Main image container */}
+              <div className="relative shape-asym-1 bg-brand-blue-soft min-h-[560px] z-10">
+                <div className="absolute inset-0 bg-dots z-0" />
+                <div className="absolute top-0 right-0 w-64 h-64 bg-brand-blue/15 rounded-full blur-3xl z-0" />
+                <Image
+                  src="/images/fire-team.jpg"
+                  alt="Teknomech MEP Engineering Team"
+                  fill
+                  className="object-cover object-top"
+                  sizes="45vw"
+                  priority
+                />
+                <div className="absolute bottom-0 inset-x-0 h-40 bg-gradient-to-t from-brand-blue-soft via-brand-blue-soft/50 to-transparent pointer-events-none z-10" />
+              </div>
+
+              {/* Floating badge 1 — top left */}
+              <motion.div
+                initial={{ opacity: 0, y: -16 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.5, ease, delay: 0.55 }}
+                className="absolute top-10 -left-6 bg-white shadow-2xl rounded-2xl p-4 z-20 border border-brand-border"
+              >
+                <div className="flex items-center gap-3">
+                  <div className="w-10 h-10 rounded-xl bg-brand-blue-soft flex items-center justify-center shrink-0">
+                    <BadgeCheck size={18} className="text-brand-blue" />
+                  </div>
+                  <div>
+                    <p className="text-sm font-bold text-brand-text leading-none">100% Compliant</p>
+                    <p className="text-xs text-brand-sub mt-0.5">QCD Certified</p>
+                  </div>
+                </div>
+              </motion.div>
+
+              {/* Floating badge 2 — bottom left */}
+              <motion.div
+                initial={{ opacity: 0, y: 16 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.5, ease, delay: 0.65 }}
+                className="absolute bottom-10 -left-6 bg-brand-orange text-white shadow-2xl rounded-2xl p-4 z-20"
+              >
+                <p className="text-3xl font-black leading-none">24/7</p>
+                <p className="text-xs text-white/80 mt-1 font-medium">Emergency Response</p>
+              </motion.div>
             </motion.div>
-          </motion.div>
+          </div>
         </div>
-      </div>
+      </section>
 
-      {/* Scroll indicator */}
-      <motion.div
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ delay: 1.2 }}
-        className="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-1 text-brand-sub/50 hidden md:flex"
-      >
-        <span className="text-xs tracking-widest uppercase">Scroll</span>
-        <div className="w-px h-8 bg-brand-border animate-pulse" />
-      </motion.div>
-    </section>
+      {/* ── SECTION 2 : QUICK ACTION CARDS (overlapping hero bottom) ── */}
+      <section className="relative z-20 -mt-20 pb-0">
+        <div className="container-max">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+            {QUICK_ACTIONS.map((item, i) => {
+              const Icon = item.icon;
+              const isOrange = item.accent === 'orange';
+              return (
+                <motion.div
+                  key={item.title}
+                  initial={{ opacity: 0, y: 24 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.5, ease, delay: 0.5 + i * 0.08 }}
+                >
+                  <Link
+                    href={item.href}
+                    className={`group flex flex-col bg-white rounded-2xl shadow-2xl p-6 border-t-4 h-full ${
+                      isOrange ? 'border-brand-orange' : 'border-brand-blue'
+                    } hover:-translate-y-1 transition-all duration-300`}
+                  >
+                    <div className={`w-14 h-14 rounded-xl flex items-center justify-center mb-4 shrink-0 ${
+                      isOrange ? 'bg-brand-orange-soft' : 'bg-brand-blue-soft'
+                    }`}>
+                      <Icon size={24} className={isOrange ? 'text-brand-orange' : 'text-brand-blue'} />
+                    </div>
+                    <p className="font-bold text-brand-text text-base mb-1">{item.title}</p>
+                    <p className="text-brand-sub text-sm flex-1">{item.subtitle}</p>
+                    <div className={`flex items-center gap-1 mt-4 text-sm font-semibold group-hover:gap-2 transition-all ${
+                      isOrange ? 'text-brand-orange' : 'text-brand-blue'
+                    }`}>
+                      Learn More <ArrowRight size={13} />
+                    </div>
+                  </Link>
+                </motion.div>
+              );
+            })}
+          </div>
+        </div>
+      </section>
+    </>
   );
 }

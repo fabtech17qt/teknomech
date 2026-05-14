@@ -1,56 +1,56 @@
-import Image from 'next/image';
-import { useTranslations } from 'next-intl';
 import { Link } from '@/i18n/navigation';
 import { AnimateIn } from '@/components/ui/AnimateIn';
-import { Phone, ArrowRight } from 'lucide-react';
+import { Phone, Mail } from 'lucide-react';
 
 export default function CTASection() {
-  const t = useTranslations('home.cta');
-
   return (
-    <section className="relative overflow-hidden bg-brand-steel py-24 md:py-32">
-      {/* Background photo with overlay */}
-      <div className="absolute inset-0">
-        <Image
-          src="/images/cta-bg.jpg"
-          alt="Engineering team"
-          fill
-          className="object-cover opacity-20"
-          sizes="100vw"
-        />
-        <div className="absolute inset-0 bg-gradient-to-r from-brand-steel/95 via-brand-steel/80 to-brand-steel/60" />
-      </div>
+    <section className="py-10 px-6 bg-white">
+      <div className="max-w-7xl mx-auto">
+        <AnimateIn variant="fadeUp">
+          <div
+            className="relative bg-brand-orange overflow-hidden py-20 px-10 md:px-20"
+            style={{ borderRadius: '120px 8px 8px 120px / 120px 8px 120px 8px' }}
+          >
+            {/* White blurred glow top-right */}
+            <div className="absolute top-0 right-0 w-96 h-96 bg-white/15 rounded-full blur-3xl pointer-events-none" />
+            {/* Dark glow bottom-left */}
+            <div className="absolute -bottom-20 -left-20 w-72 h-72 bg-brand-orange-dark/40 rounded-full blur-3xl pointer-events-none" />
+            {/* Stripe pattern */}
+            <div
+              className="absolute inset-0 pointer-events-none opacity-10"
+              style={{
+                backgroundImage: 'repeating-linear-gradient(45deg, transparent, transparent 12px, rgba(255,255,255,0.15) 12px, rgba(255,255,255,0.15) 13px)',
+              }}
+            />
 
-      {/* Diagonal stripes */}
-      <div className="absolute inset-0 bg-diagonal-stripe pointer-events-none" />
+            <div className="relative z-10 flex flex-col lg:flex-row items-start lg:items-center justify-between gap-10">
+              {/* Heading */}
+              <div>
+                <h2 className="text-3xl md:text-4xl lg:text-5xl font-black text-white leading-tight mb-2">
+                  Have a project in Qatar?
+                </h2>
+                <p className="text-3xl md:text-4xl lg:text-5xl font-black text-brand-blue-deep leading-tight">
+                  Let's engineer it together.
+                </p>
+              </div>
 
-      <div className="container-max relative z-10 text-center">
-        <AnimateIn variant="fadeIn">
-          <div className="max-w-2xl mx-auto">
-            <div className="inline-flex items-center gap-2 bg-white/10 border border-white/20 text-white/80 text-xs font-semibold rounded-full px-4 py-1.5 mb-6 uppercase tracking-widest">
-              Ready to Start?
-            </div>
-            <h2 className="text-3xl md:text-5xl font-extrabold text-white mb-5 leading-tight">
-              {t('heading')}
-            </h2>
-            <p className="text-white/70 text-lg mb-10 leading-relaxed max-w-xl mx-auto">
-              {t('subtext')}
-            </p>
-            <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
-              <Link
-                href="/contact"
-                className="inline-flex items-center justify-center gap-2 bg-brand-orange text-white rounded-full px-9 py-4 font-semibold hover:bg-orange-700 transition-all duration-300 text-base w-full sm:w-auto group shadow-lg shadow-brand-orange/30"
-              >
-                {t('btn1')}
-                <ArrowRight size={17} className="group-hover:translate-x-1 transition-transform" />
-              </Link>
-              <a
-                href="tel:+97444445555"
-                className="inline-flex items-center justify-center gap-2 border-2 border-white text-white rounded-full px-9 py-4 font-semibold hover:bg-white hover:text-brand-steel transition-all duration-300 text-base w-full sm:w-auto"
-              >
-                <Phone size={17} />
-                {t('btn2')}
-              </a>
+              {/* Buttons */}
+              <div className="flex flex-col sm:flex-row gap-4 shrink-0">
+                <a
+                  href="tel:+97444445555"
+                  className="inline-flex items-center gap-2 bg-white text-brand-orange-dark font-bold rounded-full px-7 py-4 hover:bg-brand-blue-deep hover:text-white transition-all duration-300 text-sm"
+                >
+                  <Phone size={15} />
+                  Call Now +974 4444 5555
+                </a>
+                <a
+                  href="mailto:info@teknomech.qa"
+                  className="inline-flex items-center gap-2 border-2 border-white text-white font-bold rounded-full px-7 py-4 hover:bg-white hover:text-brand-orange-dark transition-all duration-300 text-sm"
+                >
+                  <Mail size={15} />
+                  Email Us
+                </a>
+              </div>
             </div>
           </div>
         </AnimateIn>

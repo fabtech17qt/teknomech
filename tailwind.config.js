@@ -10,18 +10,25 @@ module.exports = {
     extend: {
       colors: {
         brand: {
-          blue:        '#0B4FD0',
-          'blue-dark': '#083A9C',
-          'blue-light':'#EEF3FF',
-          red:         '#DC2626',
-          'red-light': '#FEF2F2',
-          orange:      '#EA580C',
-          steel:       '#1E3A5F',
-          light:       '#F8FAFC',
-          border:      '#E2E8F0',
-          text:        '#0F172A',
-          sub:         '#475569',
-          white:       '#FFFFFF',
+          // Primary palette (RAG-style MEP)
+          blue:          '#0B4FD0',
+          'blue-dark':   '#072F8A',
+          'blue-deep':   '#041E5C',
+          'blue-soft':   '#EAF1FF',
+          'blue-light':  '#EEF3FF',  // backward compat
+          orange:        '#F97316',
+          'orange-dark': '#EA580C',
+          'orange-soft': '#FFF1E5',
+          // Neutral
+          white:         '#FFFFFF',
+          light:         '#F7F9FC',
+          border:        '#E5EAF2',
+          text:          '#0F172A',
+          sub:           '#5A6B82',
+          // Legacy tokens (kept for backward compat)
+          red:           '#DC2626',
+          'red-light':   '#FEF2F2',
+          steel:         '#1E3A5F',
         },
         border: 'hsl(var(--border))',
         input: 'hsl(var(--input))',
@@ -79,6 +86,10 @@ module.exports = {
           '0%':   { transform: 'translateX(0%)' },
           '100%': { transform: 'translateX(-50%)' },
         },
+        'marquee-reverse': {
+          '0%':   { transform: 'translateX(-50%)' },
+          '100%': { transform: 'translateX(0%)' },
+        },
         'fade-in-up': {
           '0%':   { opacity: '0', transform: 'translateY(20px)' },
           '100%': { opacity: '1', transform: 'translateY(0)' },
@@ -89,11 +100,12 @@ module.exports = {
         },
       },
       animation: {
-        'accordion-down': 'accordion-down 0.2s ease-out',
-        'accordion-up':   'accordion-up 0.2s ease-out',
-        marquee:          'marquee 30s linear infinite',
-        'fade-in-up':     'fade-in-up 0.6s ease-out',
-        float:            'float 3s ease-in-out infinite',
+        'accordion-down':    'accordion-down 0.2s ease-out',
+        'accordion-up':      'accordion-up 0.2s ease-out',
+        marquee:             'marquee 35s linear infinite',
+        'marquee-reverse':   'marquee-reverse 35s linear infinite',
+        'fade-in-up':        'fade-in-up 0.6s ease-out',
+        float:               'float 3s ease-in-out infinite',
       },
     },
   },

@@ -1,71 +1,73 @@
+'use client';
+
 import Image from 'next/image';
-import { useTranslations } from 'next-intl';
 import { Link } from '@/i18n/navigation';
-import SectionLabel from '@/components/shared/SectionLabel';
 import { AnimateIn } from '@/components/ui/AnimateIn';
-import { ArrowRight, MapPin, Calendar } from 'lucide-react';
+import SectionLabel from '@/components/shared/SectionLabel';
+import { MapPin } from 'lucide-react';
 
 const PROJECTS = [
   {
     title: 'Lusail Commercial Tower',
-    location: 'Lusail City',
-    year: 2024,
-    category: 'Commercial',
-    img: 'https://images.unsplash.com/photo-1765045085124-b29f8db1cf8c?w=800&h=600&fit=crop&q=80',
+    location: 'Lusail City, Qatar',
+    year: '2024',
+    img: 'https://images.unsplash.com/photo-1486325212027-8081e485255e?w=800&h=1000&fit=crop&q=80',
+    tag: 'MEP & Fire Protection',
+    asym: 'shape-asym-1',
   },
   {
-    title: 'Industrial Warehouse Complex',
-    location: 'Industrial Area',
-    year: 2023,
-    category: 'Industrial',
-    img: 'https://images.unsplash.com/photo-1758622799434-f2101c7d5744?w=800&h=600&fit=crop&q=80',
+    title: 'Pearl Qatar Residential Complex',
+    location: 'The Pearl, Doha',
+    year: '2023',
+    img: 'https://images.unsplash.com/photo-1545558014-8692077e9b5c?w=700&h=400&fit=crop&q=80',
+    tag: 'HVAC & Plumbing',
+    asym: 'shape-asym-2',
   },
   {
-    title: 'Government Ministry Offices',
-    location: 'West Bay, Doha',
-    year: 2023,
-    category: 'Government',
-    img: 'https://images.unsplash.com/photo-1767102239264-3a190c4a281c?w=800&h=600&fit=crop&q=80',
+    title: 'Ras Laffan Industrial Facility',
+    location: 'Ras Laffan',
+    year: '2024',
+    img: '/images/svc-fire-protection.jpg',
+    tag: 'Fire Suppression',
+    asym: 'shape-asym-soft',
+  },
+  {
+    title: 'Education Campus — Al Wakrah',
+    location: 'Al Wakrah',
+    year: '2023',
+    img: '/images/svc-electrical.jpg',
+    tag: 'Electrical & LV',
+    asym: 'shape-asym-1',
   },
 ];
 
-function ProjectCard({ project }) {
+function ProjectCard({ project, className = '' }) {
   return (
-    <div className="relative overflow-hidden rounded-2xl group bg-brand-blue-light min-h-[280px] shadow-md hover:shadow-xl transition-all duration-300">
-      {/* Photo */}
-      <Image
-        src={project.img}
-        alt={project.title}
-        fill
-        className="object-cover group-hover:scale-105 transition-transform duration-500"
-        sizes="(max-width: 768px) 100vw, 33vw"
-      />
+    <div className={`relative overflow-hidden group cursor-pointer ${project.asym} ${className}`}>
+      <div className="relative w-full h-full min-h-[240px]">
+        <Image
+          src={project.img}
+          alt={project.title}
+          fill
+          className="object-cover group-hover:scale-105 transition-transform duration-700"
+          sizes="(max-width: 768px) 100vw, 50vw"
+        />
+        {/* Gradient overlay */}
+        <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent" />
 
-      {/* Dark overlay — increases on hover */}
-      <div className="absolute inset-0 bg-gradient-to-t from-brand-steel/90 via-brand-steel/30 to-transparent group-hover:from-brand-steel/95 transition-all duration-300" />
-
-      {/* Category badge */}
-      <span className="absolute top-4 start-4 bg-brand-blue text-white text-xs font-semibold px-3 py-1.5 rounded-full z-10 shadow-md">
-        {project.category}
-      </span>
-
-      {/* Year badge */}
-      <span className="absolute top-4 end-4 bg-white/90 backdrop-blur-sm text-brand-text text-xs font-bold px-3 py-1.5 rounded-full z-10">
-        {project.year}
-      </span>
-
-      {/* Info at bottom */}
-      <div className="absolute bottom-0 inset-x-0 p-5 z-10">
-        <h3 className="text-white font-bold text-base leading-snug mb-2 group-hover:text-brand-blue-light transition-colors duration-200">
-          {project.title}
-        </h3>
-        <div className="flex items-center gap-3 text-white/70 text-xs">
-          <span className="flex items-center gap-1.5">
-            <MapPin size={12} />{project.location}
+        {/* Content overlay */}
+        <div className="absolute bottom-0 left-0 right-0 p-6">
+          <span className="inline-block bg-brand-orange text-white text-xs font-bold rounded-full px-3 py-1 mb-3">
+            {project.year}
           </span>
-          <span className="flex items-center gap-1.5">
-            <Calendar size={12} />{project.year}
-          </span>
+          <h3 className="text-white font-bold text-lg mb-2 leading-snug">{project.title}</h3>
+          <div className="flex items-center justify-between">
+            <div className="flex items-center gap-1.5 text-white/70 text-xs">
+              <MapPin size={11} />
+              {project.location}
+            </div>
+            <span className="text-white/60 text-xs">{project.tag}</span>
+          </div>
         </div>
       </div>
     </div>
@@ -73,30 +75,41 @@ function ProjectCard({ project }) {
 }
 
 export default function ProjectsSection() {
-  const t = useTranslations('home.projects');
-
   return (
-    <section className="section-padding bg-white">
+    <section className="py-28 bg-brand-light">
       <div className="container-max">
-        <div className="flex flex-col md:flex-row md:items-end md:justify-between gap-4 mb-12">
+        {/* Header */}
+        <div className="flex flex-col md:flex-row md:items-end justify-between mb-12 gap-4">
           <AnimateIn variant="fadeUp">
-            <SectionLabel className="mb-4">{t('label')}</SectionLabel>
-            <h2 className="heading-lg">{t('heading')}</h2>
+            <SectionLabel className="mb-4">Featured Projects</SectionLabel>
+            <h2 className="text-4xl md:text-5xl font-black leading-[1.05] text-brand-text">
+              Delivered Across{' '}
+              <span className="text-brand-orange">Qatar</span>
+            </h2>
           </AnimateIn>
-          <Link
-            href="/projects"
-            className="inline-flex items-center gap-1.5 text-brand-blue font-semibold hover:gap-3 transition-all shrink-0 text-sm"
-          >
-            {t('viewAll')} <ArrowRight size={16} />
-          </Link>
+          <AnimateIn variant="fadeLeft">
+            <Link
+              href="/projects"
+              className="inline-flex items-center gap-1.5 text-brand-blue font-semibold hover:gap-2.5 transition-all text-sm shrink-0"
+            >
+              View All Projects →
+            </Link>
+          </AnimateIn>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {PROJECTS.map((project, index) => (
-            <AnimateIn key={project.title} variant="fadeUp" delay={index * 0.1}>
-              <ProjectCard project={project} />
-            </AnimateIn>
-          ))}
+        {/* Magazine grid — tall left, stacked right */}
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+          <AnimateIn variant="fadeRight">
+            <ProjectCard project={PROJECTS[0]} className="h-[540px] md:h-full min-h-[540px]" />
+          </AnimateIn>
+
+          <div className="flex flex-col gap-6">
+            {PROJECTS.slice(1).map((project, i) => (
+              <AnimateIn key={project.title} variant="fadeLeft" delay={i * 0.1}>
+                <ProjectCard project={project} className="flex-1 min-h-[160px] h-[168px]" />
+              </AnimateIn>
+            ))}
+          </div>
         </div>
       </div>
     </section>

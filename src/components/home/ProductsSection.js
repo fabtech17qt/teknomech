@@ -1,91 +1,54 @@
-import Image from 'next/image';
-import { useTranslations } from 'next-intl';
-import { Link } from '@/i18n/navigation';
-import SectionLabel from '@/components/shared/SectionLabel';
 import { AnimateIn } from '@/components/ui/AnimateIn';
-import { ArrowRight, ExternalLink } from 'lucide-react';
+import SectionLabel from '@/components/shared/SectionLabel';
 
-const PRODUCTS = [
-  {
-    category: 'Fire Protection',
-    name: 'FM200 Clean Agent Suppression System',
-    brand: 'Kidde',
-    img: 'https://images.unsplash.com/photo-1585585825759-979ec75438cc?w=400&h=300&fit=crop&q=80',
-  },
-  {
-    category: 'HVAC',
-    name: 'Ceiling Cassette FCU — 4-Way Blow',
-    brand: 'Daikin',
-    img: 'https://images.unsplash.com/photo-1718203862467-c33159fdc504?w=400&h=300&fit=crop&q=80',
-  },
-  {
-    category: 'Electrical',
-    name: 'Online UPS System 10 kVA',
-    brand: 'APC by Schneider',
-    img: 'https://images.unsplash.com/photo-1555963966-b7ae5404b6ed?w=400&h=300&fit=crop&q=80',
-  },
-  {
-    category: 'LV Systems',
-    name: 'IP PTZ Security Camera 4K',
-    brand: 'Hikvision',
-    img: 'https://images.unsplash.com/photo-1688841747582-41097036109d?w=400&h=300&fit=crop&q=80',
-  },
+const LOGOS_ROW1 = [
+  'Qatar Petroleum', 'Ashghal', 'KAHRAMAA', 'Qatargas',
+  'Msheireb Properties', 'Al Khayyat Investments', 'QDVC', 'Qatar Museums',
+];
+const LOGOS_ROW2 = [
+  'Barwa Real Estate', 'UDC', 'Gulf Contracting', 'ALEC Qatar',
+  'Midmac Contracting', 'Al Jaber Engineering', 'Leighton Qatar', 'HBK Contracting',
 ];
 
-function ProductCard({ category, name, brand, img }) {
+function LogoItem({ name }) {
   return (
-    <div className="bg-white rounded-2xl border border-brand-border shadow-md hover:shadow-xl hover:-translate-y-1 transition-all duration-300 overflow-hidden group">
-      {/* Image */}
-      <div className="relative h-44 overflow-hidden bg-brand-blue-light">
-        <Image
-          src={img}
-          alt={name}
-          fill
-          className="object-cover group-hover:scale-105 transition-transform duration-500"
-          sizes="(max-width: 768px) 100vw, 25vw"
-        />
-        <div className="absolute inset-0 bg-brand-steel/0 group-hover:bg-brand-steel/10 transition-all duration-300" />
-      </div>
-      <div className="p-5">
-        {/* Category badge */}
-        <span className="inline-flex items-center bg-brand-blue-light text-brand-blue text-xs font-semibold rounded-full px-3 py-1 mb-3">
-          {category}
-        </span>
-        <h3 className="text-brand-text font-bold text-sm leading-snug mb-1 line-clamp-2 group-hover:text-brand-blue transition-colors duration-200">
-          {name}
-        </h3>
-        <p className="text-brand-sub text-xs mb-4">{brand}</p>
-        <button className="w-full py-2.5 rounded-xl border-2 border-brand-blue/20 text-brand-blue text-xs font-semibold hover:bg-brand-blue hover:text-white hover:border-brand-blue transition-all duration-200 flex items-center justify-center gap-1.5 min-h-[44px]">
-          <ExternalLink size={12} />
-          View Specifications
-        </button>
-      </div>
+    <div className="mx-6 shrink-0 px-6 py-3 bg-white border border-brand-border rounded-xl grayscale opacity-60 hover:grayscale-0 hover:opacity-100 hover:scale-105 hover:shadow-md transition-all duration-300 cursor-default">
+      <span className="text-brand-blue-dark font-bold text-sm whitespace-nowrap">{name}</span>
     </div>
   );
 }
 
 export default function ProductsSection() {
-  const t = useTranslations('home.products');
-
   return (
-    <section className="section-padding bg-brand-light">
-      <div className="container-max">
-        <div className="flex flex-col md:flex-row md:items-end md:justify-between gap-4 mb-12">
-          <AnimateIn variant="fadeUp">
-            <SectionLabel className="mb-4">{t('label')}</SectionLabel>
-            <h2 className="heading-lg">{t('heading')}</h2>
-          </AnimateIn>
-          <Link href="/products" className="inline-flex items-center gap-1.5 text-brand-blue font-semibold hover:gap-3 transition-all shrink-0 text-sm">
-            {t('viewAll')} <ArrowRight size={16} />
-          </Link>
+    <section className="py-20 bg-brand-light overflow-hidden">
+      <div className="container-max mb-10">
+        <AnimateIn variant="fadeUp" className="text-center">
+          <SectionLabel className="justify-center mb-3">Trusted By</SectionLabel>
+          <h2 className="text-2xl font-black text-brand-text">Industry Leaders Across Qatar</h2>
+        </AnimateIn>
+      </div>
+
+      <div className="relative">
+        {/* Fade masks */}
+        <div className="absolute left-0 top-0 bottom-0 w-28 bg-gradient-to-r from-brand-light to-transparent z-10 pointer-events-none" />
+        <div className="absolute right-0 top-0 bottom-0 w-28 bg-gradient-to-l from-brand-light to-transparent z-10 pointer-events-none" />
+
+        {/* Row 1 — scrolls left */}
+        <div className="flex overflow-hidden mb-4">
+          <div className="flex animate-marquee">
+            {[...LOGOS_ROW1, ...LOGOS_ROW1].map((name, i) => (
+              <LogoItem key={`r1-${i}`} name={name} />
+            ))}
+          </div>
         </div>
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-          {PRODUCTS.map((p, index) => (
-            <AnimateIn key={p.name} variant="fadeUp" delay={index * 0.09}>
-              <ProductCard {...p} />
-            </AnimateIn>
-          ))}
+        {/* Row 2 — scrolls right */}
+        <div className="flex overflow-hidden">
+          <div className="flex animate-marquee-reverse">
+            {[...LOGOS_ROW2, ...LOGOS_ROW2].map((name, i) => (
+              <LogoItem key={`r2-${i}`} name={name} />
+            ))}
+          </div>
         </div>
       </div>
     </section>

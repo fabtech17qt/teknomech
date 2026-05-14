@@ -134,13 +134,13 @@
 
 @layer utilities {
   .text-gradient-blue {
-    background: linear-gradient(135deg, #0B4FD0, #083A9C);
+    background: linear-gradient(135deg, #0B4FD0, #072F8A);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
   }
 
-  /* Subtle diagonal stripe — used on dark CTA bands */
+  /* Legacy diagonal stripe */
   .bg-diagonal-stripe {
     background-image: repeating-linear-gradient(
       -45deg,
@@ -153,6 +153,64 @@
 
   /* Hero background — white left, soft blue right */
   .bg-hero-split {
-    background: linear-gradient(105deg, #ffffff 55%, #EEF3FF 100%);
+    background: linear-gradient(105deg, #ffffff 55%, #EAF1FF 100%);
+  }
+
+  /* ── RAG STRUCTURAL PATTERN LIBRARY ── */
+
+  /* Asymmetric rounded containers */
+  .shape-asym-1    { border-radius: 80px 8px 80px 8px; overflow: hidden; }
+  .shape-asym-2    { border-radius: 8px 80px 8px 80px; overflow: hidden; }
+  .shape-asym-soft { border-radius: 40px 8px 40px 8px; overflow: hidden; }
+
+  /* Mobile — reduced radius */
+  @media (max-width: 767px) {
+    .shape-asym-1    { border-radius: 40px 6px 40px 6px; }
+    .shape-asym-2    { border-radius: 6px 40px 6px 40px; }
+    .shape-asym-soft { border-radius: 20px 6px 20px 6px; }
+  }
+
+  /* Diagonal slope bottom */
+  .slope-bottom {
+    clip-path: polygon(0 0, 100% 0, 100% calc(100% - 60px), 0 100%);
+  }
+
+  /* Dotted grid — blue dots on light bg */
+  .bg-dots {
+    background-image: radial-gradient(circle, #0B4FD0 1px, transparent 1px);
+    background-size: 20px 20px;
+    opacity: 0.08;
+    pointer-events: none;
+  }
+
+  /* Dotted grid — white dots on dark bg */
+  .bg-dots-white {
+    background-image: radial-gradient(circle, #ffffff 1px, transparent 1px);
+    background-size: 20px 20px;
+    opacity: 0.08;
+    pointer-events: none;
+  }
+
+  /* Diagonal stripe pattern (light blue tint) */
+  .bg-stripes {
+    background-image: repeating-linear-gradient(
+      45deg,
+      transparent,
+      transparent 12px,
+      rgba(11, 79, 208, 0.04) 12px,
+      rgba(11, 79, 208, 0.04) 13px
+    );
+  }
+
+  /* Ghost numeral — large outlined number sitting behind content */
+  .ghost-number {
+    font-size: 160px;
+    font-weight: 900;
+    color: transparent;
+    -webkit-text-stroke: 2px #E5EAF2;
+    line-height: 1;
+    position: absolute;
+    user-select: none;
+    pointer-events: none;
   }
 }

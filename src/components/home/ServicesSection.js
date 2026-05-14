@@ -1,83 +1,88 @@
-import { useTranslations } from 'next-intl';
+'use client';
+
 import { Link } from '@/i18n/navigation';
-import SectionLabel from '@/components/shared/SectionLabel';
-import ServiceCard from '@/components/shared/ServiceCard';
 import { AnimateIn } from '@/components/ui/AnimateIn';
-import { Flame, Wind, Zap, Droplets, Network, Wrench, ArrowRight } from 'lucide-react';
+import SectionLabel from '@/components/shared/SectionLabel';
+import { Flame, Bell, Droplets, Zap, Wind, ShieldCheck } from 'lucide-react';
 
 const SERVICES = [
   {
-    key: 'fire',
-    icon: Flame,
-    slug: 'fire-protection',
-    img: '/images/svc-fire-protection.jpg',
+    num: '01', icon: Flame,       title: 'Fire Protection Systems',
+    desc: 'QCDD-compliant sprinkler, suppression and hydrant systems for all building types in Qatar.',
+    href: '/services/fire-protection',
   },
   {
-    key: 'hvac',
-    icon: Wind,
-    slug: 'hvac',
-    img: 'https://images.unsplash.com/photo-1718203862467-c33159fdc504?w=600&h=400&fit=crop&q=80',
+    num: '02', icon: Bell,        title: 'Fire Alarm Systems',
+    desc: 'Intelligent detection, alarm and voice evacuation systems designed to NFPA 72 and QCDD.',
+    href: '/services/fire-protection',
   },
   {
-    key: 'electrical',
-    icon: Zap,
-    slug: 'electrical',
-    img: '/images/svc-electrical.jpg',
+    num: '03', icon: Droplets,    title: 'Plumbing Systems',
+    desc: "Complete water distribution, drainage and sanitation engineered for Qatar's extreme climate.",
+    href: '/services/plumbing',
   },
   {
-    key: 'plumbing',
-    icon: Droplets,
-    slug: 'plumbing',
-    img: '/images/svc-plumbing.jpg',
+    num: '04', icon: Zap,         title: 'Electrical Installation',
+    desc: 'LV/MV power distribution, lighting, UPS and generator systems — UPDA licensed.',
+    href: '/services/electrical',
   },
   {
-    key: 'lv',
-    icon: Network,
-    slug: 'lv-systems',
-    img: 'https://images.unsplash.com/photo-1688841747582-41097036109d?w=600&h=400&fit=crop&q=80',
+    num: '05', icon: Wind,        title: 'HVAC & Ventilation',
+    desc: 'Energy-efficient air conditioning and ventilation optimised for Qatar heat — ASHRAE compliant.',
+    href: '/services/hvac',
   },
   {
-    key: 'maintenance',
-    icon: Wrench,
-    slug: 'maintenance',
-    img: 'https://images.unsplash.com/photo-1621905251189-08b45d6a269e?w=600&h=400&fit=crop&q=80',
+    num: '06', icon: ShieldCheck, title: 'Low-Voltage & Security',
+    desc: 'Structured cabling, CCTV, access control and building management systems integration.',
+    href: '/services/lv-systems',
   },
 ];
 
 export default function ServicesSection() {
-  const t    = useTranslations('home.services');
-  const tSvc = useTranslations('services');
-
   return (
-    <section className="section-padding bg-brand-light">
+    <section className="py-28 bg-brand-light">
       <div className="container-max">
-        {/* Header */}
-        <div className="flex flex-col md:flex-row md:items-end md:justify-between gap-4 mb-12">
-          <AnimateIn variant="fadeUp">
-            <SectionLabel className="mb-4">{t('label')}</SectionLabel>
-            <h2 className="heading-lg max-w-xl">{t('heading')}</h2>
-          </AnimateIn>
-          <Link
-            href="/services"
-            className="inline-flex items-center gap-1.5 text-brand-blue font-semibold hover:gap-3 transition-all shrink-0 text-sm"
-          >
-            {t('viewAll')} <ArrowRight size={16} />
-          </Link>
-        </div>
+        <AnimateIn variant="fadeUp" className="text-center mb-16">
+          <SectionLabel className="justify-center mb-4">Our Services</SectionLabel>
+          <h2 className="text-4xl md:text-5xl font-black leading-[1.05] text-brand-text">
+            Complete MEP{' '}
+            <span className="text-brand-orange">Engineering Solutions</span>
+          </h2>
+        </AnimateIn>
 
-        {/* 3×2 grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {SERVICES.map(({ key, icon, slug, img }, index) => (
-            <AnimateIn key={key} variant="fadeUp" delay={index * 0.07}>
-              <ServiceCard
-                icon={icon}
-                title={tSvc(`${key}.name`)}
-                description={tSvc(`${key}.desc`)}
-                href={`/services/${slug}`}
-                imageSrc={img}
-              />
-            </AnimateIn>
-          ))}
+          {SERVICES.map((svc, i) => {
+            const Icon = svc.icon;
+            return (
+              <AnimateIn key={svc.num} variant="fadeUp" delay={i * 0.07}>
+                <Link
+                  href={svc.href}
+                  className="group relative bg-white rounded-3xl p-8 border border-brand-border hover:shadow-2xl hover:border-brand-orange/20 transition-all duration-300 overflow-hidden flex flex-col h-full"
+                >
+                  {/* Ghost number behind content */}
+                  <span className="ghost-number absolute -top-4 left-2 select-none pointer-events-none" style={{ opacity: 0.055 }}>
+                    {svc.num}
+                  </span>
+
+                  {/* Icon — top right, rotates on hover */}
+                  <div className="relative z-10 w-12 h-12 rounded-xl bg-brand-blue flex items-center justify-center mb-6 ml-auto group-hover:-rotate-6 transition-transform duration-300 shrink-0">
+                    <Icon size={20} className="text-white" />
+                  </div>
+
+                  <h3 className="relative z-10 font-bold text-xl text-brand-text mb-3 leading-snug">{svc.title}</h3>
+                  <p className="relative z-10 text-sm text-brand-sub leading-relaxed mb-6 flex-1">{svc.desc}</p>
+
+                  <div className="relative z-10 flex items-center gap-1 text-brand-orange text-sm font-semibold group-hover:gap-2 transition-all">
+                    Learn More
+                    <span className="inline-block group-hover:translate-x-0.5 transition-transform">→</span>
+                  </div>
+
+                  {/* Bottom accent line — animates left → right */}
+                  <div className="absolute bottom-0 left-0 h-[3px] bg-brand-orange w-0 group-hover:w-full transition-all duration-500 ease-out" />
+                </Link>
+              </AnimateIn>
+            );
+          })}
         </div>
       </div>
     </section>

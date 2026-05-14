@@ -40,3 +40,5 @@ dev3_out.txt
 dev3_err.txt
 info.txt
 *.log.txt
+
+.vercel

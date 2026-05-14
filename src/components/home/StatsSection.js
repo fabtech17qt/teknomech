@@ -1,43 +1,42 @@
-import { useTranslations } from 'next-intl';
-import SectionLabel from '@/components/shared/SectionLabel';
-import StatCounter from '@/components/shared/StatCounter';
+'use client';
+
 import { AnimateIn } from '@/components/ui/AnimateIn';
 
 const STATS = [
-  { key: 'stat1', value: 500,  suffix: '+' },
-  { key: 'stat2', value: 15,   suffix: '+' },
-  { key: 'stat3', value: 120,  suffix: '+' },
-  { key: 'stat4', value: 250,  suffix: '+' },
+  { value: '500+', label: 'Projects Completed' },
+  { value: '100%', label: 'QCD Compliant'      },
+  { value: '12+',  label: 'Years Experience'   },
+  { value: '50+',  label: 'Expert Engineers'   },
 ];
 
 export default function StatsSection() {
-  const t = useTranslations('home.stats');
-
   return (
-    <section className="bg-brand-blue section-padding relative overflow-hidden">
-      {/* Diagonal stripe watermark */}
-      <div className="absolute inset-0 bg-diagonal-stripe pointer-events-none" />
-      <div className="absolute top-0 end-0 w-80 h-80 bg-white/5 rounded-full blur-3xl pointer-events-none" />
+    <section className="relative py-20 bg-brand-blue-deep overflow-hidden">
+      {/* White dot pattern */}
+      <div
+        className="absolute inset-0 pointer-events-none"
+        style={{
+          backgroundImage: 'radial-gradient(circle, rgba(255,255,255,0.12) 1px, transparent 1px)',
+          backgroundSize: '24px 24px',
+        }}
+      />
+      {/* Orange glow — bottom right */}
+      <div className="absolute bottom-0 right-0 w-96 h-96 bg-brand-orange/20 rounded-full blur-3xl pointer-events-none" />
+      {/* Blue glow — top left */}
+      <div className="absolute top-0 left-0 w-64 h-64 bg-brand-blue/40 rounded-full blur-3xl pointer-events-none" />
 
       <div className="container-max relative z-10">
-        <AnimateIn variant="fadeUp" className="text-center mb-12">
-          <div className="flex items-center justify-center gap-2 text-white/50 text-xs font-semibold uppercase tracking-[0.2em] mb-3">
-            <span className="w-6 h-0.5 bg-white/40 inline-block rounded-full" />
-            {t('label')}
-          </div>
-          <h2 className="text-3xl md:text-4xl font-extrabold text-white">{t('heading')}</h2>
-        </AnimateIn>
-
-        <div className="grid grid-cols-2 lg:grid-cols-4 gap-8">
-          {STATS.map(({ key, value, suffix }, index) => (
-            <AnimateIn key={key} variant="scaleUp" delay={index * 0.12} className="text-center">
-              <StatCounter
-                value={value}
-                suffix={suffix}
-                label={t(key)}
-                className="text-center"
-                dark
-              />
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-8 md:gap-0">
+          {STATS.map((stat, i) => (
+            <AnimateIn key={stat.label} variant="fadeUp" delay={i * 0.1}>
+              <div className="relative text-center px-6">
+                {/* Divider between items */}
+                {i > 0 && (
+                  <div className="hidden md:block absolute left-0 top-1/2 -translate-y-1/2 h-12 w-px bg-brand-orange/30" />
+                )}
+                <p className="text-5xl md:text-6xl font-black text-brand-orange mb-3 leading-none">{stat.value}</p>
+                <p className="text-xs uppercase tracking-widest text-white/70">{stat.label}</p>
+              </div>
             </AnimateIn>
           ))}
         </div>

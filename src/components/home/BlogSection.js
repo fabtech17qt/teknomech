@@ -1,26 +1,30 @@
+'use client';
+
 import Image from 'next/image';
-import { useTranslations } from 'next-intl';
 import { Link } from '@/i18n/navigation';
-import SectionLabel from '@/components/shared/SectionLabel';
 import { AnimateIn } from '@/components/ui/AnimateIn';
-import { ArrowRight, Calendar, Tag } from 'lucide-react';
+import SectionLabel from '@/components/shared/SectionLabel';
+import { Calendar, Tag } from 'lucide-react';
 
 const POSTS = [
   {
+    slug: 'qcdd-fire-safety-requirements',
     title: 'Understanding QCDD Fire Safety Requirements for Commercial Buildings',
     excerpt: 'A comprehensive guide to Qatar Civil Defence Department compliance for fire protection systems in commercial properties.',
     date: '2025-03-15',
     tag: 'Fire Safety',
-    img: 'https://images.unsplash.com/photo-1585585825759-979ec75438cc?w=600&h=400&fit=crop&q=80',
+    img: '/images/svc-fire-protection.jpg',
   },
   {
+    slug: 'hvac-energy-efficiency-qatar',
     title: "Energy Efficiency in HVAC: Reducing Cooling Costs in Qatar's Climate",
-    excerpt: "Practical strategies for cutting energy consumption in Qatar's extreme heat environment through smart system design.",
+    excerpt: "Practical strategies for cutting energy consumption through smart system design in extreme heat environments.",
     date: '2025-02-28',
     tag: 'HVAC',
     img: 'https://images.unsplash.com/photo-1718203862467-c33159fdc504?w=600&h=400&fit=crop&q=80',
   },
   {
+    slug: 'smart-buildings-bms-mep',
     title: 'Smart Buildings: Integrating BMS with MEP Infrastructure',
     excerpt: 'How modern building management systems are transforming MEP operations for smarter, more efficient facilities.',
     date: '2025-02-10',
@@ -29,62 +33,75 @@ const POSTS = [
   },
 ];
 
-function BlogCard({ post }) {
+function BlogCard({ post, delay = 0 }) {
   return (
-    <article className="bg-white rounded-2xl border border-brand-border shadow-md hover:shadow-xl hover:-translate-y-1 transition-all duration-300 overflow-hidden group">
-      {/* Cover image */}
-      <div className="relative h-52 overflow-hidden bg-brand-blue-light">
-        <Image
-          src={post.img}
-          alt={post.title}
-          fill
-          className="object-cover group-hover:scale-105 transition-transform duration-500"
-          sizes="(max-width: 768px) 100vw, 33vw"
-        />
-        {/* Date badge */}
-        <div className="absolute top-3 start-3 flex items-center gap-1.5 bg-brand-blue text-white text-xs font-semibold rounded-full px-3 py-1.5 z-10 shadow-md">
-          <Calendar size={10} />
-          {new Date(post.date).toLocaleDateString('en-QA', { month: 'short', day: 'numeric', year: 'numeric' })}
+    <AnimateIn variant="fadeUp" delay={delay}>
+      <article className="group bg-white rounded-3xl overflow-hidden border border-brand-border hover:shadow-xl transition-all duration-300 flex flex-col h-full">
+        {/* Image */}
+        <div className="relative h-52 shrink-0 overflow-hidden">
+          <Image
+            src={post.img}
+            alt={post.title}
+            fill
+            className="object-cover group-hover:scale-105 transition-transform duration-700"
+            sizes="(max-width: 768px) 100vw, 33vw"
+          />
         </div>
-      </div>
 
-      <div className="p-5">
-        <div className="flex items-center gap-1.5 text-brand-orange text-xs font-semibold mb-3">
-          <Tag size={11} />{post.tag}
+        {/* Body */}
+        <div className="p-6 flex flex-col flex-1">
+          <div className="flex items-center justify-between mb-4">
+            <span className="inline-flex items-center gap-1.5 bg-brand-orange-soft text-brand-orange-dark text-xs font-semibold rounded-full px-3 py-1">
+              <Tag size={10} /> {post.tag}
+            </span>
+            <span className="flex items-center gap-1.5 text-brand-sub text-xs">
+              <Calendar size={10} />
+              {new Date(post.date).toLocaleDateString('en-QA', { day: 'numeric', month: 'short', year: 'numeric' })}
+            </span>
+          </div>
+
+          <h3 className="font-bold text-lg text-brand-text leading-snug mb-3 line-clamp-2 group-hover:text-brand-blue transition-colors duration-200 flex-1">
+            {post.title}
+          </h3>
+          <p className="text-brand-sub text-sm leading-relaxed mb-5 line-clamp-2">{post.excerpt}</p>
+
+          <Link
+            href={`/blog/${post.slug}`}
+            className="inline-flex items-center gap-1.5 text-brand-blue text-sm font-semibold group-hover:gap-2.5 transition-all mt-auto"
+          >
+            Read More →
+          </Link>
         </div>
-        <h3 className="text-brand-text font-bold text-base leading-snug mb-2 line-clamp-2 group-hover:text-brand-blue transition-colors duration-200">
-          {post.title}
-        </h3>
-        <p className="text-brand-sub text-sm leading-relaxed mb-4 line-clamp-2">{post.excerpt}</p>
-        <span className="inline-flex items-center gap-1.5 text-brand-blue text-sm font-semibold group-hover:gap-3 transition-all duration-200">
-          Read More <ArrowRight size={13} />
-        </span>
-      </div>
-    </article>
+      </article>
+    </AnimateIn>
   );
 }
 
 export default function BlogSection() {
-  const t = useTranslations('home.blog');
-
   return (
-    <section className="section-padding bg-brand-light">
+    <section className="py-28 bg-white">
       <div className="container-max">
-        <div className="flex flex-col md:flex-row md:items-end md:justify-between gap-4 mb-12">
+        <div className="flex flex-col md:flex-row md:items-end justify-between mb-12 gap-4">
           <AnimateIn variant="fadeUp">
-            <SectionLabel className="mb-4">{t('label')}</SectionLabel>
-            <h2 className="heading-lg">{t('heading')}</h2>
+            <SectionLabel className="mb-4">Latest Insights</SectionLabel>
+            <h2 className="text-4xl md:text-5xl font-black leading-[1.05] text-brand-text">
+              From Our{' '}
+              <span className="text-brand-blue">Engineering Team</span>
+            </h2>
           </AnimateIn>
-          <Link href="/blog" className="inline-flex items-center gap-1.5 text-brand-blue font-semibold hover:gap-3 transition-all shrink-0 text-sm">
-            {t('viewAll')} <ArrowRight size={16} />
-          </Link>
+          <AnimateIn variant="fadeLeft">
+            <Link
+              href="/blog"
+              className="inline-flex items-center gap-1.5 text-brand-blue font-semibold hover:gap-2.5 transition-all text-sm shrink-0"
+            >
+              View All Articles →
+            </Link>
+          </AnimateIn>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {POSTS.map((post, index) => (
-            <AnimateIn key={post.title} variant="fadeUp" delay={index * 0.1}>
-              <BlogCard post={post} />
-            </AnimateIn>
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+          {POSTS.map((post, i) => (
+            <BlogCard key={post.slug} post={post} delay={i * 0.1} />
           ))}
         </div>
       </div>

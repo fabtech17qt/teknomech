@@ -1,77 +1,103 @@
+'use client';
+
 import Image from 'next/image';
-import { useTranslations } from 'next-intl';
 import { Link } from '@/i18n/navigation';
-import SectionLabel from '@/components/shared/SectionLabel';
 import { AnimateIn } from '@/components/ui/AnimateIn';
-import { Shield, Package, Users, Star, ArrowRight } from 'lucide-react';
+import SectionLabel from '@/components/shared/SectionLabel';
+import { BadgeCheck, Wrench, Clock, Phone, ArrowRight } from 'lucide-react';
 
-const ICONS = [Shield, Package, Users, Star];
-const FEATURE_KEYS = ['feature1', 'feature2', 'feature3', 'feature4'];
-
-const CLIENTS = ['Ashghal', 'QP', 'Barwa', 'Qatar Rail', 'HMC', 'Lusail Corp'];
+const FEATURES = [
+  {
+    icon: BadgeCheck,
+    title: 'QCD Licensed',
+    desc: 'Fully accredited by Qatar Civil Defence with all required authority approvals for fire and MEP works.',
+  },
+  {
+    icon: Wrench,
+    title: 'End-to-End MEP',
+    desc: 'Design to long-term maintenance — one experienced team, one single point of contact.',
+  },
+  {
+    icon: Clock,
+    title: 'On-Time Delivery',
+    desc: 'Disciplined project management and milestone-driven execution across all project sizes.',
+  },
+  {
+    icon: Phone,
+    title: '24/7 Support',
+    desc: 'Emergency response available anywhere in Qatar, every day of the year, within the hour.',
+  },
+];
 
 export default function WhyUsSection() {
-  const t = useTranslations('home.whyUs');
-
   return (
-    <section className="section-padding bg-white">
+    <section className="py-28 bg-white overflow-hidden">
       <div className="container-max">
-        <div className="grid grid-cols-1 lg:grid-cols-[42%_58%] gap-14 items-center">
+        <div className="grid grid-cols-1 lg:grid-cols-[40%_60%] gap-16 items-center">
 
-          {/* Left — heading + text + CTA + cutout */}
-          <AnimateIn variant="fadeLeft">
-            <SectionLabel className="mb-4">{t('label')}</SectionLabel>
-            <h2 className="heading-lg mb-5 max-w-sm">{t('heading')}</h2>
-            <p className="text-brand-sub leading-relaxed mb-7">{t('p')}</p>
+          {/* ── LEFT : cutout-style image ── */}
+          <AnimateIn variant="fadeRight">
+            <div className="relative">
+              {/* Solid blob decoration behind the container */}
+              <div className="absolute inset-6 shape-asym-2 bg-brand-blue-soft z-0" />
 
-            <Link
-              href="/about"
-              className="inline-flex items-center gap-2 bg-brand-blue text-white rounded-full px-8 py-3.5 font-semibold hover:bg-brand-blue-dark transition-all duration-300 mb-8"
-            >
-              Learn About Us <ArrowRight size={16} />
-            </Link>
-
-            {/* Engineer cutout — hidden on mobile */}
-            <div className="hidden md:block relative rounded-3xl overflow-hidden h-[260px] bg-brand-blue-light mt-2">
-              <Image
-                src="/images/fire-team.jpg"
-                alt="Engineer on construction site"
-                fill
-                className="object-cover object-top"
-                sizes="42vw"
-              />
-              <div className="absolute bottom-0 inset-x-0 h-16 bg-gradient-to-t from-brand-blue-light to-transparent pointer-events-none" />
-
-              {/* Trusted by strip */}
-              <div className="absolute bottom-0 inset-x-0 bg-white/90 backdrop-blur-sm p-3 border-t border-brand-border">
-                <p className="text-brand-sub text-[10px] uppercase tracking-widest mb-2 font-semibold">Trusted By</p>
-                <div className="flex flex-wrap gap-2">
-                  {CLIENTS.map((c) => (
-                    <span key={c} className="text-brand-sub text-[10px] border border-brand-border rounded-md px-2 py-0.5 font-medium">
-                      {c}
-                    </span>
-                  ))}
-                </div>
+              {/* Main image container */}
+              <div className="relative shape-asym-2 overflow-hidden min-h-[480px] bg-brand-blue-soft z-10">
+                <div className="absolute inset-0 bg-dots z-10" />
+                <Image
+                  src="https://images.unsplash.com/photo-1621905251189-08b45d6a269e?w=600&h=700&fit=crop&crop=top&q=85"
+                  alt="Safety Engineer"
+                  fill
+                  className="object-cover object-top"
+                  sizes="(max-width: 1024px) 100vw, 40vw"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-brand-blue-soft/60 via-transparent to-transparent z-10 pointer-events-none" />
               </div>
+
+              {/* Decorative orange corner */}
+              <div className="absolute -bottom-4 -right-4 w-24 h-24 bg-brand-orange shape-asym-1 z-0" />
             </div>
           </AnimateIn>
 
-          {/* Right — 2×2 feature tiles */}
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
-            {FEATURE_KEYS.map((key, i) => {
-              const Icon = ICONS[i];
-              return (
-                <AnimateIn key={key} variant="fadeUp" delay={i * 0.1}>
-                  <div className="bg-white rounded-2xl p-6 border border-brand-border shadow-md hover:shadow-xl hover:-translate-y-1 transition-all duration-300 h-full">
-                    <div className="w-12 h-12 rounded-xl bg-brand-blue-light flex items-center justify-center mb-4">
-                      <Icon size={22} className="text-brand-blue" />
+          {/* ── RIGHT : feature grid ── */}
+          <div>
+            <AnimateIn variant="fadeLeft">
+              <SectionLabel className="mb-4">Why Teknomech</SectionLabel>
+              <h2 className="text-4xl md:text-5xl font-black leading-[1.05] mb-5 text-brand-text">
+                The Right Partner for{' '}
+                <span className="text-brand-orange">Qatar's Projects</span>
+              </h2>
+              <p className="text-brand-sub leading-relaxed mb-10 text-base">
+                From initial consultation to long-term maintenance, we bring engineering excellence and deep regulatory expertise to every engagement across the region.
+              </p>
+            </AnimateIn>
+
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-10">
+              {FEATURES.map((feat, i) => {
+                const Icon = feat.icon;
+                return (
+                  <AnimateIn key={feat.title} variant="fadeUp" delay={i * 0.08}>
+                    <div className="group bg-white rounded-2xl border border-brand-border p-6 hover:border-brand-orange transition-all duration-300 h-full">
+                      <div className="w-12 h-12 rounded-xl bg-brand-orange-soft flex items-center justify-center mb-4 group-hover:rotate-6 transition-transform duration-300">
+                        <Icon size={22} className="text-brand-orange" />
+                      </div>
+                      <h4 className="font-bold text-brand-text mb-2">{feat.title}</h4>
+                      <p className="text-brand-sub text-sm leading-relaxed">{feat.desc}</p>
                     </div>
-                    <h3 className="text-brand-text font-bold text-base mb-2">{t(`${key}Title`)}</h3>
-                    <p className="text-brand-sub text-sm leading-relaxed">{t(`${key}Desc`)}</p>
-                  </div>
-                </AnimateIn>
-              );
-            })}
+                  </AnimateIn>
+                );
+              })}
+            </div>
+
+            <AnimateIn variant="fadeUp" delay={0.3}>
+              <Link
+                href="/about"
+                className="inline-flex items-center gap-2 bg-brand-blue text-white rounded-full px-8 py-4 font-bold hover:bg-brand-blue-dark transition-all duration-300 group shadow-lg shadow-brand-blue/20"
+              >
+                About Our Team
+                <ArrowRight size={16} className="group-hover:translate-x-1 transition-transform" />
+              </Link>
+            </AnimateIn>
           </div>
         </div>
       </div>

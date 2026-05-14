@@ -1,83 +1,89 @@
-import Image from 'next/image';
-import { useTranslations } from 'next-intl';
-import { Link } from '@/i18n/navigation';
-import SectionLabel from '@/components/shared/SectionLabel';
-import { AnimateIn } from '@/components/ui/AnimateIn';
-import { ArrowRight, CheckCircle } from 'lucide-react';
+'use client';
 
-const CHECKPOINTS = ['QCD Certified Fire & Safety', 'ISO 9001:2015 Certified', 'Ashghal & QP Approved Contractor'];
+import Image from 'next/image';
+import { Link } from '@/i18n/navigation';
+import { AnimateIn } from '@/components/ui/AnimateIn';
+import SectionLabel from '@/components/shared/SectionLabel';
+import { ArrowRight } from 'lucide-react';
 
 export default function AboutSection() {
-  const t = useTranslations('home.about');
-
   return (
-    <section className="section-padding bg-white">
+    <section className="py-28 bg-white overflow-hidden">
       <div className="container-max">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-14 items-center">
+        <div className="grid grid-cols-1 lg:grid-cols-[45%_55%] gap-16 items-center">
 
-          {/* Left — team photo with floating stats */}
-          <AnimateIn variant="fadeLeft">
+          {/* ── LEFT : asymmetric image treatment ── */}
+          <AnimateIn variant="fadeRight">
             <div className="relative">
-              {/* Main photo */}
-              <div className="relative rounded-3xl overflow-hidden h-[460px] md:h-[520px] bg-brand-blue-light">
+              {/* Decoration behind — orange asymmetric block */}
+              <div className="absolute -bottom-8 -left-8 w-48 h-48 bg-brand-orange shape-asym-2 z-0" />
+              {/* Dots overlay */}
+              <div
+                className="absolute -top-6 -right-6 w-32 h-32 z-0"
+                style={{
+                  backgroundImage: 'radial-gradient(circle, #0B4FD0 1px, transparent 1px)',
+                  backgroundSize: '20px 20px',
+                  opacity: 0.25,
+                }}
+              />
+
+              {/* Main image container */}
+              <div className="relative shape-asym-1 overflow-hidden h-[520px] z-10">
+                <div className="absolute inset-0 bg-dots z-10" />
                 <Image
-                  src="https://images.unsplash.com/photo-1548838670-cb67b43a6adb?w=700&h=600&fit=crop&crop=center&q=85"
-                  alt="Teknomech engineering team on construction site"
+                  src="/images/fire-team.jpg"
+                  alt="Teknomech Engineering Team"
                   fill
-                  className="object-cover"
-                  sizes="(max-width: 768px) 100vw, 50vw"
+                  className="object-cover object-center"
+                  sizes="(max-width: 1024px) 100vw, 45vw"
                 />
-                {/* Subtle overlay for text readability */}
-                <div className="absolute inset-0 bg-brand-steel/10" />
+                <div className="absolute inset-0 bg-gradient-to-br from-brand-blue/10 to-transparent z-10 pointer-events-none" />
               </div>
 
-              {/* Floating stat — projects */}
-              <div className="absolute -bottom-5 -end-5 md:-bottom-6 md:-end-6 bg-white rounded-2xl shadow-xl px-5 py-4 border border-brand-border">
-                <p className="text-3xl font-black text-brand-blue">500+</p>
-                <p className="text-brand-sub text-xs uppercase tracking-wider mt-0.5">Projects Delivered</p>
-              </div>
-
-              {/* Floating stat — years */}
-              <div className="absolute -top-5 -start-5 md:-top-6 md:-start-6 bg-brand-blue rounded-2xl shadow-xl px-5 py-4">
-                <p className="text-3xl font-black text-white">15+</p>
-                <p className="text-white/70 text-xs uppercase tracking-wider mt-0.5">Years in Qatar</p>
+              {/* Floating stat badge */}
+              <div className="absolute top-8 -right-6 bg-white shadow-2xl rounded-2xl p-5 z-20 border border-brand-border hidden sm:block">
+                <p className="text-3xl font-black text-brand-blue leading-none">12+</p>
+                <p className="text-xs uppercase text-brand-sub tracking-widest mt-1">Years in Qatar</p>
               </div>
             </div>
           </AnimateIn>
 
-          {/* Right — text */}
-          <AnimateIn variant="fadeRight">
-            <SectionLabel className="mb-4">{t('label')}</SectionLabel>
-            <h2 className="heading-lg mb-5 max-w-lg">{t('heading')}</h2>
-            <p className="text-brand-sub leading-relaxed mb-4">{t('p1')}</p>
-            <p className="text-brand-sub leading-relaxed mb-7">{t('p2')}</p>
+          {/* ── RIGHT : content ── */}
+          <AnimateIn variant="fadeLeft">
+            <div>
+              <SectionLabel className="mb-4">About Us</SectionLabel>
+              <h2 className="text-4xl md:text-5xl font-black leading-[1.05] mb-6 text-brand-text">
+                Qatar's Most Trusted{' '}
+                <span className="text-brand-orange">MEP Partner</span>
+              </h2>
+              <p className="text-brand-sub leading-relaxed mb-5 text-base">
+                Teknomech is a fully licensed MEP and fire protection contractor delivering end-to-end engineering solutions for commercial, industrial and government projects across Qatar. We design, supply, install and maintain all mechanical, electrical and plumbing systems.
+              </p>
+              <p className="text-brand-sub leading-relaxed mb-10 text-base">
+                Our QCDD-accredited engineers bring international standards to every project — from large-scale fire suppression systems to precision electrical installations — ensuring total compliance and long-term operational reliability.
+              </p>
 
-            {/* Checkpoints */}
-            <ul className="space-y-2.5 mb-8">
-              {CHECKPOINTS.map((item) => (
-                <li key={item} className="flex items-center gap-3 text-sm text-brand-sub">
-                  <CheckCircle size={17} className="text-brand-blue shrink-0" />
-                  {item}
-                </li>
-              ))}
-            </ul>
+              {/* Inline mini-stats */}
+              <div className="flex items-center gap-10 mb-10">
+                <div>
+                  <p className="text-4xl font-black text-brand-blue leading-none">500+</p>
+                  <p className="text-xs uppercase text-brand-sub tracking-wider mt-1.5">Projects Delivered</p>
+                </div>
+                <div className="w-px h-14 bg-brand-border" />
+                <div>
+                  <p className="text-4xl font-black text-brand-blue leading-none">50+</p>
+                  <p className="text-xs uppercase text-brand-sub tracking-wider mt-1.5">Expert Engineers</p>
+                </div>
+              </div>
 
-            {/* Inline stats */}
-            <div className="flex items-center gap-8 mb-8 p-5 bg-brand-light rounded-2xl w-fit border border-brand-border">
-              <div className="text-center">
-                <p className="text-brand-blue font-black text-2xl">500+</p>
-                <p className="text-brand-sub text-xs uppercase tracking-wider mt-0.5">{t('stat1Label')}</p>
-              </div>
-              <div className="w-px h-10 bg-brand-border" />
-              <div className="text-center">
-                <p className="text-brand-blue font-black text-2xl">15+</p>
-                <p className="text-brand-sub text-xs uppercase tracking-wider mt-0.5">{t('stat2Label')}</p>
-              </div>
+              <Link
+                href="/about"
+                className="inline-flex items-center gap-2 bg-brand-blue text-white rounded-full px-8 py-4 font-bold hover:bg-brand-blue-dark transition-all duration-300 group shadow-lg shadow-brand-blue/20"
+              >
+                Learn More About Us
+                <ArrowRight size={16} className="group-hover:translate-x-1 transition-transform" />
+              </Link>
             </div>
-
-            <Link href="/about" className="inline-flex items-center gap-2 bg-brand-orange text-white rounded-full px-8 py-3.5 font-semibold hover:bg-orange-700 transition-all duration-300">
-              {t('cta')} <ArrowRight size={16} />
-            </Link>
           </AnimateIn>
         </div>
       </div>
