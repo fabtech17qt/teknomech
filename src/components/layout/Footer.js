@@ -30,27 +30,38 @@ export default function Footer() {
         <div className={cn('grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10', isRTL && 'text-right')}>
           {/* Col 1: Brand */}
           <div className="lg:col-span-1">
-            <Link href="/" className={cn('flex items-center gap-2.5 mb-5', isRTL && 'flex-row-reverse')}>
-              <div className="w-9 h-9 rounded-xl bg-brand-blue flex items-center justify-center shrink-0">
-                <span className="text-white font-black text-sm">T</span>
-              </div>
-              <div className="flex flex-col leading-none">
-                <span className="text-white font-bold tracking-tight">TEKNOMECH</span>
-                <span className="text-white/50 text-[9px] tracking-widest uppercase">MEP & Fire Protection</span>
+            <Link href="/" className="inline-block mb-5">
+              {/* White/gold version of just the TM monogram mark */}
+              <div className="flex items-center gap-3">
+                <svg viewBox="71 91 420 390" width="48" height="48" xmlns="http://www.w3.org/2000/svg" className="shrink-0">
+                  <rect x="71" y="91" width="420" height="35" fill="#B8893D"/>
+                  <rect x="71" y="91" width="35" height="390" fill="white" fillOpacity="0.85"/>
+                  <rect x="71" y="447" width="420" height="35" fill="white" fillOpacity="0.85"/>
+                  <rect x="457" y="91" width="35" height="390" fill="#B8893D"/>
+                  <rect x="299" y="166" width="35" height="288" fill="#B8893D"/>
+                  <rect x="405" y="166" width="35" height="288" fill="#B8893D"/>
+                  <path d="M317,166 L370,432 L423,166" stroke="#B8893D" strokeWidth="35" fill="none" strokeLinejoin="bevel" strokeLinecap="butt"/>
+                  <rect x="132" y="166" width="196" height="35" fill="white" fillOpacity="0.85"/>
+                  <rect x="213" y="166" width="35" height="288" fill="white" fillOpacity="0.85"/>
+                </svg>
+                <div className="flex flex-col leading-none">
+                  <span className="text-white font-black text-base tracking-tight">TEKNOMECH</span>
+                  <span className="text-brand-orange text-[9px] font-semibold tracking-widest uppercase mt-0.5">MEP & Fire Protection</span>
+                </div>
               </div>
             </Link>
             <p className="text-white/60 text-sm leading-relaxed mb-6">{t('tagline')}</p>
             <div className={cn('flex items-center gap-3', isRTL && 'flex-row-reverse justify-end')}>
               <a href="#" aria-label="LinkedIn"
-                className="w-8 h-8 rounded-lg bg-white/10 flex items-center justify-center text-white/60 hover:text-white hover:bg-brand-blue transition-all duration-200">
+                className="w-8 h-8 rounded-lg bg-white/10 flex items-center justify-center text-white/60 hover:text-white hover:bg-brand-orange transition-all duration-200">
                 <FaLinkedin size={14} />
               </a>
               <a href="#" aria-label="Instagram"
-                className="w-8 h-8 rounded-lg bg-white/10 flex items-center justify-center text-white/60 hover:text-white hover:bg-brand-blue transition-all duration-200">
+                className="w-8 h-8 rounded-lg bg-white/10 flex items-center justify-center text-white/60 hover:text-white hover:bg-brand-orange transition-all duration-200">
                 <FaInstagram size={14} />
               </a>
               <a href="#" aria-label="Facebook"
-                className="w-8 h-8 rounded-lg bg-white/10 flex items-center justify-center text-white/60 hover:text-white hover:bg-brand-blue transition-all duration-200">
+                className="w-8 h-8 rounded-lg bg-white/10 flex items-center justify-center text-white/60 hover:text-white hover:bg-brand-orange transition-all duration-200">
                 <FaFacebook size={14} />
               </a>
               <a
@@ -80,7 +91,7 @@ export default function Footer() {
                       isRTL && 'flex-row-reverse'
                     )}
                   >
-                    <span className="w-1 h-1 rounded-full bg-brand-blue inline-block shrink-0" />
+                    <span className="w-1 h-1 rounded-full bg-brand-orange inline-block shrink-0" />
                     {tNav(key)}
                   </Link>
                 </li>
@@ -103,7 +114,7 @@ export default function Footer() {
                       isRTL && 'flex-row-reverse'
                     )}
                   >
-                    <span className="w-1 h-1 rounded-full bg-brand-blue inline-block shrink-0" />
+                    <span className="w-1 h-1 rounded-full bg-brand-orange inline-block shrink-0" />
                     {tSvc(`${s}.name`)}
                   </Link>
                 </li>
@@ -118,7 +129,7 @@ export default function Footer() {
             </h4>
             <ul className="space-y-3.5">
               <li className={cn('flex gap-2.5 text-white/60 text-sm', isRTL && 'flex-row-reverse')}>
-                <MapPin size={15} className="text-brand-blue shrink-0 mt-0.5" />
+                <MapPin size={15} className="text-brand-orange shrink-0 mt-0.5" />
                 <span>{t('address')}</span>
               </li>
               <li>
@@ -126,7 +137,7 @@ export default function Footer() {
                   href={`tel:${tNav('phone')}`}
                   className={cn('flex gap-2.5 text-white/60 hover:text-white text-sm transition-colors', isRTL && 'flex-row-reverse')}
                 >
-                  <Phone size={15} className="text-brand-blue shrink-0 mt-0.5" />
+                  <Phone size={15} className="text-brand-orange shrink-0 mt-0.5" />
                   <span dir="ltr">{tNav('phone')}</span>
                 </a>
               </li>
@@ -135,7 +146,7 @@ export default function Footer() {
                   href={`mailto:${tNav('email')}`}
                   className={cn('flex gap-2.5 text-white/60 hover:text-white text-sm transition-colors', isRTL && 'flex-row-reverse')}
                 >
-                  <Mail size={15} className="text-brand-blue shrink-0 mt-0.5" />
+                  <Mail size={15} className="text-brand-orange shrink-0 mt-0.5" />
                   <span>{tNav('email')}</span>
                 </a>
               </li>

@@ -1,6 +1,7 @@
 import { Link } from '@/i18n/navigation';
 import { ChevronRight, Home } from 'lucide-react';
 import { cn } from '@/lib/utils';
+import { WaveBottom } from '@/components/ui/WaveDivider';
 
 export default function PageHero({ title, subtitle, breadcrumbs = [], className }) {
   return (
@@ -41,8 +42,8 @@ export default function PageHero({ title, subtitle, breadcrumbs = [], className 
           </nav>
         )}
 
-        {/* Orange accent bar */}
-        <div className="w-10 h-1 bg-brand-orange rounded-full mb-5" />
+        {/* Gold accent bar */}
+        <div className="w-10 h-1 gold-bar rounded-full mb-5" />
 
         <h1 className="text-3xl md:text-5xl font-black text-brand-text mb-4 max-w-3xl leading-tight">
           {title}
@@ -54,8 +55,8 @@ export default function PageHero({ title, subtitle, breadcrumbs = [], className 
         )}
       </div>
 
-      {/* Bottom rule */}
-      <div className="absolute bottom-0 inset-x-0 h-px bg-brand-border" />
+      {/* Wave into content below */}
+      <WaveBottom fill="#ffffff" height={60} />
     </section>
   );
 }

@@ -104,14 +104,13 @@ export default function Navbar() {
         <div className={cn('container-max flex items-center justify-between h-16 md:h-20', isRTL && 'flex-row-reverse')}>
 
           {/* Logo */}
-          <Link href="/" className={cn('flex items-center gap-2.5 shrink-0', isRTL && 'flex-row-reverse')}>
-            <div className="w-9 h-9 rounded-xl bg-brand-blue flex items-center justify-center">
-              <span className="text-white font-black text-sm">T</span>
-            </div>
-            <div className="flex flex-col leading-none">
-              <span className="text-brand-text font-bold text-base tracking-tight">TEKNOMECH</span>
-              <span className="text-brand-sub text-[9px] tracking-widest uppercase">MEP & Fire Protection</span>
-            </div>
+          <Link href="/" className="shrink-0 flex items-center">
+            <img
+              src="/images/logo.svg"
+              alt="Teknomech MEP"
+              className="h-12 md:h-14 w-auto"
+              style={{ maxWidth: '220px' }}
+            />
           </Link>
 
           {/* Desktop nav links */}
@@ -197,7 +196,7 @@ export default function Navbar() {
           <div className={cn('flex items-center gap-3', isRTL && 'flex-row-reverse')}>
             <div className="hidden md:block"><LanguageSwitcher /></div>
             <Link href="/contact"
-              className="hidden lg:inline-flex bg-brand-orange text-white rounded-full px-5 py-2.5 text-sm font-semibold hover:bg-orange-700 transition-colors">
+              className="hidden lg:inline-flex bg-brand-orange text-white rounded-full px-5 py-2.5 text-sm font-semibold hover:bg-brand-orange-dark transition-colors">
               {t('getQuote')}
             </Link>
             <button
@@ -284,7 +283,7 @@ export default function Navbar() {
           </div>
 
           <Link href="/contact"
-            className="bg-brand-orange text-white rounded-full py-3.5 px-6 text-center font-semibold mt-3 hover:bg-orange-700 transition-colors min-h-[44px] flex items-center justify-center">
+            className="bg-brand-orange text-white rounded-full py-3.5 px-6 text-center font-semibold mt-3 hover:bg-brand-orange-dark transition-colors min-h-[44px] flex items-center justify-center">
             {t('getQuote')}
           </Link>
 

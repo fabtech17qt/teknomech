@@ -1,6 +1,7 @@
 'use client';
 
 import { AnimateIn } from '@/components/ui/AnimateIn';
+import { WaveTop, WaveBottom } from '@/components/ui/WaveDivider';
 
 const STATS = [
   { value: '500+', label: 'Projects Completed' },
@@ -11,7 +12,7 @@ const STATS = [
 
 export default function StatsSection() {
   return (
-    <section className="relative py-20 bg-brand-blue-deep overflow-hidden">
+    <section className="relative py-28 bg-brand-blue-deep overflow-hidden">
       {/* White dot pattern */}
       <div
         className="absolute inset-0 pointer-events-none"
@@ -24,6 +25,11 @@ export default function StatsSection() {
       <div className="absolute bottom-0 right-0 w-96 h-96 bg-brand-orange/20 rounded-full blur-3xl pointer-events-none" />
       {/* Blue glow — top left */}
       <div className="absolute top-0 left-0 w-64 h-64 bg-brand-blue/40 rounded-full blur-3xl pointer-events-none" />
+
+      {/* Wave in from white above */}
+      <WaveTop fill="#ffffff" height={70} />
+      {/* Wave out to white below */}
+      <WaveBottom fill="#ffffff" height={70} />
 
       <div className="container-max relative z-10">
         <div className="grid grid-cols-2 md:grid-cols-4 gap-8 md:gap-0">

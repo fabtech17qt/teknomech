@@ -102,9 +102,9 @@
     @apply text-2xl md:text-3xl font-bold text-brand-text;
   }
 
-  /* Section label: blue bar + small caps text */
+  /* Section label: gold bar + small caps text */
   .section-label {
-    @apply text-brand-blue text-xs font-semibold uppercase tracking-[0.2em] flex items-center gap-2;
+    @apply text-brand-orange text-xs font-semibold uppercase tracking-[0.2em] flex items-center gap-2;
   }
 
   /* Tiptap editor */
@@ -134,7 +134,7 @@
 
 @layer utilities {
   .text-gradient-blue {
-    background: linear-gradient(135deg, #0B4FD0, #072F8A);
+    background: linear-gradient(135deg, #0A2342, #1a4080);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
@@ -177,7 +177,7 @@
 
   /* Dotted grid — blue dots on light bg */
   .bg-dots {
-    background-image: radial-gradient(circle, #0B4FD0 1px, transparent 1px);
+    background-image: radial-gradient(circle, #0A2342 1px, transparent 1px);
     background-size: 20px 20px;
     opacity: 0.08;
     pointer-events: none;
@@ -212,5 +212,81 @@
     position: absolute;
     user-select: none;
     pointer-events: none;
+  }
+
+  /* ── RAGROUP-STYLE CURVE / WAVE SECTION SHAPES ── */
+
+  /* Large rounded top — section sits on top of previous with curved entry */
+  .section-curve-top {
+    border-radius: 56px 56px 0 0;
+    margin-top: -56px;
+    position: relative;
+    z-index: 2;
+  }
+
+  /* Large rounded bottom */
+  .section-curve-bottom {
+    border-radius: 0 0 56px 56px;
+    position: relative;
+    z-index: 2;
+  }
+
+  /* Both top and bottom curved */
+  .section-curve-both {
+    border-radius: 56px;
+    margin: -28px 0;
+    position: relative;
+    z-index: 2;
+  }
+
+  /* Gold gradient text */
+  .text-gradient-gold {
+    background: linear-gradient(135deg, #E0BE6E 0%, #B8893D 50%, #8A6422 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  /* Navy gradient text */
+  .text-gradient-navy {
+    background: linear-gradient(135deg, #0A2342 0%, #1a4080 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  /* Gold accent bar (replaces orange bar pattern) */
+  .gold-bar {
+    background: linear-gradient(90deg, #B8893D, #E0BE6E, #B8893D);
+  }
+
+  /* Curved pill badge */
+  .badge-gold {
+    background: linear-gradient(135deg, #FBF5E5, #F5E8C8);
+    color: #8A6422;
+    border: 1px solid #E0C882;
+    border-radius: 999px;
+    font-weight: 600;
+    font-size: 0.7rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    padding: 0.35rem 1rem;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+  }
+
+  /* Dot pattern — navy/gold */
+  .bg-dots-gold {
+    background-image: radial-gradient(circle, #B8893D 1px, transparent 1px);
+    background-size: 24px 24px;
+    opacity: 0.12;
+    pointer-events: none;
+  }
+
+  @media (max-width: 767px) {
+    .section-curve-top  { border-radius: 32px 32px 0 0; margin-top: -32px; }
+    .section-curve-bottom { border-radius: 0 0 32px 32px; }
+    .section-curve-both { border-radius: 32px; margin: -16px 0; }
   }
 }

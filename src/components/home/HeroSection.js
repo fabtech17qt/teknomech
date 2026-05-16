@@ -8,6 +8,7 @@ import {
   ArrowRight, ShieldCheck, BadgeCheck, Clock,
   Wrench, FileText, Calendar, AlertTriangle,
 } from 'lucide-react';
+import { WaveBottom } from '@/components/ui/WaveDivider';
 
 const ease = [0.22, 1, 0.36, 1];
 
@@ -169,6 +170,9 @@ export default function HeroSection() {
             </motion.div>
           </div>
         </div>
+
+        {/* Wave transition into quick-action cards / next section */}
+        <WaveBottom fill="#f7f9fc" height={80} />
       </section>
 
       {/* ── SECTION 2 : QUICK ACTION CARDS (overlapping hero bottom) ── */}

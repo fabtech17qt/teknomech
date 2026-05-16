@@ -29,7 +29,7 @@ export default function CTASection() {
                 <h2 className="text-3xl md:text-4xl lg:text-5xl font-black text-white leading-tight mb-2">
                   Have a project in Qatar?
                 </h2>
-                <p className="text-3xl md:text-4xl lg:text-5xl font-black text-brand-blue-deep leading-tight">
+                <p className="text-3xl md:text-4xl lg:text-5xl font-black text-white/80 leading-tight">
                   Let's engineer it together.
                 </p>
               </div>

@@ -1,0 +1,20 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="71 91 420 390" width="512" height="512">
+  <!-- Frame: gold top bar -->
+  <rect x="71" y="91" width="420" height="35" fill="#B8893D"/>
+  <!-- Frame: navy left bar -->
+  <rect x="71" y="91" width="35" height="390" fill="#0A2342"/>
+  <!-- Frame: navy bottom bar -->
+  <rect x="71" y="447" width="420" height="35" fill="#0A2342"/>
+  <!-- Frame: gold right bar -->
+  <rect x="457" y="91" width="35" height="390" fill="#B8893D"/>
+  <!-- M: left vertical -->
+  <rect x="299" y="166" width="35" height="288" fill="#B8893D"/>
+  <!-- M: right vertical -->
+  <rect x="405" y="166" width="35" height="288" fill="#B8893D"/>
+  <!-- M: V path -->
+  <path d="M317,166 L370,432 L423,166" stroke="#B8893D" stroke-width="35" fill="none" stroke-linejoin="bevel" stroke-linecap="butt"/>
+  <!-- T: crossbar -->
+  <rect x="132" y="166" width="196" height="35" fill="#0A2342"/>
+  <!-- T: stem -->
+  <rect x="213" y="166" width="35" height="288" fill="#0A2342"/>
+</svg>

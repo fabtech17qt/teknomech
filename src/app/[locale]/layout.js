@@ -60,7 +60,7 @@ export default async function LocaleLayout({ children, params }) {
       dir={isRTL ? 'rtl' : 'ltr'}
       className={`${inter.variable} ${cairo.variable}`}
     >
-      <body className="bg-brand-dark text-brand-text font-inter antialiased">
+      <body className="bg-white text-brand-text font-inter antialiased">
         <NextIntlClientProvider messages={messages}>
           <Navbar />
           <main>{children}</main>

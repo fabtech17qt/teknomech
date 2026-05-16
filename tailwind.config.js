@@ -10,25 +10,25 @@ module.exports = {
     extend: {
       colors: {
         brand: {
-          // Primary palette (RAG-style MEP)
-          blue:          '#0B4FD0',
-          'blue-dark':   '#072F8A',
-          'blue-deep':   '#041E5C',
-          'blue-soft':   '#EAF1FF',
-          'blue-light':  '#EEF3FF',  // backward compat
-          orange:        '#F97316',
-          'orange-dark': '#EA580C',
-          'orange-soft': '#FFF1E5',
+          // Primary palette — Teknomech brand (navy + gold)
+          blue:          '#0A2342',   // logo navy — primary
+          'blue-dark':   '#071829',   // deeper navy
+          'blue-deep':   '#040F1A',   // deepest navy (hero backgrounds)
+          'blue-soft':   '#EAF1FF',   // light tint — section backgrounds
+          'blue-light':  '#EEF3FF',   // backward compat
+          orange:        '#B8893D',   // logo gold — accent
+          'orange-dark': '#8A6422',   // dark gold
+          'orange-soft': '#FBF5E5',   // light warm gold / cream
           // Neutral
           white:         '#FFFFFF',
           light:         '#F7F9FC',
-          border:        '#E5EAF2',
+          border:        '#E2E8F0',
           text:          '#0F172A',
           sub:           '#5A6B82',
-          // Legacy tokens (kept for backward compat)
+          // Legacy tokens
           red:           '#DC2626',
           'red-light':   '#FEF2F2',
-          steel:         '#1E3A5F',
+          steel:         '#0A2342',   // footer — same as brand navy
         },
         border: 'hsl(var(--border))',
         input: 'hsl(var(--input))',

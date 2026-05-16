@@ -3,6 +3,7 @@
 import { useState } from 'react';
 import { AnimateIn } from '@/components/ui/AnimateIn';
 import { MapPin, Phone, Mail, MessageCircle, ArrowRight } from 'lucide-react';
+import { WaveTop } from '@/components/ui/WaveDivider';
 
 const SERVICES_LIST = [
   'Fire Protection Systems',
@@ -36,8 +37,10 @@ export default function ContactBannerSection() {
     'w-full bg-white/95 text-brand-text rounded-xl px-4 py-3.5 text-sm focus:outline-none focus:ring-2 focus:ring-white/60 placeholder:text-brand-sub/60 border-0';
 
   return (
-    <section className="overflow-hidden">
-      <div className="flex flex-col lg:flex-row min-h-[480px]">
+    <section className="relative overflow-hidden">
+      {/* Wave entry from above */}
+      <WaveTop fill="#ffffff" height={60} />
+      <div className="flex flex-col lg:flex-row min-h-[480px] pt-14">
 
         {/* ── LEFT : blue-deep ── */}
         <div className="relative flex-1 lg:w-3/5 bg-brand-blue-deep overflow-hidden lg:rounded-tr-[80px] lg:rounded-br-[80px]">
