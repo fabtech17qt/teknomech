@@ -200,6 +200,58 @@ export const PRODUCTS_DETAIL = {
     ],
     certifications: ['EN 837-1', 'ASME B40.100'],
   },
+  'vrf-outdoor-condensing-unit-8hp': {
+    name: 'VRF Outdoor Condensing Unit 8HP',
+    brand: 'Mitsubishi Electric',
+    category: 'HVAC',
+    description:
+      'Variable Refrigerant Flow (VRF) outdoor condensing unit rated at 8HP for multi-zone commercial cooling. Suitable for offices, hotels and retail environments in Qatar\'s climate. Energy-efficient inverter compressor with R-32 refrigerant.',
+    images: ['https://images.unsplash.com/photo-1563166423-482a8c14b2d6?w=800&h=600&fit=crop&q=80'],
+    modelSrc: null,
+    isRender: false,
+    specs: {
+      'Capacity': '22.4 kW (8HP)',
+      'Refrigerant': 'R-32',
+      'Compressor Type': 'Variable-speed inverter scroll',
+      'Connected Indoor Units': 'Up to 13 indoor units',
+      'Piping Length': 'Up to 165 m total / 90 m per branch',
+      'Power Supply': '3-phase, 380V / 50 Hz',
+      'Noise Level': '58 dB(A)',
+      'Energy Rating': 'SEER 8.5 / COP 4.1',
+      Compliance: 'ASHRAE 90.1, QCDD MEP Code',
+    },
+    variants: [
+      { name: 'Capacity', options: ['4HP', '6HP', '8HP', '10HP', '14HP', '20HP'] },
+      { name: 'Refrigerant', options: ['R-32', 'R-410A'] },
+    ],
+    certifications: ['CE Mark', 'ASHRAE Compliant', 'ISO 5151', 'Gulf Approved'],
+  },
+  'access-control-intercom-panel': {
+    name: 'Access Control & Intercom Panel',
+    brand: 'Honeywell',
+    category: 'LV Systems',
+    description:
+      'Integrated access control and IP video intercom panel for commercial and residential buildings. Supports card, PIN and biometric entry with remote management via cloud-based software. QCDD and GRMS compliant for Qatar government projects.',
+    images: ['https://images.unsplash.com/photo-1718203862467-c33159fdc504?w=800&h=600&fit=crop&q=80'],
+    modelSrc: null,
+    isRender: false,
+    specs: {
+      'Authentication': 'RFID card, PIN, fingerprint, face recognition',
+      'Communication': 'TCP/IP, RS-485, Wiegand 26/34',
+      'Video Resolution': '2MP (1920×1080) HD',
+      'Night Vision': 'IR up to 3 m',
+      'Door Relay': '2 × NO/NC relay, 3A',
+      'Memory': 'Up to 100,000 cards / events',
+      'Management Software': 'WIN-PAK cloud / on-premise',
+      'Power': 'PoE (802.3af) / 12V DC',
+      Compliance: 'CE, FCC, SBD, BS EN 60839-11',
+    },
+    variants: [
+      { name: 'Authentication', options: ['Card Only', 'Card + PIN', 'Card + Biometric', 'Multi-factor'] },
+      { name: 'Installation', options: ['Surface mount', 'Flush mount'] },
+    ],
+    certifications: ['CE Mark', 'FCC', 'SBD Approved', 'BS EN 60839'],
+  },
 };
 
 /* ── Variant Selector ── */

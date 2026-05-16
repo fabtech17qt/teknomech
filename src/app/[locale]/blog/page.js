@@ -86,7 +86,7 @@ function BlogCard({ post }) {
           className="object-cover group-hover:scale-105 transition-transform duration-500"
           sizes="(max-width: 768px) 100vw, 33vw"
         />
-        <div className="absolute top-3 start-3 flex items-center gap-1.5 bg-brand-blue text-white text-xs font-semibold rounded-full px-3 py-1.5 z-10 shadow-md">
+        <div className="absolute top-3 start-3 flex items-center gap-1.5 bg-white/90 backdrop-blur-sm text-brand-text text-xs font-semibold rounded-full px-3 py-1.5 z-10 shadow-md">
           <Calendar size={10} />
           {new Date(post.date).toLocaleDateString('en-QA', { month: 'short', day: 'numeric', year: 'numeric' })}
         </div>
@@ -123,11 +123,13 @@ export default function BlogPage() {
         breadcrumbs={[{ label: t('pageTitle') }]}
       />
 
-      <section className="section-padding bg-brand-light">
+      <section className="py-24 bg-white">
         <div className="container-max">
           <AnimateIn variant="fadeUp">
             <SectionLabel className="mb-4">Latest Insights</SectionLabel>
-            <h2 className="heading-lg mb-12">From Our Engineering Team</h2>
+            <h2 className="text-4xl md:text-5xl font-black leading-[1.05] text-brand-text mb-12">
+              From Our <span className="text-brand-orange">Engineering Team</span>
+            </h2>
           </AnimateIn>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             {POSTS.map((post, i) => (

@@ -149,7 +149,7 @@ export default async function ServiceDetailPage({ params }) {
         ]}
       />
 
-      <section className="section-padding bg-brand-light">
+      <section className="py-20 bg-white">
         <div className="container-max">
           <div className="grid grid-cols-1 lg:grid-cols-3 gap-10">
 
@@ -165,7 +165,7 @@ export default async function ServiceDetailPage({ params }) {
                     className="object-cover"
                     sizes="(max-width: 1024px) 100vw, 66vw"
                   />
-                  <div className="absolute inset-0 bg-gradient-to-t from-brand-steel/60 to-transparent" />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent" />
                 </div>
               </AnimateIn>
 
@@ -173,7 +173,7 @@ export default async function ServiceDetailPage({ params }) {
               <AnimateIn variant="fadeUp">
                 <div className="bg-white rounded-2xl border border-brand-border shadow-md p-8">
                   <SectionLabel className="mb-4">Overview</SectionLabel>
-                  <h2 className="heading-md mb-5">{service.name}</h2>
+                  <h2 className="text-2xl font-black text-brand-text mb-5">{service.name}</h2>
                   <p className="text-brand-sub leading-relaxed text-base">{service.details}</p>
                 </div>
               </AnimateIn>
@@ -185,7 +185,7 @@ export default async function ServiceDetailPage({ params }) {
                   <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
                     {service.scope.map((item) => (
                       <div key={item} className="flex items-start gap-3">
-                        <CheckCircle size={16} className="text-brand-blue shrink-0 mt-0.5" />
+                        <CheckCircle size={16} className="text-brand-orange shrink-0 mt-0.5" />
                         <span className="text-brand-text text-sm leading-snug">{item}</span>
                       </div>
                     ))}
@@ -226,7 +226,7 @@ export default async function ServiceDetailPage({ params }) {
 
               {/* Related services */}
               <AnimateIn variant="fadeRight" delay={0.15}>
-                <div className="bg-brand-light rounded-2xl border border-brand-border p-6">
+                <div className="bg-brand-blue-soft rounded-2xl border border-brand-blue/10 p-6">
                   <h3 className="text-brand-text font-bold text-sm mb-4">Related Services</h3>
                   <div className="space-y-2">
                     {Object.entries(SERVICE_DATA)

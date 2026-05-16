@@ -6,52 +6,56 @@ export default function PageHero({ title, subtitle, breadcrumbs = [], className 
   return (
     <section
       className={cn(
-        'relative bg-brand-steel pt-36 pb-20 overflow-hidden',
+        'relative bg-white pt-36 pb-20 overflow-hidden',
         className
       )}
     >
-      {/* Diagonal stripes overlay */}
-      <div className="absolute inset-0 bg-diagonal-stripe pointer-events-none opacity-30" />
-
-      {/* Decorative blurs */}
-      <div className="absolute top-0 right-0 w-96 h-96 bg-brand-blue/20 rounded-full blur-3xl pointer-events-none" />
-      <div className="absolute bottom-0 left-0 w-64 h-64 bg-white/5 rounded-full blur-3xl pointer-events-none" />
+      {/* Background gradient — white → blue-soft */}
+      <div className="absolute inset-0 bg-gradient-to-br from-white via-white to-brand-blue-soft pointer-events-none" />
+      {/* Subtle stripe */}
+      <div className="absolute inset-0 bg-stripes pointer-events-none" />
+      {/* Glow accents */}
+      <div className="absolute top-0 right-0 w-80 h-80 bg-brand-blue/5 rounded-full blur-3xl pointer-events-none" />
+      <div className="absolute bottom-0 left-0 w-56 h-56 bg-brand-orange/6 rounded-full blur-3xl pointer-events-none" />
 
       <div className="container-max relative z-10">
+        {/* Breadcrumbs */}
         {breadcrumbs.length > 0 && (
-          <nav className="flex items-center gap-1.5 text-xs text-white/60 mb-5 flex-wrap">
-            <Link href="/" className="hover:text-white transition-colors flex items-center gap-1">
-              <Home size={12} />
+          <nav className="flex items-center gap-1.5 text-xs text-brand-sub mb-6 flex-wrap">
+            <Link href="/" className="hover:text-brand-blue transition-colors flex items-center gap-1">
+              <Home size={11} />
               Home
             </Link>
             {breadcrumbs.map((crumb, i) => (
               <span key={i} className="flex items-center gap-1.5">
-                <ChevronRight size={12} className="text-white/30" />
+                <ChevronRight size={11} className="text-brand-border" />
                 {crumb.href ? (
-                  <Link href={crumb.href} className="hover:text-white transition-colors">
+                  <Link href={crumb.href} className="hover:text-brand-blue transition-colors">
                     {crumb.label}
                   </Link>
                 ) : (
-                  <span className="text-white/90">{crumb.label}</span>
+                  <span className="text-brand-text font-medium">{crumb.label}</span>
                 )}
               </span>
             ))}
           </nav>
         )}
 
+        {/* Orange accent bar */}
         <div className="w-10 h-1 bg-brand-orange rounded-full mb-5" />
 
-        <h1 className="text-3xl md:text-5xl font-extrabold text-white mb-4 max-w-3xl leading-tight">
+        <h1 className="text-3xl md:text-5xl font-black text-brand-text mb-4 max-w-3xl leading-tight">
           {title}
         </h1>
         {subtitle && (
-          <p className="text-white/70 text-lg max-w-2xl leading-relaxed">
+          <p className="text-brand-sub text-base md:text-lg max-w-2xl leading-relaxed">
             {subtitle}
           </p>
         )}
       </div>
 
-      <div className="absolute bottom-0 inset-x-0 h-px bg-gradient-to-r from-transparent via-white/20 to-transparent" />
+      {/* Bottom rule */}
+      <div className="absolute bottom-0 inset-x-0 h-px bg-brand-border" />
     </section>
   );
 }

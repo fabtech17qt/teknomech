@@ -3,8 +3,7 @@ import PageHero from '@/components/shared/PageHero';
 import SectionLabel from '@/components/shared/SectionLabel';
 import ContactForm from '@/components/shared/ContactForm';
 import { AnimateIn } from '@/components/ui/AnimateIn';
-import { Phone, Mail, MapPin, Clock } from 'lucide-react';
-import { FaWhatsapp, FaLinkedin, FaInstagram } from 'react-icons/fa';
+import { Phone, Mail, MapPin, Clock, MessageCircle } from 'lucide-react';
 
 export const metadata = {
   title: 'Contact Us | Teknomech',
@@ -30,24 +29,26 @@ export default function ContactPage() {
         breadcrumbs={[{ label: t('pageTitle') }]}
       />
 
-      <section className="section-padding bg-brand-light">
+      <section className="py-24 bg-white">
         <div className="container-max">
           <div className="grid grid-cols-1 lg:grid-cols-3 gap-10">
 
             {/* Contact info */}
-            <AnimateIn variant="fadeLeft" className="space-y-6">
+            <AnimateIn variant="fadeLeft" className="space-y-5">
               <div>
                 <SectionLabel className="mb-3">Contact Info</SectionLabel>
-                <h2 className="heading-md mb-2">Let's Talk</h2>
+                <h2 className="text-3xl font-black text-brand-text mb-2 leading-tight">
+                  Let's <span className="text-brand-orange">Talk</span>
+                </h2>
                 <p className="text-brand-sub text-sm leading-relaxed">
                   Our team is available Saturday to Thursday, 7AM to 6PM. Emergency support is available 24/7.
                 </p>
               </div>
 
               {INFO.map(({ icon: Icon, label, value, href }) => (
-                <div key={label} className="flex gap-4 bg-white rounded-2xl border border-brand-border p-4 shadow-sm">
-                  <div className="w-10 h-10 rounded-xl bg-brand-blue-light flex items-center justify-center shrink-0">
-                    <Icon size={18} className="text-brand-blue" />
+                <div key={label} className="flex gap-4 bg-brand-blue-soft rounded-2xl border border-brand-blue/10 p-4 hover:border-brand-orange transition-all duration-300 group">
+                  <div className="w-11 h-11 rounded-xl bg-brand-orange-soft flex items-center justify-center shrink-0 group-hover:bg-brand-orange transition-colors duration-300">
+                    <Icon size={18} className="text-brand-orange group-hover:text-white transition-colors duration-300" />
                   </div>
                   <div>
                     <p className="text-brand-sub text-xs mb-0.5 font-medium">{label}</p>
@@ -60,27 +61,22 @@ export default function ContactPage() {
                 </div>
               ))}
 
-              <div className="space-y-3">
-                <a href="https://wa.me/97444445555" target="_blank" rel="noopener noreferrer"
-                  className="flex items-center justify-center gap-2 bg-green-500 text-white hover:bg-green-600 px-5 py-3.5 rounded-full text-sm font-semibold transition-colors w-full">
-                  <FaWhatsapp size={16} /> Chat on WhatsApp
-                </a>
-                <div className="flex items-center justify-center gap-4 pt-2">
-                  <a href="#" className="w-10 h-10 rounded-full bg-white border border-brand-border flex items-center justify-center text-brand-sub hover:text-brand-blue hover:border-brand-blue transition-colors">
-                    <FaLinkedin size={16} />
-                  </a>
-                  <a href="#" className="w-10 h-10 rounded-full bg-white border border-brand-border flex items-center justify-center text-brand-sub hover:text-brand-blue hover:border-brand-blue transition-colors">
-                    <FaInstagram size={16} />
-                  </a>
-                </div>
-              </div>
+              <a
+                href="https://wa.me/97444445555"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex items-center justify-center gap-2 bg-brand-orange text-white hover:bg-brand-orange-dark px-5 py-4 rounded-full text-sm font-bold transition-colors w-full shadow-lg shadow-brand-orange/25"
+              >
+                <MessageCircle size={16} /> Chat on WhatsApp
+              </a>
             </AnimateIn>
 
             {/* Form */}
             <AnimateIn variant="fadeRight" className="lg:col-span-2">
-              <div className="bg-white rounded-2xl border border-brand-border shadow-md p-8">
-                <SectionLabel className="mb-2">Send a Message</SectionLabel>
-                <h3 className="heading-md mb-6">We'll Get Back to You in 24 Hours</h3>
+              <div className="bg-white rounded-2xl border border-brand-border shadow-lg p-8">
+                <div className="w-10 h-1 bg-brand-orange rounded-full mb-4" />
+                <h3 className="text-2xl font-black text-brand-text mb-2">Send a Message</h3>
+                <p className="text-brand-sub text-sm mb-6">We'll get back to you within 24 hours.</p>
                 <ContactForm />
               </div>
             </AnimateIn>
@@ -89,10 +85,12 @@ export default function ContactPage() {
       </section>
 
       {/* Map placeholder */}
-      <div className="h-72 bg-brand-blue-light border-t border-brand-border flex items-center justify-center">
+      <div className="h-64 bg-brand-blue-soft border-t border-brand-border flex items-center justify-center">
         <div className="text-center">
-          <MapPin size={32} className="text-brand-blue mx-auto mb-3" />
-          <p className="text-brand-text font-semibold">Building 15, Street 850, Industrial Area</p>
+          <div className="w-14 h-14 rounded-2xl bg-brand-orange-soft flex items-center justify-center mx-auto mb-3">
+            <MapPin size={26} className="text-brand-orange" />
+          </div>
+          <p className="text-brand-text font-bold">Building 15, Street 850, Industrial Area</p>
           <p className="text-brand-sub text-sm">Doha, Qatar</p>
         </div>
       </div>

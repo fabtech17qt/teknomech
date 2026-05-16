@@ -39,12 +39,12 @@ export default function ServicesPage() {
       />
 
       {/* Services grid */}
-      <section className="section-padding bg-brand-light">
+      <section className="py-24 bg-white">
         <div className="container-max">
           <AnimateIn variant="fadeUp">
             <SectionLabel className="mb-4">What We Offer</SectionLabel>
-            <h2 className="heading-lg mb-12 max-w-2xl">
-              Complete MEP & Fire Protection Solutions
+            <h2 className="text-4xl md:text-5xl font-black leading-[1.05] text-brand-text mb-12 max-w-2xl">
+              Complete MEP &amp; Fire Protection <span className="text-brand-orange">Solutions</span>
             </h2>
           </AnimateIn>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
@@ -64,21 +64,29 @@ export default function ServicesPage() {
       </section>
 
       {/* Process */}
-      <section className="section-padding bg-white">
+      <section className="py-24 bg-brand-blue-soft">
         <div className="container-max">
-          <AnimateIn variant="fadeUp">
+          <AnimateIn variant="fadeUp" className="text-center mb-14">
             <SectionLabel className="mb-4 justify-center">Our Process</SectionLabel>
-            <h2 className="heading-lg text-brand-text text-center mb-12">How We Deliver Projects</h2>
+            <h2 className="text-4xl md:text-5xl font-black leading-[1.05] text-brand-text">
+              How We <span className="text-brand-blue">Deliver Projects</span>
+            </h2>
           </AnimateIn>
           <div className="grid grid-cols-1 md:grid-cols-4 gap-6">
             {PROCESS.map((p, i) => (
               <AnimateIn key={p.step} variant="fadeUp" delay={i * 0.1}>
-                <div className="text-center">
-                  <div className="w-14 h-14 rounded-2xl bg-brand-blue text-white font-black text-xl flex items-center justify-center mx-auto mb-4 shadow-lg shadow-brand-blue/20">
+                <div className="relative bg-white rounded-2xl border border-brand-border p-6 hover:border-brand-orange transition-all duration-300 group overflow-hidden">
+                  <span
+                    className="absolute -top-3 right-3 font-black text-brand-border select-none pointer-events-none"
+                    style={{ fontSize: '80px', lineHeight: 1 }}
+                  >
+                    {p.step}
+                  </span>
+                  <div className="relative z-10 w-10 h-10 rounded-xl bg-brand-orange text-white font-black text-xs flex items-center justify-center mb-4 group-hover:scale-110 transition-transform duration-300">
                     {p.step}
                   </div>
-                  <h3 className="text-brand-text font-bold mb-2">{p.title}</h3>
-                  <p className="text-brand-sub text-sm leading-relaxed">{p.desc}</p>
+                  <h3 className="relative z-10 text-brand-text font-bold mb-2">{p.title}</h3>
+                  <p className="relative z-10 text-brand-sub text-sm leading-relaxed">{p.desc}</p>
                 </div>
               </AnimateIn>
             ))}
@@ -86,12 +94,16 @@ export default function ServicesPage() {
         </div>
       </section>
 
-      {/* CTA band */}
-      <section className="bg-brand-steel py-16">
-        <div className="container-max text-center">
-          <h2 className="text-3xl font-extrabold text-white mb-4">Need a Custom MEP Solution?</h2>
-          <p className="text-white/70 mb-8 max-w-xl mx-auto">Our engineering team is ready to assess your project and provide a detailed proposal — at no cost.</p>
-          <a href="/contact" className="inline-flex items-center gap-2 bg-brand-orange text-white rounded-full px-9 py-4 font-semibold hover:bg-orange-700 transition-colors shadow-lg shadow-brand-orange/30">
+      {/* CTA band — bright */}
+      <section className="py-20 bg-brand-blue-soft relative overflow-hidden">
+        <div className="absolute inset-0 bg-stripes pointer-events-none" />
+        <div className="absolute top-0 right-0 w-72 h-72 bg-brand-blue/8 rounded-full blur-3xl pointer-events-none" />
+        <div className="absolute bottom-0 left-0 w-56 h-56 bg-brand-orange/8 rounded-full blur-3xl pointer-events-none" />
+        <div className="container-max text-center relative z-10">
+          <div className="w-10 h-1 bg-brand-orange rounded-full mx-auto mb-5" />
+          <h2 className="text-3xl md:text-4xl font-black text-brand-text mb-4">Need a Custom MEP Solution?</h2>
+          <p className="text-brand-sub mb-8 max-w-xl mx-auto">Our engineering team is ready to assess your project and provide a detailed proposal — at no cost.</p>
+          <a href="/contact" className="inline-flex items-center gap-2 bg-brand-orange text-white rounded-full px-9 py-4 font-bold hover:bg-brand-orange-dark transition-colors shadow-lg shadow-brand-orange/30">
             Get a Free Consultation
           </a>
         </div>

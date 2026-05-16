@@ -119,7 +119,7 @@ function ProjectCard({ project }) {
         sizes="(max-width: 768px) 100vw, 33vw"
       />
 
-      <div className="absolute inset-0 bg-gradient-to-t from-brand-steel/95 via-brand-steel/40 to-brand-steel/10 group-hover:from-brand-steel/98 transition-all duration-300" />
+      <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/30 to-black/5 group-hover:from-black/90 transition-all duration-300" />
 
       <span className="absolute top-4 start-4 bg-brand-blue text-white text-xs font-semibold px-3 py-1.5 rounded-full z-10 shadow-md">
         {CATEGORY_LABELS[project.category]}
