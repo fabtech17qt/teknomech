@@ -13,7 +13,7 @@ import ContactBannerSection from '@/components/home/ContactBannerSection';
 export const metadata = {
   title: 'Teknomech MEP | Qatar MEP & Fire Protection Contractor',
   description:
-    "Qatar's leading MEP and Fire Protection contractor — HVAC, electrical, plumbing, fire suppression and LV systems for commercial, industrial and government projects.",
+    "Qatar's certified MEP & Fire Protection contractor for HVAC, electrical, plumbing, fire suppression and LV systems across Doha and Qatar.",
 };
 
 export default function HomePage() {

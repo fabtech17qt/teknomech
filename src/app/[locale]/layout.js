@@ -25,24 +25,122 @@ export function generateStaticParams() {
   return routing.locales.map((locale) => ({ locale }));
 }
 
-export const metadata = {
-  title: {
-    default: 'Teknomech MEP | Qatar MEP & Fire Protection Contractor',
-    template: '%s | Teknomech MEP',
-  },
-  description:
-    "Qatar's trusted MEP and Fire Protection contractor. Certified mechanical, electrical, plumbing and fire suppression systems for commercial, industrial and government projects.",
-  keywords: [
-    'MEP contractor Qatar',
-    'fire protection Qatar',
-    'HVAC Qatar',
-    'electrical contractor Doha',
-    'plumbing Qatar',
-    'QCDD compliant',
-    'UPDA approved',
+const BASE_URL = 'https://www.teknomech.com';
+
+const organizationSchema = {
+  '@context': 'https://schema.org',
+  '@graph': [
+    {
+      '@type': ['Organization', 'LocalBusiness'],
+      '@id': `${BASE_URL}/#organization`,
+      name: 'Teknomech MEP',
+      url: BASE_URL,
+      description:
+        "Qatar's leading MEP and Fire Protection contractor for commercial, industrial and government projects.",
+      telephone: '+97444445555',
+      email: 'info@teknomech.qa',
+      address: {
+        '@type': 'PostalAddress',
+        streetAddress: 'Building 15, Street 850, Zone 55',
+        addressLocality: 'Doha',
+        addressRegion: 'Qatar',
+        addressCountry: 'QA',
+      },
+      areaServed: { '@type': 'Country', name: 'Qatar' },
+      knowsAbout: [
+        'MEP Engineering',
+        'Fire Protection Systems',
+        'HVAC Systems',
+        'Electrical Systems',
+        'Plumbing Systems',
+        'Low Voltage Systems',
+      ],
+    },
+    {
+      '@type': 'WebSite',
+      '@id': `${BASE_URL}/#website`,
+      url: BASE_URL,
+      name: 'Teknomech MEP',
+      publisher: { '@id': `${BASE_URL}/#organization` },
+    },
   ],
-  metadataBase: new URL(process.env.NEXT_PUBLIC_SITE_URL || 'https://teknomech.qa'),
 };
+
+export async function generateMetadata({ params }) {
+  const { locale } = await params;
+  const isAr = locale === 'ar';
+
+  const titleEn = 'Teknomech MEP | Qatar MEP & Fire Protection Contractor';
+  const descEn =
+    "Qatar's certified MEP & Fire Protection contractor for HVAC, electrical, plumbing, fire suppression and LV systems across Doha and Qatar.";
+  const titleAr = 'تكنوميك MEP | مقاول MEP وحماية من الحريق في قطر';
+  const descAr =
+    'مقاول MEP وحماية من الحريق الرائد في قطر — أنظمة HVAC والكهرباء والسباكة ومكافحة الحريق للمشاريع التجارية والحكومية.';
+
+  return {
+    metadataBase: new URL(BASE_URL),
+    title: {
+      default: isAr ? titleAr : titleEn,
+      template: isAr ? '%s | تكنوميك MEP' : '%s | Teknomech MEP',
+    },
+    description: isAr ? descAr : descEn,
+    keywords: [
+      'MEP contractor Qatar',
+      'fire protection Qatar',
+      'HVAC Qatar',
+      'electrical contractor Doha',
+      'plumbing Qatar',
+      'QCDD compliant',
+      'UPDA approved',
+      'fire suppression Qatar',
+      'LV systems Qatar',
+      'مقاول MEP قطر',
+      'حماية من الحريق قطر',
+    ],
+    alternates: {
+      canonical: `${BASE_URL}/${locale}`,
+      languages: {
+        en: `${BASE_URL}/en`,
+        ar: `${BASE_URL}/ar`,
+        'x-default': `${BASE_URL}/en`,
+      },
+    },
+    openGraph: {
+      type: 'website',
+      locale: isAr ? 'ar_QA' : 'en_QA',
+      alternateLocale: isAr ? ['en_QA'] : ['ar_QA'],
+      url: `${BASE_URL}/${locale}`,
+      siteName: 'Teknomech MEP',
+      title: titleEn,
+      description: descEn,
+      images: [
+        {
+          url: `${BASE_URL}/og-image.jpg`,
+          width: 1200,
+          height: 630,
+          alt: 'Teknomech MEP — Qatar MEP & Fire Protection Contractor',
+        },
+      ],
+    },
+    twitter: {
+      card: 'summary_large_image',
+      title: titleEn,
+      description: descEn,
+      images: [`${BASE_URL}/og-image.jpg`],
+    },
+    robots: {
+      index: true,
+      follow: true,
+      googleBot: {
+        index: true,
+        follow: true,
+        'max-video-preview': -1,
+        'max-image-preview': 'large',
+        'max-snippet': -1,
+      },
+    },
+  };
+}
 
 export default async function LocaleLayout({ children, params }) {
   const { locale } = await params;
@@ -60,6 +158,12 @@ export default async function LocaleLayout({ children, params }) {
       dir={isRTL ? 'rtl' : 'ltr'}
       className={`${inter.variable} ${cairo.variable}`}
     >
+      <head>
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(organizationSchema) }}
+        />
+      </head>
       <body className="bg-white text-brand-text font-inter antialiased">
         <NextIntlClientProvider messages={messages}>
           <Navbar />

@@ -1,0 +1,36 @@
+# Teknomech MEP
+
+> Teknomech MEP is Qatar's certified MEP (Mechanical, Electrical & Plumbing) and Fire Protection contractor, delivering end-to-end solutions for commercial, industrial and government projects across Doha and Qatar.
+
+## Company Information
+
+- **Name**: Teknomech MEP
+- **Location**: Building 15, Street 850, Zone 55, Industrial Area, Doha, Qatar
+- **Phone**: +974 4444 5555
+- **Email**: info@teknomech.qa
+- **Website**: https://www.teknomech.com
+- **Certifications**: QCDD Compliant, UPDA Approved, ISO 9001 Certified
+- **Emergency**: 24/7 emergency response available
+
+## Services
+
+- **Fire Protection Systems** — Design, supply, installation and commissioning of suppression, sprinkler, alarm and detection systems; fully QCDD compliant
+- **HVAC Systems** — Central cooling, VRF/VRV, split units, district cooling integration, ventilation
+- **Electrical Systems** — LV/MV power distribution, lighting, earthing, lightning protection
+- **Plumbing & Drainage** — Potable water, hot water, sewage and stormwater systems
+- **Low Voltage (LV) Systems** — CCTV, access control, structured cabling, BMS, PA systems
+- **MEP Maintenance** — Planned preventive maintenance (PPM) contracts, 24/7 emergency callouts
+
+## Pages
+
+- [Home](https://www.teknomech.com/en)
+- [About Us](https://www.teknomech.com/en/about)
+- [Services](https://www.teknomech.com/en/services)
+- [Products](https://www.teknomech.com/en/products)
+- [Projects](https://www.teknomech.com/en/projects)
+- [Blog](https://www.teknomech.com/en/blog)
+- [Contact](https://www.teknomech.com/en/contact)
+
+## Arabic Version
+
+Full Arabic language support available at https://www.teknomech.com/ar
