@@ -106,7 +106,7 @@ export default function Navbar() {
           {/* Logo */}
           <Link href="/" className="shrink-0 flex items-center">
             <img
-              src="/images/og-image.jpg"
+              src="/images/og-image.png"
               alt="Teknomech MEP"
               className="h-12 md:h-14 w-auto"
               style={{ maxWidth: '220px' }}
