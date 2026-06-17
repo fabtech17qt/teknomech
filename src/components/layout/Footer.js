@@ -32,7 +32,7 @@ export default function Footer() {
           <div className="lg:col-span-1">
             <Link href="/" className="inline-block mb-5">
               <img
-                src="/images/tekno-logo.jpeg"
+                src="/images/og-image.jpg"
                 alt="Teknomech MEP"
                 className="h-12 w-auto"
               />
