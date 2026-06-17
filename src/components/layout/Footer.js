@@ -31,24 +31,11 @@ export default function Footer() {
           {/* Col 1: Brand */}
           <div className="lg:col-span-1">
             <Link href="/" className="inline-block mb-5">
-              {/* White/gold version of just the TM monogram mark */}
-              <div className="flex items-center gap-3">
-                <svg viewBox="71 91 420 390" width="48" height="48" xmlns="http://www.w3.org/2000/svg" className="shrink-0">
-                  <rect x="71" y="91" width="420" height="35" fill="#B8893D"/>
-                  <rect x="71" y="91" width="35" height="390" fill="white" fillOpacity="0.85"/>
-                  <rect x="71" y="447" width="420" height="35" fill="white" fillOpacity="0.85"/>
-                  <rect x="457" y="91" width="35" height="390" fill="#B8893D"/>
-                  <rect x="299" y="166" width="35" height="288" fill="#B8893D"/>
-                  <rect x="405" y="166" width="35" height="288" fill="#B8893D"/>
-                  <path d="M317,166 L370,432 L423,166" stroke="#B8893D" strokeWidth="35" fill="none" strokeLinejoin="bevel" strokeLinecap="butt"/>
-                  <rect x="132" y="166" width="196" height="35" fill="white" fillOpacity="0.85"/>
-                  <rect x="213" y="166" width="35" height="288" fill="white" fillOpacity="0.85"/>
-                </svg>
-                <div className="flex flex-col leading-none">
-                  <span className="text-white font-black text-base tracking-tight">TEKNOMECH</span>
-                  <span className="text-brand-orange text-[9px] font-semibold tracking-widest uppercase mt-0.5">MEP & Fire Protection</span>
-                </div>
-              </div>
+              <img
+                src="/images/tekno-logo.jpeg"
+                alt="Teknomech MEP"
+                className="h-12 w-auto"
+              />
             </Link>
             <p className="text-white/60 text-sm leading-relaxed mb-6">{t('tagline')}</p>
             <div className={cn('flex items-center gap-3', isRTL && 'flex-row-reverse justify-end')}>
