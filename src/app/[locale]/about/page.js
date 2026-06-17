@@ -2,22 +2,14 @@ import Image from 'next/image';
 import { useTranslations } from 'next-intl';
 import PageHero from '@/components/shared/PageHero';
 import SectionLabel from '@/components/shared/SectionLabel';
-import StatCounter from '@/components/shared/StatCounter';
 import { AnimateIn } from '@/components/ui/AnimateIn';
 import { CheckCircle, BadgeCheck } from 'lucide-react';
 
 export const metadata = {
   title: 'About Us | Teknomech',
   description:
-    "Learn about Teknomech MEP — Qatar's trusted MEP and Fire Protection contractor with 15+ years of engineering excellence.",
+    "Learn about Teknomech MEP — Qatar's dedicated MEP and Fire Protection contractor committed to engineering excellence and quality service.",
 };
-
-const STATS = [
-  { value: 500, suffix: '+', label: 'Projects Delivered' },
-  { value: 15,  suffix: '+', label: 'Years Experience' },
-  { value: 120, suffix: '+', label: 'Certified Engineers' },
-  { value: 98,  suffix: '%', label: 'Client Satisfaction' },
-];
 
 const VALUES = [
   { title: 'Quality First',  desc: 'Every installation meets or exceeds international engineering standards. We never compromise on quality.' },
@@ -25,7 +17,7 @@ const VALUES = [
   { title: 'Client Focus',   desc: "We listen, adapt, and deliver solutions tailored to each client's unique requirements and budget." },
 ];
 
-const CERTS = ['UPDA Approved', 'QCDD Compliant', 'ISO 9001:2015', 'NFPA Member', 'ASHRAE Compliant', 'FIDIC Standard'];
+const CERTS = ['UPDA Compliant', 'QCDD Compliant', 'ISO 9001:2015', 'BNI Member', 'ASHRAE Compliant', 'FIDIC Standard'];
 
 export default function AboutPage() {
   const t = useTranslations('about');
@@ -34,7 +26,7 @@ export default function AboutPage() {
     <>
       <PageHero
         title={t('heading')}
-        subtitle="15+ years of engineering excellence across Qatar's most ambitious projects."
+        subtitle="A fresh, quality-driven MEP and Fire Protection contractor built for Qatar's growing infrastructure demands."
         breadcrumbs={[{ label: t('pageTitle') }]}
       />
 
@@ -49,20 +41,22 @@ export default function AboutPage() {
                 <span className="text-brand-orange">Excellence</span>
               </h2>
               <p className="text-brand-sub leading-relaxed mb-4">
-                Teknomech MEP has been a cornerstone of Qatar's construction and infrastructure landscape since 2008.
-                We specialize in delivering comprehensive MEP (Mechanical, Electrical, and Plumbing) solutions alongside
-                world-class Fire Protection systems.
+                Teknomech MEP is a fresh, dynamic MEP and Fire Protection contracting company established in Doha, Qatar in 2026.
+                We were founded with a clear mission: to bring a new standard of quality, transparency and reliability to
+                Qatars growing construction and infrastructure market.
               </p>
               <p className="text-brand-sub leading-relaxed mb-4">
-                Our team of UPDA-certified engineers and technicians brings decades of combined experience across
-                commercial towers, industrial facilities, healthcare, hospitality, and government projects.
+                We specialise in delivering comprehensive MEP (Mechanical, Electrical, and Plumbing) solutions alongside
+                professional Fire Protection systems — covering commercial, industrial, healthcare and government projects
+                across the region.
               </p>
               <p className="text-brand-sub leading-relaxed mb-8">
-                With full compliance to Qatar Civil Defence Department (QCDD) requirements and international standards
-                including NFPA and ASHRAE, every system we design and install is built to perform reliably for decades.
+                Our team of experienced engineers brings sharp technical knowledge and a modern, client-first approach
+                to every engagement. Every system we design and install is built to perform reliably and in full
+                compliance with Qatars applicable regulations and international standards.
               </p>
               <div className="space-y-3">
-                {['UPDA & QCDD licensed contractor', 'ISO 9001:2015 quality management', 'In-house design and engineering team', 'Multilingual Arabic & English support'].map((pt) => (
+                {['Regulatory compliant operations', 'ISO 9001:2015 quality management', 'In-house design and engineering team', 'Multilingual Arabic & English support'].map((pt) => (
                   <div key={pt} className="flex items-center gap-3">
                     <div className="w-5 h-5 rounded-full bg-brand-orange-soft flex items-center justify-center shrink-0">
                       <CheckCircle size={12} className="text-brand-orange" />
@@ -89,36 +83,10 @@ export default function AboutPage() {
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-brand-blue-soft/60 via-transparent to-transparent z-10 pointer-events-none" />
                 </div>
-                {/* Floating stat badge */}
-                <div className="absolute top-6 -left-4 bg-white rounded-2xl shadow-xl border border-brand-border px-5 py-4 z-20">
-                  <p className="text-brand-orange font-black text-2xl leading-none">500+</p>
-                  <p className="text-brand-sub text-xs mt-1">Projects Delivered</p>
-                </div>
                 {/* Orange accent */}
                 <div className="absolute -bottom-4 -right-4 w-20 h-20 bg-brand-orange shape-asym-1 z-0" />
               </div>
             </AnimateIn>
-          </div>
-        </div>
-      </section>
-
-      {/* Stats band */}
-      <section className="bg-brand-blue-deep py-20 relative overflow-hidden">
-        <div
-          className="absolute inset-0 pointer-events-none"
-          style={{
-            backgroundImage: 'radial-gradient(circle, rgba(255,255,255,0.08) 1px, transparent 1px)',
-            backgroundSize: '24px 24px',
-          }}
-        />
-        <div className="absolute top-0 right-0 w-80 h-80 bg-brand-orange/15 rounded-full blur-3xl pointer-events-none" />
-        <div className="container-max relative z-10">
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-6 text-center">
-            {STATS.map((stat, i) => (
-              <AnimateIn key={stat.label} variant="scaleUp" delay={i * 0.08}>
-                <StatCounter value={stat.value} suffix={stat.suffix} label={stat.label} dark={true} />
-              </AnimateIn>
-            ))}
           </div>
         </div>
       </section>

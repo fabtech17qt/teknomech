@@ -11,6 +11,7 @@ const STATS = [
 ];
 
 export default function StatsSection() {
+  return null;
   return (
     <section className="relative py-28 bg-brand-blue-deep overflow-hidden">
       {/* White dot pattern */}

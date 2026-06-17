@@ -97,20 +97,18 @@ export default function ProjectsSection() {
           </AnimateIn>
         </div>
 
-        {/* Magazine grid — tall left, stacked right */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-          <AnimateIn variant="fadeRight">
-            <ProjectCard project={PROJECTS[0]} className="h-[540px] md:h-full min-h-[540px]" />
-          </AnimateIn>
-
-          <div className="flex flex-col gap-6">
-            {PROJECTS.slice(1).map((project, i) => (
-              <AnimateIn key={project.title} variant="fadeLeft" delay={i * 0.1}>
-                <ProjectCard project={project} className="flex-1 min-h-[160px] h-[168px]" />
-              </AnimateIn>
-            ))}
+        {/* Coming soon placeholder */}
+        <AnimateIn variant="fadeUp">
+          <div className="rounded-3xl border-2 border-dashed border-brand-orange/30 bg-white flex flex-col items-center justify-center py-24 px-8 text-center">
+            <div className="w-16 h-16 rounded-2xl bg-brand-orange-soft flex items-center justify-center mb-6">
+              <MapPin size={28} className="text-brand-orange" />
+            </div>
+            <h3 className="text-2xl font-black text-brand-text mb-3">Projects Coming Soon</h3>
+            <p className="text-brand-sub text-sm max-w-md leading-relaxed">
+              We are currently building our project portfolio. Check back soon to see our completed works across Qatar.
+            </p>
           </div>
-        </div>
+        </AnimateIn>
       </div>
     </section>
   );

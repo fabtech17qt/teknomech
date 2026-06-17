@@ -9,8 +9,8 @@ import { BadgeCheck, Wrench, Clock, Phone, ArrowRight } from 'lucide-react';
 const FEATURES = [
   {
     icon: BadgeCheck,
-    title: 'QCD Licensed',
-    desc: 'Fully accredited by Qatar Civil Defence with all required authority approvals for fire and MEP works.',
+    title: 'Compliance Focused',
+    desc: 'All works are carried out in full compliance with Qatar\'s applicable regulations and fire safety standards.',
   },
   {
     icon: Wrench,
