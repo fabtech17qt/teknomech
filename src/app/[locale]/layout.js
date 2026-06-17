@@ -37,11 +37,11 @@ const organizationSchema = {
       url: BASE_URL,
       description:
         "Qatar's leading MEP and Fire Protection contractor for commercial, industrial and government projects.",
-      telephone: '+97444445555',
-      email: 'info@teknomech.qa',
+      telephone: '+97430443229',
+      email: 'info@teknomech.com',
       address: {
         '@type': 'PostalAddress',
-        streetAddress: 'Building 15, Street 850, Zone 55',
+        streetAddress: 'Office no. 16, First Floor, Building 43, Street 46, Zone 56, Jeera Building, Barwa Commercial Avenue',
         addressLocality: 'Doha',
         addressRegion: 'Qatar',
         addressCountry: 'QA',
@@ -90,7 +90,7 @@ export async function generateMetadata({ params }) {
       'HVAC Qatar',
       'electrical contractor Doha',
       'plumbing Qatar',
-      'QCDD compliant',
+      'regulatory compliant Qatar',
       'UPDA approved',
       'fire suppression Qatar',
       'LV systems Qatar',
@@ -129,8 +129,8 @@ export async function generateMetadata({ params }) {
       images: [`${BASE_URL}/images/og-image.jpg`],
     },
     icons: {
-      icon: '/images/og-image.jpg',
-      apple: '/images/og-image.jpeg',
+      icon: '/images/tekno-logo.jpeg',
+      apple: '/images/tekno-logo.jpeg',
     },
     robots: {
       index: true,
