@@ -30,7 +30,7 @@ const PRODUCT_CATS = [
 const SIMPLE_LINKS = [
   { href: '/',         key: 'home' },
   { href: '/about',    key: 'about' },
-  // { href: '/projects', key: 'projects' },
+  { href: '/projects', key: 'projects' },
   { href: '/blog',     key: 'blog' },
   { href: '/contact',  key: 'contact' },
 ];
@@ -187,7 +187,7 @@ export default function Navbar() {
               )}
             </li>
 
-            {/* <li><Link href="/projects" className={linkCls('/projects')}>{t('projects')}</Link></li> */}
+            <li><Link href="/projects" className={linkCls('/projects')}>{t('projects')}</Link></li>
             <li><Link href="/blog"     className={linkCls('/blog')}    >{t('blog')}</Link></li>
             <li><Link href="/contact"  className={linkCls('/contact')} >{t('contact')}</Link></li>
           </ul>

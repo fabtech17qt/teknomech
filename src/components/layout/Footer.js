@@ -9,7 +9,7 @@ import { cn } from '@/lib/utils';
 const QUICK_LINKS = [
   { href: '/',         key: 'home' },
   { href: '/about',    key: 'about' },
-  // { href: '/projects', key: 'projects' },
+  { href: '/projects', key: 'projects' },
   { href: '/blog',     key: 'blog' },
   { href: '/contact',  key: 'contact' },
 ];
