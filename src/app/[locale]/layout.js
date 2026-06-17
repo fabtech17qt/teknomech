@@ -129,8 +129,8 @@ export async function generateMetadata({ params }) {
       images: [`${BASE_URL}/images/og-image.jpg`],
     },
     icons: {
-      icon: '/images/tekno-logo.jpeg',
-      apple: '/images/tekno-logo.jpeg',
+      icon: '/images/og-image.jpg',
+      apple: '/images/og-image.jpeg',
     },
     robots: {
       index: true,
