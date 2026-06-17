@@ -1,43 +1,17 @@
-'use client';
-
 import Image from 'next/image';
 import { Link } from '@/i18n/navigation';
 import { AnimateIn } from '@/components/ui/AnimateIn';
 import SectionLabel from '@/components/shared/SectionLabel';
 import { Calendar, Tag } from 'lucide-react';
+import { prisma } from '@/lib/prisma';
 
-const POSTS = [
-  {
-    slug: 'qcdd-fire-safety-requirements',
-    title: 'Understanding QCDD Fire Safety Requirements for Commercial Buildings',
-    excerpt: 'A comprehensive guide to Qatar Civil Defence Department compliance for fire protection systems in commercial properties.',
-    date: '2025-03-15',
-    tag: 'Fire Safety',
-    img: '/images/svc-fire-protection.jpg',
-  },
-  {
-    slug: 'hvac-energy-efficiency-qatar',
-    title: "Energy Efficiency in HVAC: Reducing Cooling Costs in Qatar's Climate",
-    excerpt: "Practical strategies for cutting energy consumption through smart system design in extreme heat environments.",
-    date: '2025-02-28',
-    tag: 'HVAC',
-    img: 'https://images.unsplash.com/photo-1718203862467-c33159fdc504?w=600&h=400&fit=crop&q=80',
-  },
-  {
-    slug: 'smart-buildings-bms-mep',
-    title: 'Smart Buildings: Integrating BMS with MEP Infrastructure',
-    excerpt: 'How modern building management systems are transforming MEP operations for smarter, more efficient facilities.',
-    date: '2025-02-10',
-    tag: 'Smart Buildings',
-    img: 'https://images.unsplash.com/photo-1765045085124-b29f8db1cf8c?w=600&h=400&fit=crop&q=80',
-  },
-];
+const FALLBACK_IMG =
+  'https://images.unsplash.com/photo-1718203862467-c33159fdc504?w=600&h=400&fit=crop&q=80';
 
 function BlogCard({ post, delay = 0 }) {
   return (
     <AnimateIn variant="fadeUp" delay={delay}>
       <article className="group bg-white rounded-3xl overflow-hidden border border-brand-border hover:shadow-xl transition-all duration-300 flex flex-col h-full">
-        {/* Image */}
         <div className="relative h-52 shrink-0 overflow-hidden">
           <Image
             src={post.img}
@@ -48,15 +22,18 @@ function BlogCard({ post, delay = 0 }) {
           />
         </div>
 
-        {/* Body */}
         <div className="p-6 flex flex-col flex-1">
           <div className="flex items-center justify-between mb-4">
-            <span className="inline-flex items-center gap-1.5 bg-brand-orange-soft text-brand-orange-dark text-xs font-semibold rounded-full px-3 py-1">
-              <Tag size={10} /> {post.tag}
-            </span>
+            {post.tag ? (
+              <span className="inline-flex items-center gap-1.5 bg-brand-orange-soft text-brand-orange-dark text-xs font-semibold rounded-full px-3 py-1">
+                <Tag size={10} /> {post.tag}
+              </span>
+            ) : <span />}
             <span className="flex items-center gap-1.5 text-brand-sub text-xs">
               <Calendar size={10} />
-              {new Date(post.date).toLocaleDateString('en-QA', { day: 'numeric', month: 'short', year: 'numeric' })}
+              {new Date(post.date).toLocaleDateString('en-QA', {
+                day: 'numeric', month: 'short', year: 'numeric',
+              })}
             </span>
           </div>
 
@@ -77,7 +54,27 @@ function BlogCard({ post, delay = 0 }) {
   );
 }
 
-export default function BlogSection() {
+export default async function BlogSection() {
+  let posts = [];
+  try {
+    const raw = await prisma.blogPost.findMany({
+      where: { isPublished: true },
+      orderBy: { publishedAt: 'desc' },
+      take: 3,
+    });
+    posts = raw.map((p) => ({
+      id: p.id,
+      slug: p.slug,
+      title: p.titleEn || p.titleAr || 'Untitled',
+      excerpt: p.excerptEn || p.excerptAr || '',
+      date: p.publishedAt || p.createdAt,
+      tag: Array.isArray(p.tags) && p.tags.length > 0 ? p.tags[0] : null,
+      img: p.coverImage || FALLBACK_IMG,
+    }));
+  } catch {}
+
+  if (posts.length === 0) return null;
+
   return (
     <section className="py-28 bg-white">
       <div className="container-max">
@@ -100,8 +97,8 @@ export default function BlogSection() {
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-          {POSTS.map((post, i) => (
-            <BlogCard key={post.slug} post={post} delay={i * 0.1} />
+          {posts.map((post, i) => (
+            <BlogCard key={post.id} post={post} delay={i * 0.1} />
           ))}
         </div>
       </div>

@@ -2,17 +2,17 @@ import PageHero from '@/components/shared/PageHero';
 import ProjectsContent from '@/components/projects/ProjectsContent';
 
 export const metadata = {
-  title: 'MEP Projects Portfolio | Teknomech',
+  title: 'Our Projects | Teknomech',
   description:
-    "Explore Teknomech's portfolio of 500+ completed MEP and fire protection projects across Qatar.",
+    'MEP and Fire Protection projects delivered by Teknomech across Qatar — commercial, industrial, healthcare and government sectors.',
 };
 
 export default function ProjectsPage() {
   return (
     <>
       <PageHero
-        title="Our Projects Portfolio"
-        subtitle="500+ completed MEP and fire protection projects across Qatar — from commercial towers to industrial facilities."
+        title="Our Projects"
+        subtitle="MEP and Fire Protection works delivered across Qatar's commercial, industrial and government sectors."
         breadcrumbs={[{ label: 'Projects' }]}
       />
       <ProjectsContent />

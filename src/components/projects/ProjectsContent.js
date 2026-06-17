@@ -129,9 +129,19 @@ export default function ProjectsContent() {
             {[...Array(6)].map((_, i) => <SkeletonCard key={i} />)}
           </div>
         ) : filtered.length === 0 ? (
-          <div className="py-20 text-center text-brand-sub text-sm">
-            {activeCategory === 'all' ? 'No projects available yet.' : 'No projects in this category.'}
-          </div>
+          activeCategory === 'all' ? (
+            <div className="rounded-3xl border-2 border-dashed border-brand-orange/30 bg-brand-light flex flex-col items-center justify-center py-32 px-8 text-center">
+              <div className="w-20 h-20 rounded-2xl bg-brand-orange-soft flex items-center justify-center mb-6">
+                <MapPin size={36} className="text-brand-orange" />
+              </div>
+              <h2 className="text-3xl font-black text-brand-text mb-4">Projects Coming Soon</h2>
+              <p className="text-brand-sub text-sm max-w-lg leading-relaxed">
+                We are actively building our project portfolio. As Teknomech completes works across Qatar, they will appear here.
+              </p>
+            </div>
+          ) : (
+            <div className="py-20 text-center text-brand-sub text-sm">No projects in this category yet.</div>
+          )
         ) : (
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             {filtered.map((project, index) => (
@@ -142,22 +152,6 @@ export default function ProjectsContent() {
           </div>
         )}
 
-        {/* Stats bar */}
-        <AnimateIn variant="fadeUp">
-          <div className="mt-14 bg-brand-blue rounded-2xl p-8 grid grid-cols-2 md:grid-cols-4 gap-6 text-center">
-            {[
-              { num: '500+', label: 'Projects Completed' },
-              { num: '15+', label: 'Years in Qatar' },
-              { num: '50+', label: 'Government Projects' },
-              { num: '98%', label: 'Client Satisfaction' },
-            ].map(({ num, label }) => (
-              <div key={label}>
-                <div className="text-3xl font-extrabold text-white mb-1">{num}</div>
-                <div className="text-white/70 text-sm">{label}</div>
-              </div>
-            ))}
-          </div>
-        </AnimateIn>
       </div>
     </section>
   );
