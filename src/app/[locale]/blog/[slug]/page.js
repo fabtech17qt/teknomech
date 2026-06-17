@@ -1,23 +1,40 @@
+import Image from 'next/image';
+import { prisma } from '@/lib/prisma';
 import PageHero from '@/components/shared/PageHero';
 import SectionLabel from '@/components/shared/SectionLabel';
-import { Calendar, Clock, ArrowLeft, Tag } from 'lucide-react';
+import { Calendar, ArrowLeft, Tag } from 'lucide-react';
 import { Link } from '@/i18n/navigation';
 
-export const metadata = {
-  title: 'Blog Post | Teknomech',
-};
+export async function generateMetadata({ params }) {
+  const { slug } = await params;
+  try {
+    const post = await prisma.blogPost.findUnique({ where: { slug } });
+    return {
+      title: post ? `${post.titleEn || post.titleAr} | Teknomech Blog` : 'Blog | Teknomech',
+      description: (post?.excerptEn || post?.excerptAr || '').slice(0, 160),
+    };
+  } catch {
+    return { title: 'Blog | Teknomech' };
+  }
+}
 
 export default async function BlogPostPage({ params }) {
   const { slug } = await params;
+  let post = null;
+  try {
+    post = await prisma.blogPost.findUnique({ where: { slug } });
+  } catch {}
+
+  const title = post ? (post.titleEn || post.titleAr || 'Blog Post') : 'Post Not Found';
 
   return (
     <>
       <PageHero
-        title="Blog Post Title"
-        subtitle="Published by Teknomech MEP Engineering Team"
+        title={title}
+        subtitle={post ? (post.excerptEn || post.excerptAr || '') : 'This post could not be found.'}
         breadcrumbs={[
           { label: 'Blog', href: '/blog' },
-          { label: slug },
+          { label: title },
         ]}
       />
 
@@ -30,43 +47,63 @@ export default async function BlogPostPage({ params }) {
             <ArrowLeft size={15} /> Back to Blog
           </Link>
 
-          {/* Hero image placeholder */}
-          <div className="relative h-72 md:h-96 rounded-2xl overflow-hidden bg-brand-blue-soft mb-8 border border-brand-border">
-            <div className="absolute inset-0 flex items-center justify-center">
-              <div className="text-brand-sub text-sm">Article Image</div>
+          {!post ? (
+            <div className="py-20 text-center text-brand-sub text-sm">
+              This post could not be found or has been removed.
             </div>
-          </div>
+          ) : (
+            <>
+              {post.coverImage && (
+                <div className="relative h-72 md:h-96 rounded-2xl overflow-hidden mb-8 border border-brand-border">
+                  <Image
+                    src={post.coverImage}
+                    alt={title}
+                    fill
+                    className="object-cover"
+                    sizes="(max-width: 768px) 100vw, 896px"
+                    priority
+                  />
+                </div>
+              )}
 
-          {/* Meta */}
-          <div className="flex flex-wrap items-center gap-4 mb-8">
-            <span className="flex items-center gap-1.5 bg-brand-orange-soft text-brand-orange-dark text-xs font-semibold rounded-full px-3 py-1.5">
-              <Tag size={11} /> MEP Engineering
-            </span>
-            <span className="flex items-center gap-1.5 text-brand-sub text-xs">
-              <Calendar size={12} /> May 2025
-            </span>
-            <span className="flex items-center gap-1.5 text-brand-sub text-xs">
-              <Clock size={12} /> 5 min read
-            </span>
-          </div>
+              <div className="flex flex-wrap items-center gap-4 mb-8">
+                {post.tags?.length > 0 && (
+                  <span className="flex items-center gap-1.5 bg-brand-orange/10 text-brand-orange text-xs font-semibold rounded-full px-3 py-1.5">
+                    <Tag size={11} /> {post.tags[0]}
+                  </span>
+                )}
+                {post.publishedAt && (
+                  <span className="flex items-center gap-1.5 text-brand-sub text-xs">
+                    <Calendar size={12} />
+                    {new Date(post.publishedAt).toLocaleDateString('en-QA', {
+                      month: 'long', day: 'numeric', year: 'numeric',
+                    })}
+                  </span>
+                )}
+              </div>
 
-          {/* Content */}
-          <div className="bg-white rounded-2xl border border-brand-border p-8 shadow-sm">
-            <SectionLabel className="mb-4">Article</SectionLabel>
-            <div className="space-y-3">
-              {Array.from({ length: 6 }).map((_, i) => (
-                <div
-                  key={i}
-                  className="h-4 bg-brand-blue-soft rounded animate-pulse"
-                  style={{ width: `${80 + (i % 3) * 7}%` }}
-                />
-              ))}
-            </div>
-            <p className="text-brand-sub text-sm mt-6 leading-relaxed">
-              Full article content will be loaded from the database once the blog module is configured.
-              This section will show the complete post with text, images, and technical diagrams.
-            </p>
-          </div>
+              <div className="bg-white rounded-2xl border border-brand-border p-8 shadow-sm">
+                <SectionLabel className="mb-6">Article</SectionLabel>
+                <div className="prose prose-slate max-w-none">
+                  {(post.contentEn || post.contentAr || '').split('\n').filter(Boolean).map((para, i) => (
+                    <p key={i} className="text-brand-sub text-base leading-relaxed mb-4">
+                      {para}
+                    </p>
+                  ))}
+                </div>
+
+                {post.tags?.length > 1 && (
+                  <div className="mt-8 pt-6 border-t border-brand-border flex flex-wrap gap-2">
+                    {post.tags.map(tag => (
+                      <span key={tag} className="bg-brand-light text-brand-sub text-xs font-medium px-3 py-1 rounded-full border border-brand-border">
+                        {tag}
+                      </span>
+                    ))}
+                  </div>
+                )}
+              </div>
+            </>
+          )}
         </div>
       </section>
     </>

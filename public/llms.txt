@@ -5,11 +5,11 @@
 ## Company Information
 
 - **Name**: Teknomech MEP
-- **Location**: Building 15, Street 850, Zone 55, Industrial Area, Doha, Qatar
-- **Phone**: +974 4444 5555
-- **Email**: info@teknomech.qa
+- **Location**: Office no. 16, First Floor, Building Number 43, Street number 46, Zone 56, Jeera Building, Barwa Commercial Avenue, Doha, Qatar
+- **Phone**: +974 3044 3229
+- **Email**: info@teknomech.com
 - **Website**: https://www.teknomech.com
-- **Certifications**: QCDD Compliant, UPDA Approved, ISO 9001 Certified
+- **Certifications**: ISO 9001 Certified, NFPA Compliant, fully compliant with Qatar's applicable regulations
 - **Emergency**: 24/7 emergency response available
 
 ## Services

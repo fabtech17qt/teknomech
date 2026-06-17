@@ -6,7 +6,7 @@ import { cn } from '@/lib/utils';
 export default function WhatsAppFAB({ className }) {
   return (
     <a
-      href="https://wa.me/97444445555"
+      href="https://wa.me/97430443229"
       target="_blank"
       rel="noopener noreferrer"
       aria-label="Chat on WhatsApp"

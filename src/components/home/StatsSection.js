@@ -5,9 +5,9 @@ import { WaveTop, WaveBottom } from '@/components/ui/WaveDivider';
 
 const STATS = [
   { value: '500+', label: 'Projects Completed' },
-  { value: '100%', label: 'QCD Compliant'      },
   { value: '12+',  label: 'Years Experience'   },
   { value: '50+',  label: 'Expert Engineers'   },
+  { value: '24/7', label: 'Emergency Support'  },
 ];
 
 export default function StatsSection() {

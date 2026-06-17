@@ -22,6 +22,7 @@ model Product {
   specifications Json     @default("{}")
   variants       Json     @default("[]")
   alternatives   Json     @default("[]")
+  certifications String[] @default([])
   isFeatured     Boolean  @default(false)
   isActive       Boolean  @default(true)
   createdAt      DateTime @default(now())

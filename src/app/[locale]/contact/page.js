@@ -17,7 +17,7 @@ export default function ContactPage() {
   const INFO = [
     { icon: Phone,  label: 'Phone',   value: tNav('phone'),                                           href: `tel:${tNav('phone')}` },
     { icon: Mail,   label: 'Email',   value: tNav('email'),                                           href: `mailto:${tNav('email')}` },
-    { icon: MapPin, label: 'Address', value: 'Building 15, Street 850, Industrial Area, Doha, Qatar', href: null },
+    { icon: MapPin, label: 'Address', value: 'Office no. 16, 1st Floor, Building 43, Street 46, Zone 56, Jeera Building, Barwa Commercial Avenue, Doha, Qatar', href: null },
     { icon: Clock,  label: 'Hours',   value: 'Sat–Thu: 7AM–6PM | Emergency: 24/7',                    href: null },
   ];
 
@@ -62,7 +62,7 @@ export default function ContactPage() {
               ))}
 
               <a
-                href="https://wa.me/97444445555"
+                href="https://wa.me/97430443229"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="flex items-center justify-center gap-2 bg-brand-orange text-white hover:bg-brand-orange-dark px-5 py-4 rounded-full text-sm font-bold transition-colors w-full shadow-lg shadow-brand-orange/25"
@@ -90,7 +90,7 @@ export default function ContactPage() {
           <div className="w-14 h-14 rounded-2xl bg-brand-orange-soft flex items-center justify-center mx-auto mb-3">
             <MapPin size={26} className="text-brand-orange" />
           </div>
-          <p className="text-brand-text font-bold">Building 15, Street 850, Industrial Area</p>
+          <p className="text-brand-text font-bold">Jeera Building, Barwa Commercial Avenue</p>
           <p className="text-brand-sub text-sm">Doha, Qatar</p>
         </div>
       </div>

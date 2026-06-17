@@ -1,34 +1,43 @@
+import { prisma } from '@/lib/prisma';
 import PageHero from '@/components/shared/PageHero';
-import ProductDetail, { PRODUCTS_DETAIL } from '@/components/products/ProductDetail';
-
-export function generateStaticParams() {
-  return Object.keys(PRODUCTS_DETAIL).map((slug) => ({ slug }));
-}
+import ProductDetail from '@/components/products/ProductDetail';
 
 export async function generateMetadata({ params }) {
   const { slug } = await params;
-  const product = PRODUCTS_DETAIL[slug];
-  return {
-    title: product ? `${product.name} | Teknomech` : 'Product | Teknomech',
-    description: product?.description?.slice(0, 160),
-  };
+  try {
+    const p = await prisma.product.findUnique({ where: { slug } });
+    return {
+      title: p ? `${p.nameEn || p.nameAr} | Teknomech` : 'Product | Teknomech',
+      description: (p?.descriptionEn || '').slice(0, 160),
+    };
+  } catch {
+    return { title: 'Product | Teknomech' };
+  }
 }
 
 export default async function ProductDetailPage({ params }) {
   const { slug } = await params;
-  const product = PRODUCTS_DETAIL[slug];
+  let product = null;
+  try {
+    product = await prisma.product.findUnique({ where: { slug } });
+  } catch {}
+
+  const title = product ? (product.nameEn || product.nameAr || 'Product Details') : 'Product Details';
+  const subtitle = product
+    ? `${product.brand} · ${product.category}`
+    : 'Technical specifications and product information.';
 
   return (
     <>
       <PageHero
-        title={product?.name || 'Product Details'}
-        subtitle={product ? `${product.brand} · ${product.category}` : 'Technical specifications and product information.'}
+        title={title}
+        subtitle={subtitle}
         breadcrumbs={[
           { label: 'Products', href: '/products' },
-          { label: product?.name || slug },
+          { label: title },
         ]}
       />
-      <ProductDetail slug={slug} />
+      <ProductDetail product={product} />
     </>
   );
 }

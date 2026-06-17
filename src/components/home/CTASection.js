@@ -37,14 +37,14 @@ export default function CTASection() {
               {/* Buttons */}
               <div className="flex flex-col sm:flex-row gap-4 shrink-0">
                 <a
-                  href="tel:+97444445555"
+                  href="tel:+97430443229"
                   className="inline-flex items-center gap-2 bg-white text-brand-orange-dark font-bold rounded-full px-7 py-4 hover:bg-brand-blue-deep hover:text-white transition-all duration-300 text-sm"
                 >
                   <Phone size={15} />
-                  Call Now +974 4444 5555
+                  Call Now +974 3044 3229
                 </a>
                 <a
-                  href="mailto:info@teknomech.qa"
+                  href="mailto:info@teknomech.com"
                   className="inline-flex items-center gap-2 border-2 border-white text-white font-bold rounded-full px-7 py-4 hover:bg-white hover:text-brand-orange-dark transition-all duration-300 text-sm"
                 >
                   <Mail size={15} />

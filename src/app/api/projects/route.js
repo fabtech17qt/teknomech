@@ -7,7 +7,8 @@ export async function GET(request) {
     const featured = searchParams.get('featured');
     const limit = searchParams.get('limit');
 
-    const where = { isActive: true };
+    const all = searchParams.get('all') === 'true';
+    const where = all ? {} : { isActive: true };
     if (category) where.category = category;
     if (featured === 'true') where.isFeatured = true;
 

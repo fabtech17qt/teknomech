@@ -2,82 +2,130 @@
 
 import { useState } from 'react';
 import Link from 'next/link';
-import { usePathname } from 'next/navigation';
-import { LayoutDashboard, Package, FileText, FolderOpen, MessageSquare, Menu, X, LogOut } from 'lucide-react';
+import { useRouter, usePathname } from 'next/navigation';
+import { LayoutDashboard, Package, FileText, FolderOpen, Menu, X, LogOut, ExternalLink } from 'lucide-react';
 import { cn } from '@/lib/utils';
 
 const NAV_ITEMS = [
-  { href: '/en/admin', icon: LayoutDashboard, label: 'Dashboard' },
+  { href: '/en/admin', icon: LayoutDashboard, label: 'Dashboard', exact: true },
   { href: '/en/admin/products', icon: Package, label: 'Products' },
   { href: '/en/admin/blog', icon: FileText, label: 'Blog Posts' },
   { href: '/en/admin/projects', icon: FolderOpen, label: 'Projects' },
 ];
 
 export default function AdminLayout({ children }) {
-  const [sidebarOpen, setSidebarOpen] = useState(true);
+  const [collapsed, setCollapsed] = useState(false);
   const pathname = usePathname();
+  const router = useRouter();
+
+  async function handleLogout() {
+    await fetch('/api/admin/auth', { method: 'DELETE' });
+    router.push('/en/admin/login');
+  }
 
   return (
-    <div className="min-h-screen bg-brand-dark flex">
+    <div className="min-h-screen flex" style={{ background: '#F1F5F9' }}>
       {/* Sidebar */}
-      <aside className={cn(
-        'bg-brand-steel border-e border-white/5 flex flex-col transition-all duration-300',
-        sidebarOpen ? 'w-56' : 'w-16'
-      )}>
-        <div className="flex items-center gap-2.5 p-4 border-b border-white/5 h-16">
-          <div className="w-8 h-8 rounded-lg bg-brand-red flex items-center justify-center shrink-0">
+      <aside
+        className="flex flex-col shrink-0 transition-all duration-300"
+        style={{
+          width: collapsed ? 64 : 224,
+          background: '#0A2342',
+          minHeight: '100vh',
+        }}
+      >
+        {/* Brand */}
+        <div
+          className="flex items-center h-16 px-4 shrink-0"
+          style={{ borderBottom: '1px solid rgba(255,255,255,0.08)', gap: 12, justifyContent: collapsed ? 'center' : 'flex-start' }}
+        >
+          <div className="w-8 h-8 rounded-lg flex items-center justify-center shrink-0" style={{ background: '#B8893D' }}>
             <span className="text-white font-black text-sm">T</span>
           </div>
-          {sidebarOpen && (
-            <div className="overflow-hidden">
-              <p className="text-brand-text font-bold text-sm">Teknomech</p>
-              <p className="text-brand-subtext text-[10px]">Admin Panel</p>
+          {!collapsed && (
+            <div>
+              <p className="font-bold text-sm leading-none" style={{ color: '#fff' }}>Teknomech</p>
+              <p className="text-[10px] mt-0.5" style={{ color: 'rgba(255,255,255,0.45)' }}>Admin Panel</p>
             </div>
           )}
         </div>
 
-        <nav className="flex-1 p-3 space-y-1">
-          {NAV_ITEMS.map(({ href, icon: Icon, label }) => (
-            <Link
-              key={href}
-              href={href}
-              className={cn(
-                'flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm font-medium transition-all duration-200',
-                pathname === href
-                  ? 'bg-brand-red/10 text-brand-red border border-brand-red/20'
-                  : 'text-brand-subtext hover:text-brand-text hover:bg-brand-muted'
-              )}
-            >
-              <Icon size={18} className="shrink-0" />
-              {sidebarOpen && <span>{label}</span>}
-            </Link>
-          ))}
+        {/* Nav */}
+        <nav className="flex-1 p-3 space-y-0.5">
+          {NAV_ITEMS.map(({ href, icon: Icon, label, exact }) => {
+            const active = exact ? pathname === href : pathname.startsWith(href);
+            return (
+              <Link
+                key={href}
+                href={href}
+                title={collapsed ? label : undefined}
+                className="flex items-center rounded-lg text-sm font-medium transition-all duration-150"
+                style={{
+                  gap: 10,
+                  padding: '10px 12px',
+                  justifyContent: collapsed ? 'center' : 'flex-start',
+                  background: active ? 'rgba(184,137,61,0.18)' : 'transparent',
+                  color: active ? '#B8893D' : 'rgba(255,255,255,0.65)',
+                  border: active ? '1px solid rgba(184,137,61,0.3)' : '1px solid transparent',
+                }}
+              >
+                <Icon size={18} className="shrink-0" />
+                {!collapsed && <span>{label}</span>}
+              </Link>
+            );
+          })}
         </nav>
 
-        <div className="p-3 border-t border-white/5 space-y-1">
+        {/* Bottom */}
+        <div className="p-3 space-y-0.5" style={{ borderTop: '1px solid rgba(255,255,255,0.08)' }}>
           <button
-            onClick={() => setSidebarOpen(!sidebarOpen)}
-            className="flex items-center gap-3 px-3 py-2.5 rounded-lg text-brand-subtext hover:text-brand-text hover:bg-brand-muted text-sm w-full transition-all"
+            onClick={() => setCollapsed(!collapsed)}
+            className="flex items-center rounded-lg text-sm w-full transition-all duration-150"
+            style={{
+              gap: 10,
+              padding: '10px 12px',
+              justifyContent: collapsed ? 'center' : 'flex-start',
+              color: 'rgba(255,255,255,0.5)',
+              background: 'transparent',
+            }}
+            onMouseEnter={e => { e.currentTarget.style.color = '#fff'; e.currentTarget.style.background = 'rgba(255,255,255,0.08)'; }}
+            onMouseLeave={e => { e.currentTarget.style.color = 'rgba(255,255,255,0.5)'; e.currentTarget.style.background = 'transparent'; }}
           >
-            {sidebarOpen ? <X size={18} /> : <Menu size={18} />}
-            {sidebarOpen && <span>Collapse</span>}
+            {collapsed ? <Menu size={18} /> : <><X size={18} /><span>Collapse</span></>}
           </button>
-          <Link
-            href="/en/admin/login"
-            className="flex items-center gap-3 px-3 py-2.5 rounded-lg text-brand-subtext hover:text-red-400 hover:bg-brand-muted text-sm transition-all"
+          <button
+            onClick={handleLogout}
+            className="flex items-center rounded-lg text-sm w-full transition-all duration-150"
+            style={{
+              gap: 10,
+              padding: '10px 12px',
+              justifyContent: collapsed ? 'center' : 'flex-start',
+              color: 'rgba(255,255,255,0.5)',
+              background: 'transparent',
+            }}
+            onMouseEnter={e => { e.currentTarget.style.color = '#fca5a5'; e.currentTarget.style.background = 'rgba(255,255,255,0.08)'; }}
+            onMouseLeave={e => { e.currentTarget.style.color = 'rgba(255,255,255,0.5)'; e.currentTarget.style.background = 'transparent'; }}
           >
             <LogOut size={18} className="shrink-0" />
-            {sidebarOpen && <span>Sign Out</span>}
-          </Link>
+            {!collapsed && <span>Sign Out</span>}
+          </button>
         </div>
       </aside>
 
-      {/* Main content */}
+      {/* Main */}
       <div className="flex-1 flex flex-col min-w-0">
-        <header className="h-16 bg-brand-steel border-b border-white/5 flex items-center px-6 justify-between">
-          <h1 className="text-brand-text font-semibold">Admin Panel</h1>
-          <Link href="/en" className="text-brand-subtext hover:text-brand-gold text-sm transition-colors">
-            ← View Site
+        <header className="h-16 bg-white flex items-center px-6 justify-between shrink-0" style={{ borderBottom: '1px solid #E2E8F0' }}>
+          <span className="text-sm font-semibold" style={{ color: '#0F172A' }}>Teknomech Admin</span>
+          <Link
+            href="/en"
+            target="_blank"
+            className="inline-flex items-center gap-1.5 text-sm transition-colors"
+            style={{ color: '#5A6B82' }}
+            onMouseEnter={e => e.currentTarget.style.color = '#B8893D'}
+            onMouseLeave={e => e.currentTarget.style.color = '#5A6B82'}
+          >
+            <ExternalLink size={14} />
+            View Site
           </Link>
         </header>
         <main className="flex-1 p-6 overflow-y-auto">

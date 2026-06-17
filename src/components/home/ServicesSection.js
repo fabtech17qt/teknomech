@@ -8,12 +8,12 @@ import { Flame, Bell, Droplets, Zap, Wind, ShieldCheck } from 'lucide-react';
 const SERVICES = [
   {
     num: '01', icon: Flame,       title: 'Fire Protection Systems',
-    desc: 'QCDD-compliant sprinkler, suppression and hydrant systems for all building types in Qatar.',
+    desc: 'Fully compliant sprinkler, suppression and hydrant systems for all building types in Qatar.',
     href: '/services/fire-protection',
   },
   {
     num: '02', icon: Bell,        title: 'Fire Alarm Systems',
-    desc: 'Intelligent detection, alarm and voice evacuation systems designed to NFPA 72 and QCDD.',
+    desc: 'Intelligent detection, alarm and voice evacuation systems designed to NFPA 72 and applicable fire safety standards.',
     href: '/services/fire-protection',
   },
   {
@@ -23,7 +23,7 @@ const SERVICES = [
   },
   {
     num: '04', icon: Zap,         title: 'Electrical Installation',
-    desc: 'LV/MV power distribution, lighting, UPS and generator systems — UPDA licensed.',
+    desc: 'LV/MV power distribution, lighting, UPS and generator systems — fully licensed.',
     href: '/services/electrical',
   },
   {

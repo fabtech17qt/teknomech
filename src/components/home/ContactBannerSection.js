@@ -65,9 +65,9 @@ export default function ContactBannerSection() {
 
             <div className="space-y-5 mb-10">
               {[
-                { icon: MapPin,  label: 'Industrial Area, Doha, Qatar' },
-                { icon: Phone,   label: '+974 4444 5555' },
-                { icon: Mail,    label: 'info@teknomech.qa' },
+                { icon: MapPin,  label: 'Barwa Commercial Avenue, Doha, Qatar' },
+                { icon: Phone,   label: '+974 3044 3229' },
+                { icon: Mail,    label: 'info@teknomech.com' },
               ].map(({ icon: Icon, label }) => (
                 <div key={label} className="flex items-center gap-4">
                   <div className="w-10 h-10 rounded-xl bg-white/10 flex items-center justify-center shrink-0">
@@ -79,7 +79,7 @@ export default function ContactBannerSection() {
             </div>
 
             <a
-              href="https://wa.me/97444445555"
+              href="https://wa.me/97430443229"
               target="_blank"
               rel="noopener noreferrer"
               className="inline-flex items-center gap-2 bg-brand-orange text-white font-bold rounded-full px-7 py-3.5 hover:bg-brand-orange-dark transition-colors duration-300 text-sm w-fit"

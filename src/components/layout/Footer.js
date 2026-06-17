@@ -52,7 +52,7 @@ export default function Footer() {
                 <FaFacebook size={14} />
               </a>
               <a
-                href="https://wa.me/97444445555"
+                href="https://wa.me/97430443229"
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label="WhatsApp"
@@ -139,7 +139,7 @@ export default function Footer() {
               </li>
               <li className="pt-1">
                 <a
-                  href="https://wa.me/97444445555"
+                  href="https://wa.me/97430443229"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="inline-flex items-center gap-2 bg-green-800/30 border border-green-700/30 text-green-400 hover:bg-green-700/40 px-4 py-2 rounded-lg text-sm font-medium transition-all duration-200"

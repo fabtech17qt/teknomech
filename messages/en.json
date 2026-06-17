@@ -8,15 +8,15 @@
     "blog": "Blog",
     "contact": "Contact",
     "getQuote": "Get a Quote",
-    "phone": "+974 4444 5555",
-    "email": "info@teknomech.qa"
+    "phone": "+974 3044 3229",
+    "email": "info@teknomech.com"
   },
   "footer": {
-    "tagline": "Qatar's trusted MEP and Fire Protection contractor, delivering certified engineering solutions since 2008.",
+    "tagline": "Qatar's trusted MEP and Fire Protection contractor, delivering quality engineering solutions since 2008.",
     "quickLinks": "Quick Links",
     "servicesLabel": "Our Services",
     "contactInfo": "Contact Info",
-    "address": "Building 15, Street 850, Zone 55, Industrial Area, Doha, Qatar",
+    "address": "Office no. 16, First Floor, Building Number 43, Street number 46, Zone 56, Jeera Building, Barwa Commercial Avenue, Doha, Qatar",
     "whatsapp": "WhatsApp Us",
     "copyright": "© 2025 Teknomech MEP. All rights reserved.",
     "privacy": "Privacy Policy"
@@ -28,15 +28,15 @@
       "badge3": "24/7 Maintenance",
       "headline1": "Engineering Qatar's",
       "headline2": "Future Infrastructure",
-      "subheading": "Complete MEP & Fire Protection solutions for commercial, industrial, and government projects across Qatar. Certified, compliant, and built to last.",
+      "subheading": "Complete MEP & Fire Protection solutions for commercial, industrial, and government projects across Qatar. Built to the highest compliance standards and engineered to last.",
       "cta1": "Explore Our Services",
       "cta2": "View Our Projects"
     },
     "trust": {
       "item1Title": "ISO 9001 Certified",
       "item1Desc": "Quality management systems",
-      "item2Title": "Qatar UPDA Approved",
-      "item2Desc": "Fully licensed and compliant",
+      "item2Title": "Fully Licensed",
+      "item2Desc": "Licensed and compliant contractor",
       "item3Title": "NFPA Compliant",
       "item3Desc": "Fire protection standards",
       "item4Title": "24/7 Support",
@@ -78,8 +78,8 @@
       "label": "Why Choose Us",
       "heading": "The Teknomech Advantage",
       "p": "We combine technical excellence with deep knowledge of Qatar's regulatory landscape, delivering projects that meet the highest international standards while respecting local requirements.",
-      "feature1Title": "UPDA & QCDD Compliant",
-      "feature1Desc": "All works comply with Qatar Civil Defence and UPDA regulations",
+      "feature1Title": "Regulatory Compliant",
+      "feature1Desc": "All works are carried out in full compliance with Qatar's applicable regulations and standards",
       "feature2Title": "End-to-End Delivery",
       "feature2Desc": "Design, supply, install, test and commission — all under one roof",
       "feature3Title": "Multilingual Team",
@@ -100,16 +100,16 @@
     },
     "contactBanner": {
       "heading": "Visit Us or Get in Touch",
-      "address": "Building 15, Street 850, Industrial Area, Doha, Qatar",
-      "phone": "+974 4444 5555",
-      "email": "info@teknomech.qa",
+      "address": "Barwa Commercial Avenue, Doha, Qatar",
+      "phone": "+974 3044 3229",
+      "email": "info@teknomech.com",
       "cta": "Get in Touch"
     }
   },
   "services": {
     "fire": {
       "name": "Fire Protection",
-      "desc": "QCDD-compliant fire suppression, detection, alarm and sprinkler systems for all building types."
+      "desc": "Fire suppression, detection, alarm and sprinkler systems fully compliant with fire safety regulations for all building types."
     },
     "hvac": {
       "name": "HVAC Systems",

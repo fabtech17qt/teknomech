@@ -1,6 +1,6 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import Image from 'next/image';
 import { useTranslations } from 'next-intl';
 import SectionLabel from '@/components/shared/SectionLabel';
@@ -18,91 +18,7 @@ const CATEGORY_LABELS = {
   'lv-systems': 'LV Systems',
 };
 
-const PRODUCTS = [
-  {
-    id: 1,
-    slug: 'fm200-clean-agent-suppression-system',
-    category: 'fire-protection',
-    name: 'FM200 Clean Agent Suppression System',
-    brand: 'Kidde',
-    img: '/images/product-fire-extinguisher.png',
-    isRender: true,
-  },
-  {
-    id: 2,
-    slug: 'emergency-fire-equipment-cabinet',
-    category: 'fire-protection',
-    name: 'Emergency Fire Equipment Cabinet',
-    brand: 'Gloria',
-    img: '/images/product-fire-equipment.jpg',
-  },
-  {
-    id: 3,
-    slug: 'ceiling-cassette-fcu-4-way-blow',
-    category: 'hvac',
-    name: 'Ceiling Cassette FCU — 4-Way Blow',
-    brand: 'Daikin',
-    img: 'https://images.unsplash.com/photo-1718203862467-c33159fdc504?w=400&h=300&fit=crop&q=80',
-  },
-  {
-    id: 4,
-    slug: 'vrf-outdoor-condensing-unit-8hp',
-    category: 'hvac',
-    name: 'VRF Outdoor Condensing Unit 8HP',
-    brand: 'Mitsubishi Electric',
-    img: 'https://images.unsplash.com/photo-1563166423-482a8c14b2d6?w=400&h=300&fit=crop&q=80',
-  },
-  {
-    id: 5,
-    slug: 'online-ups-system-10-kva',
-    category: 'electrical',
-    name: 'Online UPS System 10 kVA',
-    brand: 'APC by Schneider',
-    img: 'https://images.unsplash.com/photo-1555963966-b7ae5404b6ed?w=400&h=300&fit=crop&q=80',
-  },
-  {
-    id: 6,
-    slug: 'armoured-electrical-cable-3-core',
-    category: 'electrical',
-    name: 'Armoured Electrical Cable 3-Core',
-    brand: 'Prysmian',
-    img: 'https://images.unsplash.com/photo-1585585825759-979ec75438cc?w=400&h=300&fit=crop&q=80',
-    modelSrc: '/models/electrical-cable.gltf',
-  },
-  {
-    id: 7,
-    slug: 'galvanized-steel-pipe-fitting-set',
-    category: 'plumbing',
-    name: 'Galvanized Steel Pipe Fitting Set',
-    brand: 'Georg Fischer',
-    img: '/images/product-pipe-fitting.png',
-    isRender: true,
-  },
-  {
-    id: 8,
-    slug: 'pressure-gauge-testing-kit',
-    category: 'plumbing',
-    name: 'Pressure Gauge & Testing Kit',
-    brand: 'WIKA',
-    img: 'https://images.unsplash.com/photo-1621905251189-08b45d6a269e?w=400&h=300&fit=crop&q=80',
-  },
-  {
-    id: 9,
-    slug: 'ip-ptz-security-camera-4k',
-    category: 'lv-systems',
-    name: 'IP PTZ Security Camera 4K',
-    brand: 'Hikvision',
-    img: 'https://images.unsplash.com/photo-1688841747582-41097036109d?w=400&h=300&fit=crop&q=80',
-  },
-  {
-    id: 10,
-    slug: 'access-control-intercom-panel',
-    category: 'lv-systems',
-    name: 'Access Control & Intercom Panel',
-    brand: 'Honeywell',
-    img: 'https://images.unsplash.com/photo-1718203862467-c33159fdc504?w=400&h=300&fit=crop&q=80',
-  },
-];
+const FALLBACK_IMG = 'https://images.unsplash.com/photo-1555963966-b7ae5404b6ed?w=400&h=300&fit=crop&q=80';
 
 const MODEL_SHOWCASES = [
   {
@@ -142,11 +58,6 @@ function ProductCard({ product }) {
             sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 25vw"
           />
         )}
-        {product.isRender && !show3D && (
-          <div className="absolute top-2 end-2 bg-brand-blue/10 border border-brand-blue/20 text-brand-blue text-[10px] font-semibold px-2 py-1 rounded-full">
-            3D Render
-          </div>
-        )}
         {product.modelSrc && (
           <button
             onClick={() => setShow3D(!show3D)}
@@ -160,7 +71,7 @@ function ProductCard({ product }) {
 
       <div className="p-5">
         <span className="inline-flex items-center bg-brand-blue-light text-brand-blue text-xs font-semibold rounded-full px-3 py-1 mb-3">
-          {CATEGORY_LABELS[product.category]}
+          {CATEGORY_LABELS[product.category] || product.category}
         </span>
         <h3 className="text-brand-text font-bold text-sm leading-snug mb-1 line-clamp-2 group-hover:text-brand-blue transition-colors duration-200">
           {product.name}
@@ -199,13 +110,47 @@ function ModelShowcaseCard({ showcase }) {
   );
 }
 
+function SkeletonCard() {
+  return (
+    <div className="bg-white rounded-2xl border border-brand-border shadow-md overflow-hidden flex flex-col animate-pulse">
+      <div className="h-48 bg-slate-100" />
+      <div className="p-5 space-y-3">
+        <div className="h-5 bg-slate-100 rounded-full w-24" />
+        <div className="h-4 bg-slate-100 rounded w-3/4" />
+        <div className="h-3 bg-slate-100 rounded w-1/3" />
+        <div className="h-10 bg-slate-100 rounded-xl mt-4" />
+      </div>
+    </div>
+  );
+}
+
 export default function ProductsContent() {
   const [activeCategory, setActiveCategory] = useState('all');
+  const [products, setProducts] = useState([]);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    fetch('/api/products')
+      .then(r => r.json())
+      .then(data => {
+        const mapped = (Array.isArray(data) ? data : []).map(p => ({
+          id: p.id,
+          slug: p.slug,
+          category: p.category || 'other',
+          name: p.nameEn || p.nameAr || 'Untitled',
+          brand: p.brand || '',
+          img: p.images?.[0] || FALLBACK_IMG,
+        }));
+        setProducts(mapped);
+        setLoading(false);
+      })
+      .catch(() => setLoading(false));
+  }, []);
 
   const filtered =
     activeCategory === 'all'
-      ? PRODUCTS
-      : PRODUCTS.filter((p) => p.category === activeCategory);
+      ? products
+      : products.filter((p) => p.category === activeCategory);
 
   return (
     <>
@@ -230,13 +175,23 @@ export default function ProductsContent() {
           </div>
 
           {/* Grid */}
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-            {filtered.map((product, index) => (
-              <AnimateIn key={product.id} variant="fadeUp" delay={index * 0.07}>
-                <ProductCard product={product} />
-              </AnimateIn>
-            ))}
-          </div>
+          {loading ? (
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+              {[...Array(8)].map((_, i) => <SkeletonCard key={i} />)}
+            </div>
+          ) : filtered.length === 0 ? (
+            <div className="py-20 text-center text-brand-sub text-sm">
+              {activeCategory === 'all' ? 'No products available yet.' : 'No products in this category.'}
+            </div>
+          ) : (
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+              {filtered.map((product, index) => (
+                <AnimateIn key={product.id} variant="fadeUp" delay={index * 0.07}>
+                  <ProductCard product={product} />
+                </AnimateIn>
+              ))}
+            </div>
+          )}
         </div>
       </section>
 

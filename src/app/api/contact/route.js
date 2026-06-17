@@ -1,6 +1,18 @@
 import { prisma } from '@/lib/prisma';
 import { Resend } from 'resend';
 
+export async function GET() {
+  try {
+    const submissions = await prisma.contactSubmission.findMany({
+      orderBy: { createdAt: 'desc' },
+      select: { id: true, name: true, email: true, service: true, createdAt: true },
+    });
+    return Response.json(submissions);
+  } catch {
+    return Response.json({ error: 'Failed to fetch submissions' }, { status: 500 });
+  }
+}
+
 export async function POST(request) {
   try {
     const body = await request.json();

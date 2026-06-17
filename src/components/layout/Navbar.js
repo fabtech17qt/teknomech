@@ -86,7 +86,7 @@ export default function Navbar() {
             <a href={`mailto:${t('email')}`} className="flex items-center gap-1.5 hover:text-white transition-colors">
               <Mail size={11} /><span>{t('email')}</span>
             </a>
-            <a href="https://wa.me/97444445555" target="_blank" rel="noopener noreferrer"
+            <a href="https://wa.me/97430443229" target="_blank" rel="noopener noreferrer"
                className="flex items-center gap-1.5 hover:text-white transition-colors">
               <FaWhatsapp size={11} /><span>WhatsApp</span>
             </a>
@@ -293,7 +293,7 @@ export default function Navbar() {
               <a href="#" className="text-brand-sub hover:text-brand-blue"><FaLinkedin size={20} /></a>
               <a href="#" className="text-brand-sub hover:text-brand-blue"><FaInstagram size={20} /></a>
               <a href="#" className="text-brand-sub hover:text-brand-blue"><FaFacebook size={20} /></a>
-              <a href="https://wa.me/97444445555" target="_blank" rel="noopener noreferrer"
+              <a href="https://wa.me/97430443229" target="_blank" rel="noopener noreferrer"
                  className="text-green-600 hover:text-green-700"><FaWhatsapp size={20} /></a>
             </div>
           </div>

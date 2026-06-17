@@ -23,7 +23,7 @@ const STEPS = [
     num: '03',
     icon: CheckCircle,
     title: 'Compliance & Handover',
-    desc: 'We obtain all required authority approvals — QCDD, KAHRAMAA, Ashghal — and hand over with complete as-built drawings and maintenance documentation.',
+    desc: 'We coordinate all required authority approvals and hand over with complete as-built drawings and maintenance documentation.',
     bg: 'bg-white',
   },
 ];

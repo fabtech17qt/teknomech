@@ -60,7 +60,7 @@ export default function AboutSection() {
                 Teknomech is a fully licensed MEP and fire protection contractor delivering end-to-end engineering solutions for commercial, industrial and government projects across Qatar. We design, supply, install and maintain all mechanical, electrical and plumbing systems.
               </p>
               <p className="text-brand-sub leading-relaxed mb-10 text-base">
-                Our QCDD-accredited engineers bring international standards to every project — from large-scale fire suppression systems to precision electrical installations — ensuring total compliance and long-term operational reliability.
+                Our certified engineers bring international standards to every project — from large-scale fire suppression systems to precision electrical installations — ensuring full regulatory compliance and long-term operational reliability.
               </p>
 
               {/* Inline mini-stats */}
