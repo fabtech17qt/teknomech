@@ -128,6 +128,10 @@ export async function generateMetadata({ params }) {
       description: descEn,
       images: [`${BASE_URL}/images/og-image.jpg`],
     },
+    icons: {
+      icon: '/images/tekno-logo.jpeg',
+      apple: '/images/tekno-logo.jpeg',
+    },
     robots: {
       index: true,
       follow: true,
@@ -158,13 +162,11 @@ export default async function LocaleLayout({ children, params }) {
       dir={isRTL ? 'rtl' : 'ltr'}
       className={`${inter.variable} ${cairo.variable}`}
     >
-      <head>
+      <body className="bg-white text-brand-text font-inter antialiased">
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(organizationSchema) }}
         />
-      </head>
-      <body className="bg-white text-brand-text font-inter antialiased">
         <NextIntlClientProvider messages={messages}>
           <Navbar />
           <main>{children}</main>
