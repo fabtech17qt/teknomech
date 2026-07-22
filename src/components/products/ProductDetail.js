@@ -71,7 +71,7 @@ function ImageGallery({ images, name, modelSrc }) {
 
   return (
     <div className="space-y-3">
-      <div className="relative rounded-2xl overflow-hidden bg-brand-blue-light border border-brand-border" style={{ height: 420 }}>
+      <div className="relative rounded-2xl overflow-hidden bg-brand-blue-light border border-brand-border aspect-square">
         {show3D && modelSrc ? (
           <ModelViewer src={modelSrc} alt={name} className="w-full h-full" />
         ) : (
@@ -185,9 +185,6 @@ export default function ProductDetail({ product: rawProduct }) {
           {/* Right — Info + Variants + CTA */}
           <div className="space-y-5">
             <div className="bg-white rounded-2xl border border-brand-border shadow-md p-6">
-              <span className="inline-flex items-center bg-brand-blue-light text-brand-blue text-xs font-semibold rounded-full px-3 py-1 mb-4">
-                {product.category}
-              </span>
               <h1 className="text-2xl font-extrabold text-brand-text leading-snug mb-1">
                 {product.name}
               </h1>
@@ -216,9 +213,9 @@ export default function ProductDetail({ product: rawProduct }) {
                 WhatsApp Us
               </a>
               {product.specSheet && (
-                <a href={product.specSheet} target="_blank" rel="noopener noreferrer"
+                <a href={product.specSheet} target="_blank" rel="noopener noreferrer" download
                   className="w-full flex items-center justify-center gap-2 border border-brand-border text-brand-sub rounded-full py-3 text-sm hover:bg-brand-light transition-colors">
-                  <Download size={14} /> Download Spec Sheet
+                  <Download size={14} /> Download MSDS / Datasheet
                 </a>
               )}
             </div>

@@ -3,7 +3,7 @@
 import { useState, useEffect } from 'react';
 import { useRouter, useParams } from 'next/navigation';
 import AdminLayout from '@/components/admin/AdminLayout';
-import { MultiImageUpload } from '@/components/admin/ImageUpload';
+import { MultiImageUpload, DocumentUpload } from '@/components/admin/ImageUpload';
 import { useLocale } from 'next-intl';
 import { Save, Plus, Trash2 } from 'lucide-react';
 
@@ -30,6 +30,7 @@ export default function EditProductPage() {
   const [loadingData, setLoadingData] = useState(true);
   const [error, setError] = useState('');
   const [images, setImages] = useState([]);
+  const [specSheet, setSpecSheet] = useState('');
   const [specs, setSpecs] = useState([{ key: '', value: '' }]);
   const [variantsJson, setVariantsJson] = useState('');
   const [form, setForm] = useState({
@@ -49,6 +50,7 @@ export default function EditProductPage() {
           isFeatured: p.isFeatured || false, isActive: p.isActive ?? true,
         });
         setImages(p.images || []);
+        setSpecSheet(p.specSheet || '');
 
         const specsObj = p.specifications && typeof p.specifications === 'object' && !Array.isArray(p.specifications)
           ? p.specifications : {};
@@ -95,7 +97,7 @@ export default function EditProductPage() {
       const res = await fetch(`/api/products/${id}`, {
         method: 'PUT',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ ...form, images, specifications, certifications, variants }),
+        body: JSON.stringify({ ...form, images, specSheet: specSheet || null, specifications, certifications, variants }),
       });
       if (res.ok) {
         router.push(`/${locale}/admin/products`);
@@ -128,7 +130,9 @@ export default function EditProductPage() {
 
         <form onSubmit={handleSubmit}>
           <div className="bg-white rounded-2xl p-6 space-y-5" style={{ border: '1px solid #E2E8F0', boxShadow: '0 1px 4px rgba(10,35,66,0.06)' }}>
-            <MultiImageUpload values={images} onChange={setImages} folder="products" label="Product Images" max={6} />
+            <MultiImageUpload values={images} onChange={setImages} folder="products" label="Product Images" max={6} aspect={1} />
+
+            <DocumentUpload value={specSheet} onChange={setSpecSheet} folder="msds" label="MSDS / Datasheet (PDF)" />
 
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
               <div>

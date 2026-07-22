@@ -44,7 +44,7 @@ function ProductCard({ product }) {
 
   return (
     <div className="bg-white rounded-2xl border border-brand-border shadow-md hover:shadow-xl hover:-translate-y-1 transition-all duration-300 overflow-hidden group flex flex-col">
-      <div className="relative h-48 bg-brand-blue-light overflow-hidden">
+      <div className="relative aspect-square bg-brand-blue-light overflow-hidden">
         {show3D && product.modelSrc ? (
           <ModelViewer src={product.modelSrc} alt={product.name} className="w-full h-full" />
         ) : (
@@ -70,9 +70,6 @@ function ProductCard({ product }) {
       </div>
 
       <div className="p-5">
-        <span className="inline-flex items-center bg-brand-blue-light text-brand-blue text-xs font-semibold rounded-full px-3 py-1 mb-3">
-          {CATEGORY_LABELS[product.category] || product.category}
-        </span>
         <h3 className="text-brand-text font-bold text-sm leading-snug mb-1 line-clamp-2 group-hover:text-brand-blue transition-colors duration-200">
           {product.name}
         </h3>
@@ -113,7 +110,7 @@ function ModelShowcaseCard({ showcase }) {
 function SkeletonCard() {
   return (
     <div className="bg-white rounded-2xl border border-brand-border shadow-md overflow-hidden flex flex-col animate-pulse">
-      <div className="h-48 bg-slate-100" />
+      <div className="aspect-square bg-slate-100" />
       <div className="p-5 space-y-3">
         <div className="h-5 bg-slate-100 rounded-full w-24" />
         <div className="h-4 bg-slate-100 rounded w-3/4" />

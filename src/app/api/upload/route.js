@@ -1,10 +1,15 @@
 import { getSupabaseAdmin } from '@/lib/supabase';
 
+const BUCKET_CONFIG = {
+  media: { public: true, allowedMimeTypes: ['image/*'], fileSizeLimit: 5242880 },
+  documents: { public: true, allowedMimeTypes: ['application/pdf'], fileSizeLimit: 10485760 },
+};
+
 async function ensureBucket(supabase, bucket) {
   const { data: buckets } = await supabase.storage.listBuckets();
   const exists = buckets?.some(b => b.name === bucket);
   if (!exists) {
-    await supabase.storage.createBucket(bucket, { public: true, allowedMimeTypes: ['image/*'], fileSizeLimit: 5242880 });
+    await supabase.storage.createBucket(bucket, BUCKET_CONFIG[bucket] || { public: true });
   }
 }
 
@@ -12,15 +17,28 @@ export async function POST(request) {
   try {
     const formData = await request.formData();
     const file = formData.get('file');
-    const bucket = formData.get('bucket') || 'media';
+    const type = formData.get('type') === 'document' ? 'document' : 'image';
+    const bucket = formData.get('bucket') || (type === 'document' ? 'documents' : 'media');
     const folder = formData.get('folder') || 'uploads';
 
     if (!file) {
       return Response.json({ error: 'No file provided' }, { status: 400 });
     }
 
-    if (!file.type.startsWith('image/')) {
-      return Response.json({ error: 'Only image files are allowed' }, { status: 400 });
+    if (type === 'document') {
+      if (file.type !== 'application/pdf') {
+        return Response.json({ error: 'Only PDF files are allowed' }, { status: 400 });
+      }
+      if (file.size > 10 * 1024 * 1024) {
+        return Response.json({ error: 'File must be under 10 MB' }, { status: 400 });
+      }
+    } else {
+      if (!file.type.startsWith('image/')) {
+        return Response.json({ error: 'Only image files are allowed' }, { status: 400 });
+      }
+      if (file.size > 5 * 1024 * 1024) {
+        return Response.json({ error: 'Image must be under 5 MB' }, { status: 400 });
+      }
     }
 
     const supabase = getSupabaseAdmin();

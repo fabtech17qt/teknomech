@@ -1,7 +1,7 @@
 import Image from 'next/image';
 import { Link } from '@/i18n/navigation';
 import { useTranslations, useLocale } from 'next-intl';
-import { FileText, Tag } from 'lucide-react';
+import { FileText } from 'lucide-react';
 import { cn } from '@/lib/utils';
 
 export default function ProductCard({ product, className }) {
@@ -12,7 +12,7 @@ export default function ProductCard({ product, className }) {
   return (
     <div className={cn('card-dark overflow-hidden group', className)}>
       {/* Image */}
-      <div className="relative h-48 bg-brand-muted overflow-hidden">
+      <div className="relative aspect-square bg-brand-muted overflow-hidden">
         {product.images?.[0] ? (
           <Image
             src={product.images[0]}
@@ -25,10 +25,6 @@ export default function ProductCard({ product, className }) {
             <FileText size={48} />
           </div>
         )}
-        {/* Category badge */}
-        <span className="absolute top-3 start-3 bg-brand-dark/80 backdrop-blur-sm text-brand-gold text-xs font-medium px-2.5 py-1 rounded-full border border-brand-gold/20">
-          {product.category}
-        </span>
       </div>
 
       <div className="p-4">
