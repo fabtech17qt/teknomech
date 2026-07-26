@@ -1,50 +1,44 @@
 'use client';
 
-import { useState, useCallback } from 'react';
-import Cropper from 'react-easy-crop';
-import { Check, X, ZoomIn } from 'lucide-react';
+import { useState, useRef, useCallback } from 'react';
+import ReactCrop from 'react-image-crop';
+import 'react-image-crop/dist/ReactCrop.css';
+import { Check, X } from 'lucide-react';
 
-function createImage(url) {
-  return new Promise((resolve, reject) => {
-    const img = new window.Image();
-    img.crossOrigin = 'anonymous';
-    img.addEventListener('load', () => resolve(img));
-    img.addEventListener('error', reject);
-    img.src = url;
-  });
-}
-
-async function getCroppedBlob(imageSrc, cropPixels, mimeType) {
-  const image = await createImage(imageSrc);
+function getCroppedBlob(image, pixelCrop, mimeType) {
+  const scaleX = image.naturalWidth / image.width;
+  const scaleY = image.naturalHeight / image.height;
   const canvas = document.createElement('canvas');
-  canvas.width = cropPixels.width;
-  canvas.height = cropPixels.height;
+  canvas.width = Math.round(pixelCrop.width * scaleX);
+  canvas.height = Math.round(pixelCrop.height * scaleY);
   const ctx = canvas.getContext('2d');
   ctx.drawImage(
     image,
-    cropPixels.x, cropPixels.y, cropPixels.width, cropPixels.height,
-    0, 0, cropPixels.width, cropPixels.height
+    pixelCrop.x * scaleX, pixelCrop.y * scaleY,
+    pixelCrop.width * scaleX, pixelCrop.height * scaleY,
+    0, 0, canvas.width, canvas.height
   );
   return new Promise((resolve) => {
     canvas.toBlob((blob) => resolve(blob), mimeType || 'image/jpeg', 0.92);
   });
 }
 
-export default function ImageCropModal({ imageSrc, fileName, mimeType, aspect = 1, onCancel, onConfirm }) {
-  const [crop, setCrop] = useState({ x: 0, y: 0 });
-  const [zoom, setZoom] = useState(1);
-  const [croppedAreaPixels, setCroppedAreaPixels] = useState(null);
+export default function ImageCropModal({ imageSrc, fileName, mimeType, onCancel, onConfirm }) {
+  const [crop, setCrop] = useState({ unit: '%', x: 5, y: 5, width: 90, height: 90 });
+  const [pixelCrop, setPixelCrop] = useState(null);
   const [processing, setProcessing] = useState(false);
+  const imgRef = useRef(null);
 
-  const onCropComplete = useCallback((_area, areaPixels) => {
-    setCroppedAreaPixels(areaPixels);
+  const onImageLoad = useCallback((e) => {
+    const { width, height } = e.currentTarget;
+    setPixelCrop({ unit: 'px', x: width * 0.05, y: height * 0.05, width: width * 0.9, height: height * 0.9 });
   }, []);
 
   async function handleConfirm() {
-    if (!croppedAreaPixels) return;
+    if (!pixelCrop || !imgRef.current) return;
     setProcessing(true);
     try {
-      const blob = await getCroppedBlob(imageSrc, croppedAreaPixels, mimeType);
+      const blob = await getCroppedBlob(imgRef.current, pixelCrop, mimeType);
       const croppedFile = new File([blob], fileName, { type: blob.type });
       onConfirm(croppedFile);
     } finally {
@@ -58,42 +52,31 @@ export default function ImageCropModal({ imageSrc, fileName, mimeType, aspect = 
       onClick={onCancel}
     >
       <div
-        style={{ background: '#fff', borderRadius: 16, width: '100%', maxWidth: 520, overflow: 'hidden', boxShadow: '0 20px 60px rgba(0,0,0,0.3)' }}
+        style={{ background: '#fff', borderRadius: 16, width: '100%', maxWidth: 620, maxHeight: '90vh', display: 'flex', flexDirection: 'column', overflow: 'hidden', boxShadow: '0 20px 60px rgba(0,0,0,0.3)' }}
         onClick={(e) => e.stopPropagation()}
       >
-        <div style={{ padding: '16px 20px', borderBottom: '1px solid #E2E8F0', display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
-          <span style={{ fontSize: 14, fontWeight: 700, color: '#0F172A' }}>Crop Image</span>
-          <button type="button" onClick={onCancel} style={{ background: 'none', border: 'none', cursor: 'pointer', color: '#5A6B82', display: 'flex' }}>
+        <div style={{ padding: '16px 20px', borderBottom: '1px solid #E2E8F0', display: 'flex', alignItems: 'center', justifyContent: 'space-between', flexShrink: 0 }}>
+          <div>
+            <span style={{ fontSize: 14, fontWeight: 700, color: '#0F172A', display: 'block' }}>Crop Image</span>
+            <span style={{ fontSize: 11, color: '#8B9CB4' }}>Drag the handles to crop any shape or size — or leave as-is to keep the full image.</span>
+          </div>
+          <button type="button" onClick={onCancel} style={{ background: 'none', border: 'none', cursor: 'pointer', color: '#5A6B82', display: 'flex', flexShrink: 0 }}>
             <X size={18} />
           </button>
         </div>
 
-        <div style={{ position: 'relative', width: '100%', height: 360, background: '#0A2342' }}>
-          <Cropper
-            image={imageSrc}
+        <div style={{ flex: 1, overflow: 'auto', background: '#0A2342', display: 'flex', alignItems: 'center', justifyContent: 'center', padding: 16 }}>
+          <ReactCrop
             crop={crop}
-            zoom={zoom}
-            aspect={aspect}
-            onCropChange={setCrop}
-            onZoomChange={setZoom}
-            onCropComplete={onCropComplete}
-          />
+            onChange={(_, percentCrop) => setCrop(percentCrop)}
+            onComplete={(c) => setPixelCrop(c)}
+          >
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img ref={imgRef} src={imageSrc} alt="" onLoad={onImageLoad} style={{ maxHeight: '60vh', display: 'block' }} />
+          </ReactCrop>
         </div>
 
-        <div style={{ padding: '16px 20px', display: 'flex', alignItems: 'center', gap: 10 }}>
-          <ZoomIn size={15} style={{ color: '#5A6B82', flexShrink: 0 }} />
-          <input
-            type="range"
-            min={1}
-            max={3}
-            step={0.01}
-            value={zoom}
-            onChange={(e) => setZoom(Number(e.target.value))}
-            style={{ flex: 1, accentColor: '#B8893D' }}
-          />
-        </div>
-
-        <div style={{ padding: '0 20px 20px', display: 'flex', gap: 10 }}>
+        <div style={{ padding: 20, display: 'flex', gap: 10, flexShrink: 0 }}>
           <button
             type="button"
             onClick={handleConfirm}

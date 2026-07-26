@@ -130,7 +130,7 @@ export default function EditProductPage() {
 
         <form onSubmit={handleSubmit}>
           <div className="bg-white rounded-2xl p-6 space-y-5" style={{ border: '1px solid #E2E8F0', boxShadow: '0 1px 4px rgba(10,35,66,0.06)' }}>
-            <MultiImageUpload values={images} onChange={setImages} folder="products" label="Product Images" max={6} aspect={1} />
+            <MultiImageUpload values={images} onChange={setImages} folder="products" label="Product Images" max={6} />
 
             <DocumentUpload value={specSheet} onChange={setSpecSheet} folder="msds" label="MSDS / Datasheet (PDF)" />
 

@@ -79,7 +79,7 @@ function ImageGallery({ images, name, modelSrc }) {
             src={images[activeIdx]}
             alt={name}
             fill
-            className="object-cover transition-all duration-300"
+            className="object-contain transition-all duration-300"
             sizes="(max-width: 1024px) 100vw, 60vw"
             priority
           />
@@ -106,7 +106,7 @@ function ImageGallery({ images, name, modelSrc }) {
                 activeIdx === i ? 'border-brand-blue' : 'border-brand-border hover:border-brand-blue/40'
               )}
             >
-              <Image src={img} alt="" fill className="object-cover" sizes="64px" />
+              <Image src={img} alt="" fill className="object-contain" sizes="64px" />
             </button>
           ))}
         </div>

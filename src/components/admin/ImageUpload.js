@@ -59,7 +59,7 @@ export function SingleImageUpload({ value, onChange, folder = 'uploads', label =
   );
 }
 
-export function MultiImageUpload({ values, onChange, folder = 'uploads', label = 'Images', max = 5, aspect = 1 }) {
+export function MultiImageUpload({ values, onChange, folder = 'uploads', label = 'Images', max = 5 }) {
   const [uploading, setUploading] = useState(false);
   const [error, setError] = useState('');
   const [queue, setQueue] = useState([]); // [{ file, objectUrl }]
@@ -120,7 +120,7 @@ export function MultiImageUpload({ values, onChange, folder = 'uploads', label =
       <div style={{ display: 'flex', flexWrap: 'wrap', gap: 10, marginBottom: values.length ? 10 : 0 }}>
         {values.map((url, i) => (
           <div key={i} style={{ position: 'relative' }}>
-            <img src={url} alt="" style={{ width: 100, height: 100, objectFit: 'cover', borderRadius: 8, border: '1.5px solid #E2E8F0', display: 'block' }} />
+            <img src={url} alt="" style={{ width: 100, height: 100, objectFit: 'contain', background: '#F8FAFC', borderRadius: 8, border: '1.5px solid #E2E8F0', display: 'block' }} />
             <button type="button" onClick={() => remove(i)}
               style={{ position: 'absolute', top: -7, right: -7, width: 20, height: 20, borderRadius: '50%', background: '#DC2626', border: 'none', color: '#fff', display: 'flex', alignItems: 'center', justifyContent: 'center', cursor: 'pointer' }}>
               <X size={11} />
@@ -146,7 +146,6 @@ export function MultiImageUpload({ values, onChange, folder = 'uploads', label =
           imageSrc={cropping.objectUrl}
           fileName={cropping.file.name}
           mimeType={cropping.file.type}
-          aspect={aspect}
           onCancel={handleCropCancel}
           onConfirm={handleCropConfirm}
         />

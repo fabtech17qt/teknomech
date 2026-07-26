@@ -52,9 +52,7 @@ function ProductCard({ product }) {
             src={product.img}
             alt={product.name}
             fill
-            className={`transition-transform duration-500 group-hover:scale-105 ${
-              product.isRender ? 'object-contain p-4' : 'object-cover'
-            }`}
+            className="object-contain p-4 transition-transform duration-500 group-hover:scale-105"
             sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 25vw"
           />
         )}

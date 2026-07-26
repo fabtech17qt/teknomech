@@ -18,7 +18,7 @@ export default function ProductCard({ product, className }) {
             src={product.images[0]}
             alt={name}
             fill
-            className="object-cover group-hover:scale-105 transition-transform duration-500"
+            className="object-contain p-4 group-hover:scale-105 transition-transform duration-500"
           />
         ) : (
           <div className="w-full h-full flex items-center justify-center text-brand-subtext/30">
